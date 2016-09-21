@@ -60,7 +60,7 @@
 BlockStructure = function( omega,
                            blocker_metadata,
                            order_metadata,
-                           palette = RColorBrewer::brewer.pal(8, "Accent"),
+                           palette = c("#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7"),
                            yaxis_label = "Y",
                            split_line=list(split_lwd = 1,
                                            split_col = "white"),
@@ -81,24 +81,24 @@ BlockStructure = function( omega,
   split_struct <- list()
   for(l in 1:length(split_indices)){
 
-    elevation_split <- round(elevation_metadata[split_indices[[l]]], round_off);
+    order_split <- round(order_metadata[split_indices[[l]]], round_off);
     omega_split <- omega[split_indices[[l]],]
     if(levels_decreasing){
-      elevation_split_ordered <- elevation_split[order(elevation_split, decreasing=TRUE)]
-      omega_split_ordered <- omega_split[order(elevation_split, decreasing=TRUE),]
+      order_split_ordered <- order_split[order(order_split, decreasing=TRUE)]
+      omega_split_ordered <- omega_split[order(order_split, decreasing=TRUE),]
     }else{
-      elevation_split_ordered <- elevation_split[order(elevation_split, decreasing=FALSE)]
-      omega_split_ordered <- omega_split[order(elevation_split, decreasing=FALSE),]
+      order_split_ordered <- order_split[order(order_split, decreasing=FALSE)]
+      omega_split_ordered <- omega_split[order(order_split, decreasing=FALSE),]
     }
     annotation <- data.frame(
       sample_id = paste0("X", c(1:NROW(omega_split_ordered))),
-      tissue_label = factor(elevation_split_ordered,
-                            levels = unique(elevation_split_ordered) ) );
+      tissue_label = factor(order_split_ordered,
+                            levels = unique(order_split_ordered) ) );
 
     split_struct[[l]] <- CountClust::StructureGGplot(omega = omega_split_ordered,
                                                      annotation = annotation,
                                                      figure_title = names(split_indices)[l],
-                                                     palette = RColorBrewer::brewer.pal(8, "Accent"),
+                                                     palette = palette,
                                                      yaxis_label = yaxis_label,
                                                      split_line=split_line,
                                                      order_sample = FALSE,

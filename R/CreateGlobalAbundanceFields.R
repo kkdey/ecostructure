@@ -45,7 +45,7 @@ CreateGlobalAbundanceFields = function(local_data,
                                      raster_latlim = c(5,50),
                                      raster_longlim = c(50,120),
                                      raster_resolution = 5,
-                                     base_local = 2,
+                                     base_local = 0,
                                      optional_species_names = NULL){
 
 
@@ -67,6 +67,9 @@ CreateGlobalAbundanceFields = function(local_data,
     local.species[[i]]<-local.list
   }
 
+  if(is.null(shapefiles_dir)){
+    shapefiles_dir <- getwd();
+  }
   shapefile_names<-list.files(shapefiles_dir, pattern=".shp")
 
 

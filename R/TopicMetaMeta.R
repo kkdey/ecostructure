@@ -81,15 +81,15 @@ TopicMetaMeta = function(     annotation,
 
   if(is.null(ylim)){
     par(mar = margin)
-    with(annotation, plot(x = x, y = y1, col=col.pts,
+    with(annotation, plot(x = x, y = y1, col=col.pts1,
                           ylab=NA, xaxt="n", xlab=NA,
-                          pch=pch.pts, lwd=lwd.pts, lty=lty.pts))
+                          pch=pch.pts1, lwd=lwd.pts1, lty=lty.pts1))
   }
   if(!is.null(ylim)){
     par(mar = margin)
-    with(annotation, plot(x = x, y = y1, col=col.pts, ylim=ylim,
+    with(annotation, plot(x = x, y = y1, col=col.pts1, ylim=ylim,
                           ylab=NA, xaxt="n", xlab=NA,
-                          pch=pch.pts, lwd=lwd.pts, lty=lty.pts))
+                          pch=pch.pts1, lwd=lwd.pts1, lty=lty.pts1))
   }
 
   axis(1, at=annotation$x, paste0(annotation$x_names, "(",
