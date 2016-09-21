@@ -12,9 +12,10 @@ metadata <- pData(HimalayanBirdsAbundance);
 elevation_metadata=metadata$Elevation;
 east_west_dir = metadata$WorE;
 
-topic_clus <- maptpx::topics(new_counts, K=2, tol=0.1)
+topic_clus <- maptpx::topics(new_counts, K=2, tol=0.000001)
 omega <- topic_clus$omega
-
+library(gridExtra)
+library(grid)
 BlockStructure(omega, blocker_metadata = east_west_dir,
                order_metadata = elevation_metadata,
                yaxis_label = "Elevation",

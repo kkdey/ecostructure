@@ -1,0 +1,14 @@
+
+
+CreateGlobalAbundanceFields :
+
+	change `local_data` to `local_counts`
+	should not have default for raster_latlim and raster_longlim, NULL default
+	should give errors if not NULL
+
+
+CreateMapsFromDispersionFields:
+
+	http://www.naturalearthdata.com/downloads/50m-cultural-vectors/
+	http://www.naturalearthdata.com/downloads/
+
