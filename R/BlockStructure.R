@@ -24,6 +24,7 @@
 #'                        of magnitude of ordering metadata. Default is TRUE.
 #' @param round_off The ordering metadata is rounded off to these many digits.
 #' @param layout The graph layout for plotting the block Structure output.
+#' @param plot_order The order of blocks within the specified layout for plotting the block Structure output.
 #' @param panel_title_size The size of the title for layout panel
 #' @param panel_title_font The font of the title for the layout panel
 #' @param main_title the title of the Block Structure model plot.
@@ -73,6 +74,7 @@ BlockStructure = function( omega,
                            levels_decreasing=TRUE,
                            round_off=1,
                            layout=c(1,2),
+                           plot_order=c(1,2),
                            panel_title_size=10,
                            panel_title_font=4,
                            main_title="Block Structure Plot"){
@@ -110,9 +112,12 @@ BlockStructure = function( omega,
   if((layout[1]*layout[2]) != length(split_struct)){
     stop("The layout size does not match with number of blocks")
   }
+  if(length(plot_order) != length(split_indices)){
+    stop("The plot order length does not match with number of blocks")
+  }
 
   do.call("grid.arrange",
-          args = list(grobs=split_struct,
+          args = list(grobs=split_struct[plot_order],
                       ncol = layout[2],
                       nrow = layout[1],
                       top=textGrob(main_title,
