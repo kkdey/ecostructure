@@ -7,36 +7,55 @@
 #'
 #' @param dispersion.field The list of dispersion field matrices per site generated
 #'                         by \code{CreateGlobalAbundanceFields} function.
-#' @param global_shapefile Global shapefile to read shape lines for background.
+#' @param global_shapefile Global shapefile to read shape lines for country boundaries in background.
+#' @param raster_latlim The latitudinal range of the dispersion fields
+#' @param raster_longlim the longitudinal range of the dispersion fields
+#' @param proj the CRS projection of the global shapfile to apply to each dispersion field matrix
+#' @param color_ramp Color palette to be for the heat map 
 #'
 #' @examples
 #' dispersion.field <- get(load("dispersion_field_mat.rda"))
+#' proj <- CRS(' +proj=longlat +ellps=WGS84')
 #' global_shapefile <- readShapeLines('ne_50m_admin_0_countries.shp', proj4string=proj)
 #' maps <- CreateMapsFromDispersionFields(dispersion.field, global_shapefile )
 #'
-#' @importFrom rasterVis rasterTheme
+#' @import rasterVis
 #' @import grDevices
-#' @importFrom readShapeLines maptools
+#' @import raster
+#' @importFrom maptools readShapeLines
+#' @importFrom sp CRS
 #' @export
 
 ##########  Create a set of maps from dispersion field data ##################
 
 CreateMapsFromDispersionFields <- function(dispersion.field,
-                                           global_shapefile)
+                                           global_shapefile,
+                                           raster_latlim = c(5,50),
+                                           raster_longlim = c(50,120),
+                                           proj=CRS(' +proj=longlat +ellps=WGS84'),
+                                           color_ramp = c("darkseagreen3","orange","red"))
 {
-  newtheme <- rasterVis::rasterTheme(region = grDevices::colorRampPalette(c("darkseagreen3","orange","red"))( 100 ))
-#  GlobalAdm <- readShapeLines('ne_50m_admin_0_countries.shp', proj4string=proj)
+  newtheme <- rasterVis::rasterTheme(region = grDevices::colorRampPalette(color_ramp)( 100 ))
+  xmin<-raster_longlim[1]
+  xmax<-raster_longlim[2]
+  ymin<-raster_latlim[1]
+  ymax<-raster_latlim[2]
   ADF <- list()
-  for (l in 1:length(dispersion.field)){
-    ADF[[i]] <- levelplot(dispersion.field[[l]],
+  for (i in 1:length(dispersion.field)){
+    r <- raster::raster(dispersion.field[[i]],
+                        xmn=xmin,
+                        xmx=xmax,
+                        ymn=ymin,
+                        ymx=ymax,
+                        crs=proj)
+    ADF[[i]] <- rasterVis::levelplot(r,
                           par.settings=newtheme,
                           contour=F,margin=FALSE,
-                          colorkey=list(at=seq(0, 50, 1),
-                                        labels=list(at=c(12.5, 25,37.5,50),
+                          at=seq(1, summary(r)[5], length.out=100),
+                          colorkey=list(at=seq(0, 100, 1),
+                                        labels=list(at=c(25,50,75,100),
                                                     labels=c("25%", "50%", "75%", "100%")))) +
-      layer({
-        sp.lines(global_shapefile, col='black', lwd=0.5)
-      })
+      latticeExtra::layer(sp.lines(global_shapefile, col='black', lwd=0.5))
   }
   names(ADF)<-names(dispersion.field)
   return(ADF)
