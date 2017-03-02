@@ -13,6 +13,9 @@
 #'               \item{\code{y2d}}{ a N-1 vector of distances between adjacent sites plotted as segments connecting the two sites}
 #'           }
 #'
+#'  @param  y2d.type The type of comparison for y2d. Function will calculate the mean and difference 
+#'                   between adjacent sites when given raw values, or will plot the simply plot the values provides
+#'                   in y2d vector privided.  Can be one of "raw", "mean", or "diff". Defaults to "diff".    
 #'  @param  margin  The values of the margin on the bottom, left, top and right.
 #'  @param  col.pts The color of the points for \code{annotation$y}.
 #'  @param  pch.pts The size of the points. Defaults to 20.
@@ -53,6 +56,7 @@
 
 
 TopicMetaDiversity = function(annotation,
+                              y2d.type = c("diff"),
                               margin=c(5,5,2,5),
                               col.pts = "red3",
                               pch.pts=20,
@@ -73,6 +77,21 @@ TopicMetaDiversity = function(annotation,
                               line.y2d=3,
                               round_off=0,
                               legend.pos="topleft"){
+  if(y2d.type=="diff"){
+    diff.mat <- t(outer(annotation$y2d, annotation$y2d, `-`)) 
+    rownames(diff.mat) <- annotation$x_names
+    colnames(diff.mat) <- annotation$x_names
+    diff.order <- as.vector(annotation$x_names[order(annotation$y2d, annotation$x_names, decreasing =F)])
+    diff.mat <- diff.mat[diff.order,diff.order]
+    annotation$y2d <- c(abs(split(diff.mat, (row(diff.mat) - col(diff.mat)))$"1"),0)
+    
+  }
+  if(y2d.type=="mean"){
+    annotation$y2d<-c(((annotation$y2d[1:(length(annotation$y2d)-1)]+annotation$y2d[-1])/2),0)
+  }
+  if(y2d.type=="raw"){
+    annotation$y2d<-annotation$y2d
+  }
 
 if(is.null(ylim)){
  par(mar = margin)
