@@ -4,13 +4,24 @@
 \alias{CreateMapsFromDispersionFields}
 \title{Create geographical heatmaps from dispersion field list}
 \usage{
-CreateMapsFromDispersionFields(dispersion.field, global_shapefile)
+CreateMapsFromDispersionFields(dispersion.field, global_shapefile,
+  raster_latlim = c(5, 50), raster_longlim = c(50, 120),
+  proj = CRS(" +proj=longlat +ellps=WGS84"), color_ramp = c("darkseagreen3",
+  "orange", "red"))
 }
 \arguments{
 \item{dispersion.field}{The list of dispersion field matrices per site generated
 by \code{CreateGlobalAbundanceFields} function.}
 
-\item{global_shapefile}{Global shapefile to read shape lines for background.}
+\item{global_shapefile}{Global shapefile to read shape lines for country boundaries in background.}
+
+\item{raster_latlim}{The latitudinal range of the dispersion fields}
+
+\item{raster_longlim}{the longitudinal range of the dispersion fields}
+
+\item{proj}{the CRS projection of the global shapfile to apply to each dispersion field matrix}
+
+\item{color_ramp}{Color palette to be for the heat map}
 }
 \description{
 Creates geographical heatmaps depicting global dispersion field
@@ -20,6 +31,7 @@ shapefile to sketch the background.
 }
 \examples{
 dispersion.field <- get(load("dispersion_field_mat.rda"))
+proj <- CRS(' +proj=longlat +ellps=WGS84')
 global_shapefile <- readShapeLines('ne_50m_admin_0_countries.shp', proj4string=proj)
 maps <- CreateMapsFromDispersionFields(dispersion.field, global_shapefile )
 

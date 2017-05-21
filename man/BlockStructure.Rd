@@ -10,8 +10,8 @@ BlockStructure(omega, blocker_metadata, order_metadata, palette = c("#E69F00",
   axis_tick = list(axis_ticks_length = 0.1, axis_ticks_lwd_y = 0.1,
   axis_ticks_lwd_x = 0.1, axis_label_size = 7, axis_label_face = "bold"),
   plot_labels = TRUE, levels_decreasing = TRUE, round_off = 1,
-  layout = c(1, 2), panel_title_size = 10, panel_title_font = 4,
-  main_title = "Block Structure Plot")
+  layout = c(1, 2), plot_order = c(1, 2), panel_title_size = 10,
+  panel_title_font = 4, main_title = "Block Structure Plot")
 }
 \arguments{
 \item{omega}{Cluster membership probabilities of each sample. Usually a
@@ -45,6 +45,8 @@ of magnitude of ordering metadata. Default is TRUE.}
 \item{round_off}{The ordering metadata is rounded off to these many digits.}
 
 \item{layout}{The graph layout for plotting the block Structure output.}
+
+\item{plot_order}{The order of blocks within the specified layout for plotting the block Structure output.}
 
 \item{panel_title_size}{The size of the title for layout panel}
 
