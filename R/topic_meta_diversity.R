@@ -52,7 +52,7 @@
 #############  Plot with 2 Y -axes in R (ecology + evolution) ###################
 
 
-TopicMetaDiversity = function(annotation,
+topic_meta_diversity = function(annotation,
                               margin=c(5,5,2,5),
                               col.pts = "red3",
                               pch.pts=20,

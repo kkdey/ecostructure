@@ -4,9 +4,9 @@
 \alias{BlockStructure}
 \title{Ecological Block Struture plot with ggplot2 package}
 \usage{
-BlockStructure(omega, blocker_metadata, order_metadata,
-  palette = RColorBrewer::brewer.pal(8, "Accent"), yaxis_label = "Y",
-  split_line = list(split_lwd = 1, split_col = "white"),
+BlockStructure(omega, blocker_metadata, order_metadata, palette = c("#E69F00",
+  "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7"),
+  yaxis_label = "Y", split_line = list(split_lwd = 1, split_col = "white"),
   axis_tick = list(axis_ticks_length = 0.1, axis_ticks_lwd_y = 0.1,
   axis_ticks_lwd_x = 0.1, axis_label_size = 7, axis_label_face = "bold"),
   plot_labels = TRUE, levels_decreasing = TRUE, round_off = 1,
@@ -76,4 +76,3 @@ BlockStructure(omega, blocker_metadata = east_west_dir,
               levels_decreasing = FALSE)
 
 }
-

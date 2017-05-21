@@ -7,7 +7,7 @@ and shapefiles}
 \usage{
 CreateGlobalAbundanceFields(local_data, shapefiles_dir = NULL,
   raster_latlim = c(5, 50), raster_longlim = c(50, 120),
-  raster_resolution = 5, base_local = 2, optional_species_names = NULL)
+  raster_resolution = 5, base_local = 0, optional_species_names = NULL)
 }
 \arguments{
 \item{local_data}{abundance counts site-species matrix/data frame.}
@@ -57,4 +57,3 @@ present in that site.
 \keyword{global}
 \keyword{local}
 \keyword{site-species}
-

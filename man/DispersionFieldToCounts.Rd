@@ -31,4 +31,3 @@ counts <- DispersionFieldToCounts(dispersion.field)
 \keyword{dispersion}
 \keyword{field,}
 \keyword{global}
-

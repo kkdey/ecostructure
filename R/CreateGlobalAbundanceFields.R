@@ -35,7 +35,7 @@
 #' @keywords counts data, local site-species data, global dispersion field
 #'
 #' @importFrom rgdal readOGR
-#' @import raster
+#' @importFrom raster raster setValues
 #' @importFrom utils stack
 #'
 #' @export

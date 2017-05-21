@@ -1,6 +1,6 @@
 PackratFormat: 1.4
 PackratVersion: 0.4.7.1
-RVersion: 3.3.0
+RVersion: 3.3.1
 Repos: BioCsoft=https://bioconductor.org/packages/3.2/bioc,
     BioCann=https://bioconductor.org/packages/3.2/data/annotation,
     BioCexp=https://bioconductor.org/packages/3.2/data/experiment,
@@ -32,8 +32,8 @@ Package: CountClust
 Source: github
 Version: 0.99.4
 Hash: e40080583dfe12db57478ca5c90393b0
-Requires: cowplot, flexmix, ggplot2, gtools, limma, maptpx, picante,
-    plyr, reshape2, slam
+Requires: gtools, limma, slam, plyr, flexmix, maptpx, picante,
+    reshape2, ggplot2, cowplot, SQUAREM
 GithubRepo: Countclust
 GithubUsername: kkdey
 GithubRef: master
@@ -54,6 +54,11 @@ Source: CRAN
 Version: 0.12.7
 Hash: f0ba7322cfb66f1b563462faa9c2b2ab
 
+Package: SQUAREM
+Source: CRAN
+Version: 2016.8-2
+Hash: f7cf70f406ebe4294b1b9c85f28bdc8c
+
 Package: ape
 Source: CRAN
 Version: 3.5
@@ -73,7 +78,7 @@ Package: cowplot
 Source: CRAN
 Version: 0.6.2
 Hash: 4f10686683a790c924c4d6c7ef33ed48
-Requires: ggplot2, gtable, plyr
+Requires: gtable, plyr, ggplot2
 
 Package: curl
 Source: CRAN
@@ -84,8 +89,8 @@ Package: devtools
 Source: CRAN
 Version: 1.12.0
 Hash: bbad95109ae75cbb14099281cda43af2
-Requires: digest, git2r, httr, jsonlite, memoise, rstudioapi, whisker,
-    withr
+Requires: digest, git2r, jsonlite, rstudioapi, whisker, withr, memoise,
+    httr
 
 Package: dichromat
 Source: CRAN
@@ -118,7 +123,7 @@ Package: ggplot2
 Source: CRAN
 Version: 2.1.0
 Hash: 50e297b0191179c39c7dcae0eff72b51
-Requires: digest, gtable, plyr, reshape2, scales
+Requires: digest, gtable, plyr, scales, reshape2
 
 Package: git2r
 Source: CRAN
@@ -182,7 +187,7 @@ Package: maptpx
 Source: CRAN
 Version: 1.9-2
 Hash: 3575296e0b7879d97487ed0a0792bab6
-Requires: slam
+Requires: slam, SQUAREM
 
 Package: markdown
 Source: CRAN
@@ -282,7 +287,7 @@ Package: scales
 Source: CRAN
 Version: 0.4.0
 Hash: c4a91e7a322e03813b68b73940ce031f
-Requires: RColorBrewer, Rcpp, dichromat, labeling, munsell, plyr
+Requires: RColorBrewer, Rcpp, dichromat, labeling, plyr, munsell
 
 Package: slam
 Source: CRAN

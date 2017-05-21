@@ -19,7 +19,11 @@ Depends:
     rgdal,
     utils,
     grid,
-    gridExtra
+    gridExtra,
+    phytools,
+    SpatialExtremes,
+    ape,
+    maptools
 License: GPL (>= 2)
 LazyData: true
 Encoding: UTF-8
@@ -28,5 +32,4 @@ Suggests:
     knitr, BiocStyle, Biobase, roxygen2, RColorBrewer, devtools, xtable, Rcpp
 VignetteBuilder: knitr
 biocViews: Software, Visualization, Ecology
-RoxygenNote: 5.0.1
-
+RoxygenNote: 6.0.1

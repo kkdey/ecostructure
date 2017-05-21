@@ -16,7 +16,7 @@
 #'
 #' @importFrom rasterVis rasterTheme
 #' @import grDevices
-#' @importFrom readShapeLines maptools
+#' @importFrom maptools readShapeLines
 #' @export
 
 ##########  Create a set of maps from dispersion field data ##################

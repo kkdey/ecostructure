@@ -24,4 +24,3 @@ global_shapefile <- readShapeLines('ne_50m_admin_0_countries.shp', proj4string=p
 maps <- CreateMapsFromDispersionFields(dispersion.field, global_shapefile )
 
 }
-
