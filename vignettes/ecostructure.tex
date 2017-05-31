@@ -1,0 +1,61 @@
+%\VignetteEngine{knitr::knitr}
+%\VignetteIndexEntry{Grade of Membership Clustering and Visualization using CountClust}
+%\VignettePackage{CountClust}
+
+% To compile this document
+% library('knitr'); rm(list=ls()); knit('CountClust/vignettes/count-clust.Rnw')
+% library('knitr'); rm(list=ls()); knit2pdf('CountClust/vignettes/count-clust.Rnw'); openPDF('count-clust.pdf')
+% !Rnw weave = knitr
+
+\documentclass[12pt]{article}
+
+\newcommand{\ecostructure}{\textit{ecostructure}}
+\usepackage{dsfont}
+\usepackage{cite}
+
+
+
+
+\RequirePackage{/Library/Frameworks/R.framework/Versions/3.3/Resources/library/BiocStyle/resources/tex/Bioconductor}
+
+\AtBeginDocument{\bibliographystyle{/Library/Frameworks/R.framework/Versions/3.3/Resources/library/BiocStyle/resources/tex/unsrturl}}
+
+
+
+\bioctitle[\ecostructure{} - Grade of Membership Model and Visualization for ecological species abundance data]{\ecostructure{} - Grade of Membership Model and Visualization for ecological species abundance data}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+
+The \textbf{ecostructure} package is an R package that replicates the statistical analysis in this paper, but its toolbox of functions is generic enough in handling and analyzing other species abundance data. The package provides functions for fitting the Grade of Membership (GoM) model, along with the visualization of model fit using Block Structure plot \ref{Pritchard}\ref{Taddy}. The package comes with the raw taxonomic data saved as an ExpressionSet object and provides a pipeline for reading and processing counts data for different dimensions of diversity, e.g. - phylogenetic, regional and functional, which serve as readymade input for the GoM model. This package is an upgraded version of the CountClust package due to Dey et al \ref{Dey} for fitting GoM models on RNA-seq data
+
+\section{Installation}
+
+The package is available on Github and can be installed as follows
+
+
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{library}\hlstd{(devtools)}
+\hlkwd{install_github}\hlstd{(}\hlstr{"kkdey/ecostructure"}\hlstd{)}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+
+Load the package as
+
+
+
+
+
+
+
+
+
+
+

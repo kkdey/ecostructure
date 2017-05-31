@@ -1,0 +1,38 @@
+%\VignetteEngine{knitr::knitr}
+%\VignetteIndexEntry{Grade of Membership Clustering and Visualization using CountClust}
+%\VignettePackage{CountClust}
+
+% To compile this document
+% library('knitr'); rm(list=ls()); knit('CountClust/vignettes/count-clust.Rnw')
+% library('knitr'); rm(list=ls()); knit2pdf('CountClust/vignettes/count-clust.Rnw'); openPDF('count-clust.pdf')
+% !Rnw weave = knitr
+
+\documentclass[12pt]{article}
+
+\newcommand{\ecostructure}{\textit{ecostructure}}
+\usepackage{dsfont}
+\usepackage{cite}
+
+
+<<knitr, echo=FALSE, results="hide">>=
+library("knitr")
+opts_chunk$set(tidy=FALSE,tidy.opts=list(width.cutoff=30),dev="png",fig.show="hide",
+               fig.width=4,fig.height=7,
+               message=FALSE)
+@
+
+<<style, eval=TRUE, echo=FALSE, results="asis">>=
+BiocStyle::latex()
+@
+
+\author{Kushal K Dey, Chiaowen Joyce Hsiao \& Matthew Stephens \\[1em] \small{\textit{Stephens Lab}, The University of Chicago} \mbox{ }\\ \small{\texttt{$^*$Correspondending Email: mstephens@uchicago.edu}}}
+
+\bioctitle[Grade of Membership Clustering and Visualization using \CountClust{}]{Grade of Membership Model and Visualization for RNA-seq data using \CountClust{}}
+
+\begin{document}
+
+\maketitle
+
+
+
+\end{document}

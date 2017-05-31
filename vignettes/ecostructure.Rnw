@@ -1,0 +1,96 @@
+%\VignetteEngine{knitr::knitr}
+%\VignetteIndexEntry{Grade of Membership Clustering and Visualization using CountClust}
+%\VignettePackage{CountClust}
+
+% To compile this document
+% library('knitr'); rm(list=ls()); knit('CountClust/vignettes/count-clust.Rnw')
+% library('knitr'); rm(list=ls()); knit2pdf('CountClust/vignettes/count-clust.Rnw'); openPDF('count-clust.pdf')
+% !Rnw weave = knitr
+
+\documentclass[12pt]{article}
+
+\newcommand{\ecostructure}{\textit{ecostructure}}
+\usepackage{dsfont}
+\usepackage{cite}
+
+
+<<knitr, echo=FALSE, results="hide">>=
+library("knitr")
+opts_chunk$set(tidy=FALSE,tidy.opts=list(width.cutoff=30),dev="png",fig.show="hide",
+               fig.width=4,fig.height=7,
+               message=FALSE)
+@
+
+<<style, eval=TRUE, echo=FALSE, results="asis">>=
+BiocStyle::latex()
+@
+
+
+\bioctitle[\ecostructure{} - Grade of Membership Model and Visualization for ecological species abundance data]{\ecostructure{} - Grade of Membership Model and Visualization for ecological species abundance data}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+
+The \textbf{ecostructure} package is an R package that replicates the statistical analysis in this paper, but its toolbox of functions is generic enough in handling and analyzing other species abundance data. The package provides functions for fitting the Grade of Membership (GoM) model, along with the visualization of model fit using Block Structure plot \ref{Pritchard}\ref{Taddy}. The package comes with the raw taxonomic data saved as an ExpressionSet object and provides a pipeline for reading and processing counts data for different dimensions of diversity, e.g. - phylogenetic, regional and functional, which serve as readymade input for the GoM model. This package is an upgraded version of the CountClust package due to Dey et al \ref{Dey} for fitting GoM models on RNA-seq data
+
+\section{Installation}
+
+The package is available on Github and can be installed as follows
+
+<<options, results="hide", echo=FALSE>>=
+options(digits=3, width=80, prompt=" ", continue=" ")
+@
+
+<<install_ecostructure_bio, eval=FALSE>>=
+library(devtools)
+install_github("kkdey/ecostructure")
+@ %def
+
+Load the package as
+
+<<load_ecostructure_bio, eval = TRUE>>=
+library(ecostructure)
+@ %def
+
+to use the GoM model, the user needs to install the **maptpx** package
+
+<<install_github, eval=FALSE>>=
+library(devtools)
+install_github("kkdey/maptpx")
+@ %def
+
+One can load the taxonomic data, together with the grid metadata ans species metadata as an ExpressionSet object as follows
+
+<<data, eval=TRUE>>=
+data <- get(load(system.file("extdata", "HimalayanBirdsData.rda",
+                             package = "ecostructure")))
+taxonomic_counts <- exprs(data)
+taxonomic_counts[1:5,1:5]
+@ %def
+
+
+The corresponding grid metadata can be read as
+
+<<pdata, eval = TRUE>>=
+grid_metadata <- pData(phenoData(data))
+head(grid_metadata)
+@ %def
+
+The species metadata can be read as follows
+
+<<fdata, eval = TRUE>>=
+species_metadata <- pData(featureData(data))
+head(species_metadata)
+@ %def
+
+
+
+
+
+
+
+
+\end{document}
