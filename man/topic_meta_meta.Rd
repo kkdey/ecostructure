@@ -53,13 +53,12 @@ drop/jump in topic proportions across sites is related to the two metadata.
 
  @return Produces a bi-Y plot of \code{annotation$y} and  \code{annotation$y2}
          against \code{annotation$x} in the X-axis.
-
- @examples
+}
+\examples{
  annotation = data.frame(x_names = c(paste0("A",1:5), paste0("B",1:5)),
  x = c(0.5,2.0, 3.2, 4.6, 6.3,  23.5, 26.4, 28.5, 29.6, 31.8),
  y1 = c(0.4, 0.3, 0.4, 0.35, 0.4, 0.8, 0.85, 0.9, 0.8, 0.75),
  y2 =c(5, 6.6, 4, 5.2, 20, 3.4, 5.6, 4.5, 8, 10))
-  TopicMetaMeta(annotation)
+ topic_meta_meta(annotation)
 
- @export
 }

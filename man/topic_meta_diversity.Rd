@@ -57,7 +57,5 @@ drop/jump in topic proportions across sites is related to the distance between a
  y1 = c(0.4, 0.3, 0.4, 0.35, 0.4, 0.8, 0.85, 0.9, 0.8, 0.75),
  y2d =c(5, 6.6, 4, 5.2, 20, 3.4, 5.6, 4.5, 8, 10))
 
- TopicMetaDiversity(annotation)
-
- @export
+ topic_meta_diversity(annotation)
 }
