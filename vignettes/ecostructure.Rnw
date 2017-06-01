@@ -180,7 +180,7 @@ The function reads in the taxonomic counts data and the phylogenetic tree data a
 
 <<motif, eval = FALSE>>=
 tree <- ape::read.tree(system.file("extdata",
-                                   "AllHim_Mar_27_2015.tre",
+                                   "grids_tree_3_10_16.tre",
                                     package = "ecostructure"))
 phylo_counts <- collapse_counts_by_phylo(taxonomic_counts,
                                          tree, collapse_at = 10)
