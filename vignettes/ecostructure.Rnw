@@ -16,7 +16,8 @@
 
 <<knitr, echo=FALSE, results="hide">>=
 library("knitr")
-opts_chunk$set(tidy=FALSE,tidy.opts=list(width.cutoff=30),dev="png",fig.show="hide",
+opts_chunk$set(tidy=FALSE,tidy.opts=list(width.cutoff=30),dev="png",
+               fig.show="hide",
                fig.width=4,fig.height=7,
                message=FALSE)
 @
@@ -34,7 +35,7 @@ BiocStyle::latex()
 
 \section{Introduction}
 
-The \textbf{ecostructure} package is an R package that replicates the statistical analysis in this paper, but its toolbox of functions is generic enough in handling and analyzing other species abundance data. The package provides functions for fitting the Grade of Membership (GoM) model, along with the visualization of model fit using Block Structure plot \ref{Pritchard}\ref{Taddy}. The package comes with the raw taxonomic data saved as an ExpressionSet object and provides a pipeline for reading and processing counts data for different dimensions of diversity, e.g. - phylogenetic, regional and functional, which serve as readymade input for the GoM model. This package is an upgraded version of the CountClust package due to Dey et al \ref{Dey} for fitting GoM models on RNA-seq data
+The \textbf{ecostructure} package is an R package that replicates the statistical analysis in this paper, but its toolbox of functions is generic enough in handling and analyzing other species abundance data. The package provides functions for fitting the Grade of Membership (GoM) model, along with the visualization of model fit using Block Structure plot \ref{Pritchard}\ref{Taddy}. The package comes with the raw taxonomic data saved as an ExpressionSet object and provides a pipeline for reading and processing counts data corresponding to different dimensions of diversity, e.g. - phylogenetic, regional and functional, which serve as readymade input for the GoM model. This package is an upgraded version of the CountClust package due to Dey et al \ref{Dey} for fitting GoM models on RNA-seq data
 
 \section{Installation}
 
@@ -71,7 +72,7 @@ One can load the taxonomic data, together with the grid metadata ans species met
 <<data, eval=TRUE>>=
 data <- get(load(system.file("extdata", "HimalayanBirdsData.rda",
                              package = "ecostructure")))
-taxonomic_counts <- exprs(data)
+taxonomic_counts <- t(exprs(data))
 taxonomic_counts[1:5,1:5]
 @ %def
 
@@ -115,7 +116,7 @@ Here we illustrate how one can fit the Grade of Membership model and perform the
 <<blockstructure, eval=TRUE>>=
 elevation_metadata=grid_metadata$Elevation;
 east_west_dir = grid_metadata$WorE;
-gom_fit <- CountClust::FitGoM(t(taxonomic_counts), K=2:4, tol=0.1)
+gom_fit <- CountClust::FitGoM(taxonomic_counts, K=2:4, tol=0.1)
 @ %def
 
 
@@ -153,13 +154,82 @@ BlockStructure(omega, blocker_metadata = east_west_dir,
 
 \newpage
 
+\textbf{ecostructure} provides tools to compare the GoM model fit on the data with respect to null model using the \begin{verb} nullmodel_GoM \end{verb} function.
+
+<<nullmodel, eval=TRUE, fig.height = 4, fig.height = 5>>=
+nullmodel_GoM(taxonomic_counts, K=2,
+               tol=500, null.model="frequency",
+               iter_randomized=5, plot=FALSE)
+@
+
+The function returns for a fixed $K$, the observed Bayes factor for the GoM model fit on the actual counts data, as well as the Bayes factor from applying GoM model on \begin{verb} iter_randomized \end{verb} many counts matrices generated under a specified null model. It also provdies a p-value of the observed Bayes factor with respect to the distribution of the Bayes factors from GoM on null model generated matrices.
+
+In the above example \textbf{frequency} based null model was used. The other options are \textbf{richness}, \textbf{trialswap} and \textbf{independentswap}. Ideally if the observed Bayes factor should be higher than the Bayes factors from null model generated counts data.
+
+
 \section{Processing motif data}
+
+In this section, we demonstrate how \textbf{ecostructure} can be used to process
+grid level counts data corresponding to different axes of diversity, that may range from being functional to regional to phylogenetic.
+
+\subsection{phylogenetic motif}
+
+For building the counts data corresponding to phylogenetic diversity, we provide a function,
+\begin{verb} collapse_counts_by_phylo () \end{verb} to collapse the taxa in the taxonomic counts data based on the phylogenetic similarity profile of the species.
+The function reads in the taxonomic counts data and the phylogenetic tree data and a user defined cut off at which to slice the tree and collapse the taxa in each branch into a single phylogenetic unit.
+
+<<motif, eval = FALSE>>=
+tree <- ape::read.tree(system.file("extdata",
+                                   "AllHim_Mar_27_2015.tre",
+                                    package = "ecostructure"))
+phylo_counts <- collapse_counts_by_phylo(taxonomic_counts,
+                                         tree, collapse_at = 10)
+dim(phylo_counts)
+@ %def
+
+\subsection{regional motif}
+
+For the regional profile, \textbf{ecostructure} allows the user to create Global assemblage dispersion fields and build maps data from the dispersion fields created. An example is shown below.
+
+<<abundance_fields, eval = FALSE>>=
+disp <- CreateGlobalDispersionFields(taxonomic_counts,
+              shapefiles_dir = system.file("extdata",
+                    "ne_50m_admin_0_countries", package = "ecostructure"))
+@
+
+
+<<mapsdisp_fields, eval=FALSE>>=
+dispersion.field <- disp
+proj <- CRS(' +proj=longlat +ellps=WGS84')
+global_shapefile <- readShapeLines(system.file("extdata",
+         "ne_50m_admin_0_countries/ne_50m_admin_0_countries.shp",
+          package = "ecostructure"), proj4string=proj)
+maps <- CreateMapsFromDispersionFields(dispersion.field, global_shapefile)
+@ %def
+
+Finally, the user can generate the counts data corressponding to regional diversity using the \begin{verb} DispersionFieldTocounts() \end{verb} function
+
+<<reg_counts, eval=FALSE>>=
+regional_counts <- DispersionFieldToCounts(dispersion.field)
+@ %def
+
+
+\subsection{functional motif}
+
+In order to build counts data corresponding to functional diversity, we order the species based on some ordering metadata (like bill shape, size of the bird etc in our example). But there will be many zeros in the matrix as the species abundance data is sparse. To effectively account for the functional diversity and take into account the relatedness among the bird species, the zeros are filled in by kriging based on the species with non-zero abundance. We use the function \begin{verb} krige_counts \end{verb}.
+
+<<krige_counts, eval = FALSE>>=
+func_counts <- krige_counts(taxonomic_counts,
+        order = species_metadata$,
+            krige.control = list(cov.mod = "whitmat", sill=0.5, smooth=.01))
+@ %def
+
 
 \section{Extras}
 
 \textbf{ecostructure} provides additional functions for plotting a variable of interest (which could be the grades of membership or the motif pattern) against a metadata and a diversity measure or against two metadata in three way scatter plot functions.
 
-an example of plotting a variable against two metadata are as follows.
+An example of plotting a variable against two metadata are as follows.
 
 <<topic_meta_meta, eval=TRUE, fig.height = 4, fig.height = 6>>=
 annotation = data.frame(x_names = c(paste0("A",1:5), paste0("B",1:5)),
@@ -171,6 +241,13 @@ head(annotation)
 
 topic_meta_meta(annotation)
 @
+
+\begin{figure}[htp]
+\begin{center}
+\includegraphics[width=6in,height=6in]{figure/topic_meta_meta.png}
+\end{center}
+\end{figure}
+
 
 An example of plotting  a variable against two diversity measures as follows.
 
@@ -185,6 +262,20 @@ head(annotation)
 topic_meta_diversity(annotation)
 
 @
+
+\begin{figure}[htp]
+\begin{center}
+\includegraphics[width=6in,height=6in]{figure/topic-meta-diversity.png}
+\end{center}
+\end{figure}
+
+In cases, where a climate raster corresponding to precipitation, temperature etc is present, \textbf{ecostructure} provides tools to mask the climate raster by the
+regional motif map raster. This was how the plots in Fig ?? were generated.
+
+<<mask_climate_mask, eval=FALSE>>=
+mask_climate_raster_by_GoM(motif_map_raster, climate_raster, quant = 0.10)
+@
+
 
 
 \end{document}

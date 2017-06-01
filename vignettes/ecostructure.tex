@@ -7,7 +7,57 @@
 % library('knitr'); rm(list=ls()); knit2pdf('CountClust/vignettes/count-clust.Rnw'); openPDF('count-clust.pdf')
 % !Rnw weave = knitr
 
-\documentclass[12pt]{article}
+\documentclass[12pt]{article}\usepackage[]{graphicx}\usepackage[usenames,dvipsnames]{color}
+%% maxwidth is the original width if it is less than linewidth
+%% otherwise use linewidth (to make sure the graphics do not exceed the margin)
+\makeatletter
+\def\maxwidth{ %
+  \ifdim\Gin@nat@width>\linewidth
+    \linewidth
+  \else
+    \Gin@nat@width
+  \fi
+}
+\makeatother
+
+\definecolor{fgcolor}{rgb}{0.345, 0.345, 0.345}
+\newcommand{\hlnum}[1]{\textcolor[rgb]{0.686,0.059,0.569}{#1}}%
+\newcommand{\hlstr}[1]{\textcolor[rgb]{0.192,0.494,0.8}{#1}}%
+\newcommand{\hlcom}[1]{\textcolor[rgb]{0.678,0.584,0.686}{\textit{#1}}}%
+\newcommand{\hlopt}[1]{\textcolor[rgb]{0,0,0}{#1}}%
+\newcommand{\hlstd}[1]{\textcolor[rgb]{0.345,0.345,0.345}{#1}}%
+\newcommand{\hlkwa}[1]{\textcolor[rgb]{0.161,0.373,0.58}{\textbf{#1}}}%
+\newcommand{\hlkwb}[1]{\textcolor[rgb]{0.69,0.353,0.396}{#1}}%
+\newcommand{\hlkwc}[1]{\textcolor[rgb]{0.333,0.667,0.333}{#1}}%
+\newcommand{\hlkwd}[1]{\textcolor[rgb]{0.737,0.353,0.396}{\textbf{#1}}}%
+\let\hlipl\hlkwb
+
+\usepackage{framed}
+\makeatletter
+\newenvironment{kframe}{%
+ \def\at@end@of@kframe{}%
+ \ifinner\ifhmode%
+  \def\at@end@of@kframe{\end{minipage}}%
+  \begin{minipage}{\columnwidth}%
+ \fi\fi%
+ \def\FrameCommand##1{\hskip\@totalleftmargin \hskip-\fboxsep
+ \colorbox{shadecolor}{##1}\hskip-\fboxsep
+     % There is no \\@totalrightmargin, so:
+     \hskip-\linewidth \hskip-\@totalleftmargin \hskip\columnwidth}%
+ \MakeFramed {\advance\hsize-\width
+   \@totalleftmargin\z@ \linewidth\hsize
+   \@setminipage}}%
+ {\par\unskip\endMakeFramed%
+ \at@end@of@kframe}
+\makeatother
+
+\definecolor{shadecolor}{rgb}{.97, .97, .97}
+\definecolor{messagecolor}{rgb}{0, 0, 0}
+\definecolor{warningcolor}{rgb}{1, 0, 1}
+\definecolor{errorcolor}{rgb}{1, 0, 0}
+\newenvironment{knitrout}{}{} % an empty environment to be redefined in TeX
+
+\usepackage{alltt}
 
 \newcommand{\ecostructure}{\textit{ecostructure}}
 \usepackage{dsfont}
@@ -23,14 +73,14 @@
 
 
 \bioctitle[\ecostructure{} - Grade of Membership Model and Visualization for ecological species abundance data]{\ecostructure{} - Grade of Membership Model and Visualization for ecological species abundance data}
-
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
 \begin{document}
 
 \maketitle
 
 \section{Introduction}
 
-The \textbf{ecostructure} package is an R package that replicates the statistical analysis in this paper, but its toolbox of functions is generic enough in handling and analyzing other species abundance data. The package provides functions for fitting the Grade of Membership (GoM) model, along with the visualization of model fit using Block Structure plot \ref{Pritchard}\ref{Taddy}. The package comes with the raw taxonomic data saved as an ExpressionSet object and provides a pipeline for reading and processing counts data for different dimensions of diversity, e.g. - phylogenetic, regional and functional, which serve as readymade input for the GoM model. This package is an upgraded version of the CountClust package due to Dey et al \ref{Dey} for fitting GoM models on RNA-seq data
+The \textbf{ecostructure} package is an R package that replicates the statistical analysis in this paper, but its toolbox of functions is generic enough in handling and analyzing other species abundance data. The package provides functions for fitting the Grade of Membership (GoM) model, along with the visualization of model fit using Block Structure plot \ref{Pritchard}\ref{Taddy}. The package comes with the raw taxonomic data saved as an ExpressionSet object and provides a pipeline for reading and processing counts data corresponding to different dimensions of diversity, e.g. - phylogenetic, regional and functional, which serve as readymade input for the GoM model. This package is an upgraded version of the CountClust package due to Dey et al \ref{Dey} for fitting GoM models on RNA-seq data
 
 \section{Installation}
 
@@ -79,16 +129,22 @@ One can load the taxonomic data, together with the grid metadata ans species met
 \begin{alltt}
 \hlstd{data} \hlkwb{<-} \hlkwd{get}\hlstd{(}\hlkwd{load}\hlstd{(}\hlkwd{system.file}\hlstd{(}\hlstr{"extdata"}\hlstd{,} \hlstr{"HimalayanBirdsData.rda"}\hlstd{,}
                              \hlkwc{package} \hlstd{=} \hlstr{"ecostructure"}\hlstd{)))}
-\hlstd{taxonomic_counts} \hlkwb{<-} \hlkwd{exprs}\hlstd{(data)}
+\hlstd{taxonomic_counts} \hlkwb{<-} \hlkwd{t}\hlstd{(}\hlkwd{exprs}\hlstd{(data))}
 \hlstd{taxonomic_counts[}\hlnum{1}\hlopt{:}\hlnum{5}\hlstd{,}\hlnum{1}\hlopt{:}\hlnum{5}\hlstd{]}
 \end{alltt}
 \begin{verbatim}
-##                           A2 A3 A4 A6 A7
-## Macropygia_unchall         0  0  0  0  0
-## Streptopelia_chinensis     0  0  0  0  0
-## Streptopelia_senegalensis  0  0  0  0  0
-## Columba_pulchricollis      0  0  0  0  2
-## Streptopelia_orientalis    0  0  0  0  0
+##    Macropygia_unchall Streptopelia_chinensis Streptopelia_senegalensis
+## A2                  0                      0                         0
+## A3                  0                      0                         0
+## A4                  0                      0                         0
+## A6                  0                      0                         0
+## A7                  0                      0                         0
+##    Columba_pulchricollis Streptopelia_orientalis
+## A2                     0                       0
+## A3                     0                       0
+## A4                     0                       0
+## A6                     0                       0
+## A7                     2                       0
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -187,24 +243,24 @@ Here we illustrate how one can fit the Grade of Membership model and perform the
 \begin{alltt}
 \hlstd{elevation_metadata}\hlkwb{=}\hlstd{grid_metadata}\hlopt{$}\hlstd{Elevation;}
 \hlstd{east_west_dir} \hlkwb{=} \hlstd{grid_metadata}\hlopt{$}\hlstd{WorE;}
-\hlstd{gom_fit} \hlkwb{<-} \hlstd{CountClust}\hlopt{::}\hlkwd{FitGoM}\hlstd{(}\hlkwd{t}\hlstd{(taxonomic_counts),} \hlkwc{K}\hlstd{=}\hlnum{2}\hlopt{:}\hlnum{4}\hlstd{,} \hlkwc{tol}\hlstd{=}\hlnum{0.1}\hlstd{)}
+\hlstd{gom_fit} \hlkwb{<-} \hlstd{CountClust}\hlopt{::}\hlkwd{FitGoM}\hlstd{(taxonomic_counts,} \hlkwc{K}\hlstd{=}\hlnum{2}\hlopt{:}\hlnum{4}\hlstd{,} \hlkwc{tol}\hlstd{=}\hlnum{0.1}\hlstd{)}
 \end{alltt}
 \begin{verbatim}
 ## 
 ## Estimating on a 38 document collection.
 ## Fit and Bayes Factor Estimation for K = 2
-## log posterior increase: 14266.9, 298.5, 0.5, 8.3, 7.7, done.
-## log BF( 2 ) = 2186.94
+## log posterior increase: 2887.8, 52.8, 64.3, 3, 0.4, 1.2, done.
+## log BF( 2 ) = 1951.21
 ## 
 ## Estimating on a 38 document collection.
 ## Fit and Bayes Factor Estimation for K = 3
-## log posterior increase: 2465.4, 83.3, 6.9, 29, 12.2, 0.2, 3.3, done.
-## log BF( 3 ) = 2085.74
+## log posterior increase: 4567.6, 20.4, 13.2, done.
+## log BF( 3 ) = 2088.37
 ## 
 ## Estimating on a 38 document collection.
 ## Fit and Bayes Factor Estimation for K = 4
-## log posterior increase: 4681.8, 52, 6.7, 0.3, 0.5, done.
-## log BF( 4 ) = 2296.91
+## log posterior increase: 4469.7, 49, 4.4, 0.7, 0.9, done.
+## log BF( 4 ) = 1905.73
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -220,13 +276,13 @@ Here we illustrate how one can fit the Grade of Membership model and perform the
 \end{alltt}
 \begin{verbatim}
 ##         topic
-## document        1     2        3
-##       A2 6.90e-05 0.991 0.008906
-##       A3 8.97e-05 0.999 0.000637
-##       A4 4.97e-05 0.998 0.001953
-##       A6 5.16e-01 0.484 0.000291
-##       A7 3.68e-01 0.632 0.000367
-##       A8 1.16e-04 0.977 0.023252
+## document        1        2        3
+##       A2 0.000088 0.999478 4.34e-04
+##       A3 0.000352 0.999565 8.29e-05
+##       A4 0.000660 0.999230 1.10e-04
+##       A6 0.999594 0.000238 1.68e-04
+##       A7 0.999772 0.000176 5.17e-05
+##       A8 0.000106 0.998340 1.55e-03
 \end{verbatim}
 \begin{alltt}
 \hlkwd{rowSums}\hlstd{(omega)}
@@ -244,12 +300,12 @@ Here we illustrate how one can fit the Grade of Membership model and perform the
 \begin{verbatim}
 ##                            topic
 ## phrase                             1        2        3
-##   Macropygia_unchall        6.25e-07 2.10e-03 1.12e-06
-##   Streptopelia_chinensis    5.29e-07 5.76e-07 1.42e-02
-##   Streptopelia_senegalensis 5.29e-07 5.76e-07 6.08e-03
-##   Columba_pulchricollis     1.14e-06 1.05e-03 1.12e-06
-##   Streptopelia_orientalis   6.07e-03 5.79e-07 1.16e-02
-##   Chalcophaps_indica        5.30e-07 3.15e-03 1.13e-06
+##   Macropygia_unchall        1.59e-03 7.22e-07 1.18e-06
+##   Streptopelia_chinensis    4.44e-07 9.57e-04 1.34e-02
+##   Streptopelia_senegalensis 4.37e-07 7.21e-07 6.43e-03
+##   Columba_pulchricollis     7.97e-04 7.21e-07 1.18e-06
+##   Streptopelia_orientalis   5.32e-03 5.22e-03 2.87e-03
+##   Chalcophaps_indica        4.38e-07 3.93e-03 1.18e-06
 \end{verbatim}
 \begin{alltt}
 \hlkwd{colSums}\hlstd{(theta)}
@@ -284,15 +340,223 @@ the samples (along the rows of the Structure plot) are arranged by a second meta
 
 \newpage
 
+\textbf{ecostructure} provides tools to compare the GoM model fit on the data with respect to null model using the \begin{verb} nullmodel_GoM \end{verb} function.
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{nullmodel_GoM}\hlstd{(taxonomic_counts,} \hlkwc{K}\hlstd{=}\hlnum{2}\hlstd{,}
+               \hlkwc{tol}\hlstd{=}\hlnum{500}\hlstd{,} \hlkwc{null.model}\hlstd{=}\hlstr{"frequency"}\hlstd{,}
+               \hlkwc{iter_randomized}\hlstd{=}\hlnum{5}\hlstd{,} \hlkwc{plot}\hlstd{=}\hlnum{FALSE}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+## 
+## Estimating on a 38 document collection.
+## Fit and Bayes Factor Estimation for K = 2
+## log posterior increase: 2326.9, done.
+## log BF( 2 ) = 281.71
+## 
+## Estimating on a 38 document collection.
+## Fit and Bayes Factor Estimation for K = 2
+## log posterior increase: 3009.1, done.
+## log BF( 2 ) = 388.25
+## 
+## Estimating on a 38 document collection.
+## Fit and Bayes Factor Estimation for K = 2
+## log posterior increase: 3004.5, done.
+## log BF( 2 ) = 450.41
+## 
+## Estimating on a 38 document collection.
+## Fit and Bayes Factor Estimation for K = 2
+## log posterior increase: 3359.8, done.
+## log BF( 2 ) = 316.99
+## 
+## Estimating on a 38 document collection.
+## Fit and Bayes Factor Estimation for K = 2
+## log posterior increase: 2764.3, done.
+## log BF( 2 ) = 255.82
+## 
+## Estimating on a 38 document collection.
+## Fit and Bayes Factor Estimation for K = 2
+## log posterior increase: 3003.6, done.
+## log BF( 2 ) = 787.51
+## $GoMBF.obs
+## [1] 15725
+## 
+## $GoMBF.rand
+## [1] 13762 13348 13065 13512 13231
+## 
+## $pval
+## [1] 0
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+The function returns for a fixed $K$, the observed Bayes factor for the GoM model fit on the actual counts data, as well as the Bayes factor from applying GoM model on \begin{verb} iter_randomized \end{verb} many counts matrices generated under a specified null model. It also provdies a p-value of the observed Bayes factor with respect to the distribution of the Bayes factors from GoM on null model generated matrices.
+
+In the above example \textbf{frequency} based null model was used. The other options are \textbf{richness}, \textbf{trialswap} and \textbf{independentswap}. Ideally if the observed Bayes factor should be higher than the Bayes factors from null model generated counts data.
+
+
 \section{Processing motif data}
+
+In this section, we demonstrate how \textbf{ecostructure} can be used to process
+grid level counts data corresponding to different axes of diversity, that may range from being functional to regional to phylogenetic.
+
+\subsection{phylogenetic motif}
+
+For building the counts data corresponding to phylogenetic diversity, we provide a function,
+\begin{verb} collapse_counts_by_phylo () \end{verb} to collapse the taxa in the taxonomic counts data based on the phylogenetic similarity profile of the species.
+The function reads in the taxonomic counts data and the phylogenetic tree data and a user defined cut off at which to slice the tree and collapse the taxa in each branch into a single phylogenetic unit.
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{tree} \hlkwb{<-} \hlstd{ape}\hlopt{::}\hlkwd{read.tree}\hlstd{(}\hlkwd{system.file}\hlstd{(}\hlstr{"extdata"}\hlstd{,}
+                                   \hlstr{"AllHim_Mar_27_2015.tre"}\hlstd{,}
+                                    \hlkwc{package} \hlstd{=} \hlstr{"ecostructure"}\hlstd{))}
+\hlstd{phylo_counts} \hlkwb{<-} \hlkwd{collapse_counts_by_phylo}\hlstd{(taxonomic_counts,}
+                                         \hlstd{tree,} \hlkwc{collapse_at} \hlstd{=} \hlnum{10}\hlstd{)}
+\hlkwd{dim}\hlstd{(phylo_counts)}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+
+\subsection{regional motif}
+
+For the regional profile, \textbf{ecostructure} allows the user to create Global assemblage dispersion fields and build maps data from the dispersion fields created. An example is shown below.
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{disp} \hlkwb{<-} \hlkwd{CreateGlobalDispersionFields}\hlstd{(taxonomic_counts,}
+              \hlkwc{shapefiles_dir} \hlstd{=} \hlkwd{system.file}\hlstd{(}\hlstr{"extdata"}\hlstd{,}
+                    \hlstr{"ne_50m_admin_0_countries"}\hlstd{,} \hlkwc{package} \hlstd{=} \hlstr{"ecostructure"}\hlstd{))}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{dispersion.field} \hlkwb{<-} \hlstd{disp}
+\hlstd{proj} \hlkwb{<-} \hlkwd{CRS}\hlstd{(}\hlstr{' +proj=longlat +ellps=WGS84'}\hlstd{)}
+\hlstd{global_shapefile} \hlkwb{<-} \hlkwd{readShapeLines}\hlstd{(}\hlkwd{system.file}\hlstd{(}\hlstr{"extdata"}\hlstd{,}
+         \hlstr{"ne_50m_admin_0_countries/ne_50m_admin_0_countries.shp"}\hlstd{,}
+          \hlkwc{package} \hlstd{=} \hlstr{"ecostructure"}\hlstd{),} \hlkwc{proj4string}\hlstd{=proj)}
+\hlstd{maps} \hlkwb{<-} \hlkwd{CreateMapsFromDispersionFields}\hlstd{(dispersion.field, global_shapefile)}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+
+Finally, the user can generate the counts data corressponding to regional diversity using the \begin{verb} DispersionFieldTocounts() \end{verb} function
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{regional_counts} \hlkwb{<-} \hlkwd{DispersionFieldToCounts}\hlstd{(dispersion.field)}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+
+
+\subsection{functional motif}
+
+In order to build counts data corresponding to functional diversity, we order the species based on some ordering metadata (like bill shape, size of the bird etc in our example). But there will be many zeros in the matrix as the species abundance data is sparse. To effectively account for the functional diversity and take into account the relatedness among the bird species, the zeros are filled in by kriging based on the species with non-zero abundance. We use the function \begin{verb} krige_counts \end{verb}.
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{func_counts} \hlkwb{<-} \hlkwd{krige_counts}\hlstd{(taxonomic_counts,}
+        \hlkwc{order} \hlstd{= species_metadata}\hlopt{$}\hlstd{bill_length,}
+            \hlkwc{krige.control} \hlstd{=} \hlkwd{list}\hlstd{(}\hlkwc{cov.mod} \hlstd{=} \hlstr{"whitmat"}\hlstd{,} \hlkwc{sill}\hlstd{=}\hlnum{0.5}\hlstd{,} \hlkwc{smooth}\hlstd{=}\hlnum{.01}\hlstd{))}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+
 
 \section{Extras}
 
 \textbf{ecostructure} provides additional functions for plotting a variable of interest (which could be the grades of membership or the motif pattern) against a metadata and a diversity measure or against two metadata in three way scatter plot functions.
 
-an example of plotting a variable against two metadata are as follows.
+An example of plotting a variable against two metadata are as follows.
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{annotation} \hlkwb{=} \hlkwd{data.frame}\hlstd{(}\hlkwc{x_names} \hlstd{=} \hlkwd{c}\hlstd{(}\hlkwd{paste0}\hlstd{(}\hlstr{"A"}\hlstd{,}\hlnum{1}\hlopt{:}\hlnum{5}\hlstd{),} \hlkwd{paste0}\hlstd{(}\hlstr{"B"}\hlstd{,}\hlnum{1}\hlopt{:}\hlnum{5}\hlstd{)),}
+\hlkwc{x} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{0.5}\hlstd{,}\hlnum{2.0}\hlstd{,} \hlnum{3.2}\hlstd{,} \hlnum{4.6}\hlstd{,} \hlnum{6.3}\hlstd{,}  \hlnum{23.5}\hlstd{,} \hlnum{26.4}\hlstd{,} \hlnum{28.5}\hlstd{,} \hlnum{29.6}\hlstd{,} \hlnum{31.8}\hlstd{),}
+\hlkwc{y1} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{0.4}\hlstd{,} \hlnum{0.3}\hlstd{,} \hlnum{0.4}\hlstd{,} \hlnum{0.35}\hlstd{,} \hlnum{0.4}\hlstd{,} \hlnum{0.8}\hlstd{,} \hlnum{0.85}\hlstd{,} \hlnum{0.9}\hlstd{,} \hlnum{0.8}\hlstd{,} \hlnum{0.75}\hlstd{),}
+\hlkwc{y2} \hlstd{=}\hlkwd{c}\hlstd{(}\hlnum{5}\hlstd{,} \hlnum{6.6}\hlstd{,} \hlnum{4}\hlstd{,} \hlnum{5.2}\hlstd{,} \hlnum{20}\hlstd{,} \hlnum{3.4}\hlstd{,} \hlnum{5.6}\hlstd{,} \hlnum{4.5}\hlstd{,} \hlnum{8}\hlstd{,} \hlnum{10}\hlstd{))}
+
+\hlkwd{head}\hlstd{(annotation)}
+\end{alltt}
+\begin{verbatim}
+##   x_names    x   y1   y2
+## 1      A1  0.5 0.40  5.0
+## 2      A2  2.0 0.30  6.6
+## 3      A3  3.2 0.40  4.0
+## 4      A4  4.6 0.35  5.2
+## 5      A5  6.3 0.40 20.0
+## 6      B1 23.5 0.80  3.4
+\end{verbatim}
+\begin{alltt}
+\hlkwd{topic_meta_meta}\hlstd{(annotation)}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+
+\begin{figure}[htp]
+\begin{center}
+\includegraphics[width=6in,height=6in]{figure/topic_meta_meta.png}
+\end{center}
+\end{figure}
+
+
+An example of plotting  a variable against two diversity measures as follows.
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{annotation} \hlkwb{=} \hlkwd{data.frame}\hlstd{(}\hlkwc{x_names} \hlstd{=} \hlkwd{c}\hlstd{(}\hlkwd{paste0}\hlstd{(}\hlstr{"A"}\hlstd{,}\hlnum{1}\hlopt{:}\hlnum{5}\hlstd{),} \hlkwd{paste0}\hlstd{(}\hlstr{"B"}\hlstd{,}\hlnum{1}\hlopt{:}\hlnum{5}\hlstd{)),}
+    \hlkwc{x} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{0.5}\hlstd{,}\hlnum{2.0}\hlstd{,} \hlnum{3.2}\hlstd{,} \hlnum{4.6}\hlstd{,} \hlnum{6.3}\hlstd{,}  \hlnum{23.5}\hlstd{,} \hlnum{26.4}\hlstd{,} \hlnum{28.5}\hlstd{,} \hlnum{29.6}\hlstd{,} \hlnum{31.8}\hlstd{),}
+    \hlkwc{y1} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{0.4}\hlstd{,} \hlnum{0.3}\hlstd{,} \hlnum{0.4}\hlstd{,} \hlnum{0.35}\hlstd{,} \hlnum{0.4}\hlstd{,} \hlnum{0.8}\hlstd{,} \hlnum{0.85}\hlstd{,} \hlnum{0.9}\hlstd{,} \hlnum{0.8}\hlstd{,} \hlnum{0.75}\hlstd{),}
+    \hlkwc{y2d} \hlstd{=}\hlkwd{c}\hlstd{(}\hlnum{5}\hlstd{,} \hlnum{6.6}\hlstd{,} \hlnum{4}\hlstd{,} \hlnum{5.2}\hlstd{,} \hlnum{20}\hlstd{,} \hlnum{3.4}\hlstd{,} \hlnum{5.6}\hlstd{,} \hlnum{4.5}\hlstd{,} \hlnum{8}\hlstd{,} \hlnum{10}\hlstd{))}
+
+\hlkwd{head}\hlstd{(annotation)}
+\end{alltt}
+\begin{verbatim}
+##   x_names    x   y1  y2d
+## 1      A1  0.5 0.40  5.0
+## 2      A2  2.0 0.30  6.6
+## 3      A3  3.2 0.40  4.0
+## 4      A4  4.6 0.35  5.2
+## 5      A5  6.3 0.40 20.0
+## 6      B1 23.5 0.80  3.4
+\end{verbatim}
+\begin{alltt}
+\hlkwd{topic_meta_diversity}\hlstd{(annotation)}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+
+\begin{figure}[htp]
+\begin{center}
+\includegraphics[width=6in,height=6in]{figure/topic-meta-diversity.png}
+\end{center}
+\end{figure}
+
+In cases, where a climate raster corresponding to precipitation, temperature etc is present, \textbf{ecostructure} provides tools to mask the climate raster by the
+regional motif map raster. This was how the plots in Fig ?? were generated.
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{mask_climate_raster_by_GoM}\hlstd{(motif_map_raster, climate_raster,} \hlkwc{quant} \hlstd{=} \hlnum{0.10}\hlstd{)}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
 
 
 
-
-
+\end{document}

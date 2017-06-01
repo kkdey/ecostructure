@@ -33,9 +33,9 @@ krige_counts <- function (counts, order, krige.control = list()){
                                                          krig.coord = order[index1]),
                                                     krige.control))
     z[i, index1] <- round(as.vector(out$krig.est))
-    z[i, index2] <- y[i, index2]
+    z[i, index2] <- counts[i, index2]
   }
-  colnames(z)<- colnames(y)
-  rownames(z)<- rownames(y)
+  colnames(z)<- colnames(counts)
+  rownames(z)<- rownames(counts)
   return(z)
 }

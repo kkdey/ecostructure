@@ -48,6 +48,7 @@ nullmodel_GoM <- function(counts,
                           iter_randomized=100,
                           plot=TRUE)
 {
+    counts <- counts[which(rowSums(counts) > 0), ];
     bf_gom_rand <-
         unlist(lapply(1:iter_randomized,
                       function(n)
