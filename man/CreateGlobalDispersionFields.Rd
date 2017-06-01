@@ -7,7 +7,7 @@ and shapefiles}
 \usage{
 CreateGlobalDispersionFields(local_data, shapefiles_dir = NULL,
   raster_latlim = c(5, 50), raster_longlim = c(50, 120),
-  raster_resolution = 5, base_local = 0, optional_species_names = NULL,
+  raster_resolution = 8, base_local = 0, optional_species_names = NULL,
   include_shp_attributes = c("x@data$SEASONAL==1", "x@data$SEASONAL==2"))
 }
 \arguments{
@@ -45,11 +45,11 @@ based only on those species attributes. The vector must be in a format
 that is read in by rgdal and must include an "x" in place of where the
 species name will be inserted in the function.  Default includes
 breeding and resident ranges for global birds based on reading
-.shp files from BirdLife international.}
+.shp files from BirdLife International and NatureServe.}
 }
 \value{
 Returns a list with the names of the elements of the list given by the
-row names of the input data matrix (sites). Each element of the list is the
+row names of the input data matrix (grids/sites). Each element of the list is the
 dispersion field matrix generated corresponding to the species present
 in the specific site to which it corresponds.
 }

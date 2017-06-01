@@ -45,8 +45,8 @@
 #' @keywords counts data, local site-species data, global dispersion field
 #'
 #' @importFrom rgdal readOGR
-#' @importFrom raster raster setValues
-#' @importFrom utils stack
+#' @importFrom raster raster setValues mask
+#' @importFrom raster stack
 #' @export
 
 CreateGlobalDispersionFields = function(local_data,
