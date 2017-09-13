@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  31 MAY 2017 22:37
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  1 JUN 2017 16:43
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -451,58 +451,70 @@ _phylo\OT1/cmss/m/n/12 ()
  []
 
 Package color Info: Redefining color shadecolor on input line 412.
-Package color Info: Redefining color shadecolor on input line 429.
-Package color Info: Redefining color shadecolor on input line 440.
+Package color Info: Redefining color shadecolor on input line 433.
 [7]
-Overfull \hbox (88.27617pt too wide) in paragraph at lines 452--453
+Package color Info: Redefining color shadecolor on input line 443.
+Package color Info: Redefining color shadecolor on input line 460.
+ <figure/maps.png, id=81, 652.4375pt x 652.4375pt>
+File: figure/maps.png Graphic file (type png)
+ <use figure/maps.png>
+Package pdftex.def Info: figure/maps.png used on input line 469.
+(pdftex.def)             Requested size: 433.6365pt x 433.6365pt.
+
+Overfull \hbox (88.27617pt too wide) in paragraph at lines 475--476
 []\OT1/cmss/m/n/12 Finally, the user can gen-er-ate the counts data cor-resspon
 d-ing to re-gional di-ver-sity us-ing the []\OT1/cmtt/m/n/12 DispersionFieldToc
 ounts()
  []
 
-Package color Info: Redefining color shadecolor on input line 455.
-Package color Info: Redefining color shadecolor on input line 468.
-Package color Info: Redefining color shadecolor on input line 485.
-<figure/topic_meta_meta.png, id=81, 602.25pt x 602.25pt>
+Package color Info: Redefining color shadecolor on input line 478.
+Package color Info: Redefining color shadecolor on input line 486.
+Package color Info: Redefining color shadecolor on input line 501.
+Package color Info: Redefining color shadecolor on input line 511.
+[8]
+Package color Info: Redefining color shadecolor on input line 526.
+ [9 <./figure/maps.png>]
+<figure/topic_meta_meta.png, id=91, 602.25pt x 602.25pt>
 File: figure/topic_meta_meta.png Graphic file (type png)
 
 <use figure/topic_meta_meta.png>
-Package pdftex.def Info: figure/topic_meta_meta.png used on input line 511.
+Package pdftex.def Info: figure/topic_meta_meta.png used on input line 552.
 (pdftex.def)             Requested size: 433.63805pt x 433.63805pt.
-Package color Info: Redefining color shadecolor on input line 519.
- [8]
-Underfull \vbox (badness 10000) detected at line 540
+Package color Info: Redefining color shadecolor on input line 560.
+
+Overfull \vbox (2.28175pt too high) detected at line 581
  []
 
-[9 <./figure/topic_meta_meta.png>]
-<figure/topic-meta-diversity.png, id=91, 602.25pt x 602.25pt>
+[10 <./figure/topic_meta_meta.png>]
+<figure/topic-meta-diversity.png, id=97, 602.25pt x 602.25pt>
 File: figure/topic-meta-diversity.png Graphic file (type png)
 
 <use figure/topic-meta-diversity.png>
-Package pdftex.def Info: figure/topic-meta-diversity.png used on input line 545
+Package pdftex.def Info: figure/topic-meta-diversity.png used on input line 586
 .
 (pdftex.def)             Requested size: 433.63805pt x 433.63805pt.
-Package color Info: Redefining color shadecolor on input line 553.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 562.
- [10 <./figure/topic-meta-diversity.png>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 562.
+ [11 <./figure/topic-meta-diversity.png>]
+Package color Info: Redefining color shadecolor on input line 594.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 603.
 
-(./ecostructure.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 562.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 562.
+[12]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 603.
+ (./ecostructure.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 603.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 603.
 Package rerunfilecheck Info: File `ecostructure.out' has not changed.
 (rerunfilecheck)             Checksum: 0FA4C43A135036A0F8DD7BC2A907BE24;530.
 
 
 LaTeX Warning: There were undefined references.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 562.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 603.
  ) 
 Here is how much of TeX's memory you used:
- 6547 strings out of 493014
- 98488 string characters out of 6133351
+ 6554 strings out of 493014
+ 98589 string characters out of 6133351
  200594 words of memory out of 5000000
- 9999 multiletter control sequences out of 15000+600000
+ 10003 multiletter control sequences out of 15000+600000
  10283 words of font info for 36 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  36i,11n,45p,839b,377s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -514,10 +526,10 @@ sr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></
 usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi12.pfb></
 usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi17.pfb></
 usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on ecostructure.pdf (10 pages, 157183 bytes).
+Output written on ecostructure.pdf (12 pages, 227983 bytes).
 PDF statistics:
- 132 PDF objects out of 1000 (max. 8388607)
- 104 compressed objects within 2 object streams
- 20 named destinations out of 1000 (max. 500000)
- 88 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 142 PDF objects out of 1000 (max. 8388607)
+ 110 compressed objects within 2 object streams
+ 22 named destinations out of 1000 (max. 500000)
+ 93 words of extra memory for PDF output out of 10000 (max. 10000000)
 

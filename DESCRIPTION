@@ -23,7 +23,8 @@ Depends:
     phytools,
     SpatialExtremes,
     ape,
-    maptools
+    maptools,
+    Biobase
 License: GPL (>= 2)
 LazyData: true
 Encoding: UTF-8

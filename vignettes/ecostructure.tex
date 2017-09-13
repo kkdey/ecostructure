@@ -249,18 +249,18 @@ Here we illustrate how one can fit the Grade of Membership model and perform the
 ## 
 ## Estimating on a 38 document collection.
 ## Fit and Bayes Factor Estimation for K = 2
-## log posterior increase: 2887.8, 52.8, 64.3, 3, 0.4, 1.2, done.
-## log BF( 2 ) = 1951.21
+## log posterior increase: 3159.3, 47.2, 1.7, 1.4, 0.1, done.
+## log BF( 2 ) = 1718.17
 ## 
 ## Estimating on a 38 document collection.
 ## Fit and Bayes Factor Estimation for K = 3
-## log posterior increase: 4567.6, 20.4, 13.2, done.
-## log BF( 3 ) = 2088.37
+## log posterior increase: 4621, 130.5, 34.8, 57.9, 6.8, done.
+## log BF( 3 ) = 2439.02
 ## 
 ## Estimating on a 38 document collection.
 ## Fit and Bayes Factor Estimation for K = 4
-## log posterior increase: 4469.7, 49, 4.4, 0.7, 0.9, done.
-## log BF( 4 ) = 1905.73
+## log posterior increase: 4487.2, 44.1, 1.4, 4.3, 4.9, 1, 0.3, done.
+## log BF( 4 ) = 2132.8
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -277,12 +277,12 @@ Here we illustrate how one can fit the Grade of Membership model and perform the
 \begin{verbatim}
 ##         topic
 ## document        1        2        3
-##       A2 0.000088 0.999478 4.34e-04
-##       A3 0.000352 0.999565 8.29e-05
-##       A4 0.000660 0.999230 1.10e-04
-##       A6 0.999594 0.000238 1.68e-04
-##       A7 0.999772 0.000176 5.17e-05
-##       A8 0.000106 0.998340 1.55e-03
+##       A2 0.999820 9.55e-05 0.000085
+##       A3 0.999369 5.27e-04 0.000104
+##       A4 0.998577 1.18e-03 0.000244
+##       A6 0.000146 9.99e-01 0.000680
+##       A7 0.000112 9.99e-01 0.000559
+##       A8 0.999715 9.35e-05 0.000192
 \end{verbatim}
 \begin{alltt}
 \hlkwd{rowSums}\hlstd{(omega)}
@@ -300,12 +300,12 @@ Here we illustrate how one can fit the Grade of Membership model and perform the
 \begin{verbatim}
 ##                            topic
 ## phrase                             1        2        3
-##   Macropygia_unchall        1.59e-03 7.22e-07 1.18e-06
-##   Streptopelia_chinensis    4.44e-07 9.57e-04 1.34e-02
-##   Streptopelia_senegalensis 4.37e-07 7.21e-07 6.43e-03
-##   Columba_pulchricollis     7.97e-04 7.21e-07 1.18e-06
-##   Streptopelia_orientalis   5.32e-03 5.22e-03 2.87e-03
-##   Chalcophaps_indica        4.38e-07 3.93e-03 1.18e-06
+##   Macropygia_unchall        6.12e-07 2.00e-03 9.39e-07
+##   Streptopelia_chinensis    6.88e-03 5.50e-07 1.40e-03
+##   Streptopelia_senegalensis 3.34e-03 5.49e-07 9.39e-07
+##   Columba_pulchricollis     6.11e-07 1.00e-03 9.38e-07
+##   Streptopelia_orientalis   2.25e-03 6.13e-07 1.70e-02
+##   Chalcophaps_indica        3.34e-03 5.50e-07 9.40e-07
 \end{verbatim}
 \begin{alltt}
 \hlkwd{colSums}\hlstd{(theta)}
@@ -353,38 +353,38 @@ the samples (along the rows of the Structure plot) are arranged by a second meta
 ## 
 ## Estimating on a 38 document collection.
 ## Fit and Bayes Factor Estimation for K = 2
-## log posterior increase: 2326.9, done.
-## log BF( 2 ) = 281.71
+## log posterior increase: 3179.9, done.
+## log BF( 2 ) = 318.6
 ## 
 ## Estimating on a 38 document collection.
 ## Fit and Bayes Factor Estimation for K = 2
-## log posterior increase: 3009.1, done.
-## log BF( 2 ) = 388.25
+## log posterior increase: 2521.4, done.
+## log BF( 2 ) = 365.94
 ## 
 ## Estimating on a 38 document collection.
 ## Fit and Bayes Factor Estimation for K = 2
-## log posterior increase: 3004.5, done.
-## log BF( 2 ) = 450.41
+## log posterior increase: 2780.9, done.
+## log BF( 2 ) = 272.6
 ## 
 ## Estimating on a 38 document collection.
 ## Fit and Bayes Factor Estimation for K = 2
-## log posterior increase: 3359.8, done.
-## log BF( 2 ) = 316.99
+## log posterior increase: 2565.9, done.
+## log BF( 2 ) = 352.32
 ## 
 ## Estimating on a 38 document collection.
 ## Fit and Bayes Factor Estimation for K = 2
-## log posterior increase: 2764.3, done.
-## log BF( 2 ) = 255.82
+## log posterior increase: 2449.2, done.
+## log BF( 2 ) = 299.45
 ## 
 ## Estimating on a 38 document collection.
 ## Fit and Bayes Factor Estimation for K = 2
-## log posterior increase: 3003.6, done.
-## log BF( 2 ) = 787.51
+## log posterior increase: 2732.2, done.
+## log BF( 2 ) = 824.99
 ## $GoMBF.obs
-## [1] 15725
+## [1] 15847
 ## 
 ## $GoMBF.rand
-## [1] 13762 13348 13065 13512 13231
+## [1] 13063 13364 13100 12954 13027
 ## 
 ## $pval
 ## [1] 0
@@ -412,7 +412,7 @@ The function reads in the taxonomic counts data and the phylogenetic tree data a
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
 \hlstd{tree} \hlkwb{<-} \hlstd{ape}\hlopt{::}\hlkwd{read.tree}\hlstd{(}\hlkwd{system.file}\hlstd{(}\hlstr{"extdata"}\hlstd{,}
-                                   \hlstr{"AllHim_Mar_27_2015.tre"}\hlstd{,}
+                                   \hlstr{"grids_tree_3_10_16.tre"}\hlstd{,}
                                     \hlkwc{package} \hlstd{=} \hlstr{"ecostructure"}\hlstd{))}
 \hlstd{phylo_counts} \hlkwb{<-} \hlkwd{collapse_counts_by_phylo}\hlstd{(taxonomic_counts,}
                                          \hlstd{tree,} \hlkwc{collapse_at} \hlstd{=} \hlnum{10}\hlstd{)}
@@ -423,14 +423,17 @@ The function reads in the taxonomic counts data and the phylogenetic tree data a
 
 \subsection{regional motif}
 
-For the regional profile, \textbf{ecostructure} allows the user to create Global assemblage dispersion fields and build maps data from the dispersion fields created. An example is shown below.
+For the regional profile, \textbf{ecostructure} allows the user to create Global assemblage dispersion fields and build maps data from those fields. To create the assemblage dispersion fields, the user would require to obatin the shapefiles (*.shp* files) for the all the species in the observed data.
+
+One source of obtaining the *.shp* files for mapping to geographic boundaries is from the Natural Earth webpage (www.naturalearthdata.com/downloads). For our Himalyan birds data, we obatined the *.shp* files from BirdLife International (www.birdlife.org).
+
+The user can put all the *.shp* files in the \begin{verb} all_bird_shapefiles () \end{verb} and then using this folder of shapefiles and the local taxonomic data, the user can create the global assemblage dispersion fields as follows
 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
 \hlstd{disp} \hlkwb{<-} \hlkwd{CreateGlobalDispersionFields}\hlstd{(taxonomic_counts,}
-              \hlkwc{shapefiles_dir} \hlstd{=} \hlkwd{system.file}\hlstd{(}\hlstr{"extdata"}\hlstd{,}
-                    \hlstr{"ne_50m_admin_0_countries"}\hlstd{,} \hlkwc{package} \hlstd{=} \hlstr{"ecostructure"}\hlstd{))}
+              \hlkwc{shapefiles_dir} \hlstd{=} \hlstr{"all_bird_sjapefiles/"}\hlstd{)}
 \end{alltt}
 \end{kframe}
 \end{knitrout}
@@ -439,15 +442,35 @@ For the regional profile, \textbf{ecostructure} allows the user to create Global
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlstd{dispersion.field} \hlkwb{<-} \hlstd{disp}
+\hlstd{dispersion.field} \hlkwb{<-} \hlkwd{readRDS}\hlstd{(}\hlkwd{system.file}\hlstd{(}\hlstr{"extdata"}\hlstd{,}
+                    \hlstr{"dispersion_field_list.rds"}\hlstd{,} \hlkwc{package} \hlstd{=} \hlstr{"ecostructure"}\hlstd{))}
 \hlstd{proj} \hlkwb{<-} \hlkwd{CRS}\hlstd{(}\hlstr{' +proj=longlat +ellps=WGS84'}\hlstd{)}
 \hlstd{global_shapefile} \hlkwb{<-} \hlkwd{readShapeLines}\hlstd{(}\hlkwd{system.file}\hlstd{(}\hlstr{"extdata"}\hlstd{,}
          \hlstr{"ne_50m_admin_0_countries/ne_50m_admin_0_countries.shp"}\hlstd{,}
           \hlkwc{package} \hlstd{=} \hlstr{"ecostructure"}\hlstd{),} \hlkwc{proj4string}\hlstd{=proj)}
+\hlkwd{par}\hlstd{(mfrow)}
 \hlstd{maps} \hlkwb{<-} \hlkwd{CreateMapsFromDispersionFields}\hlstd{(dispersion.field, global_shapefile)}
 \end{alltt}
 \end{kframe}
 \end{knitrout}
+
+The function returns a list of map plots with as many elements as the number of sites. We can see the maps as follows
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{maps[[}\hlnum{1}\hlstd{]]}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+
+\begin{figure}[htp]
+\begin{center}
+\includegraphics[width=6in,height=6in]{figure/maps.png}
+\end{center}
+\end{figure}
+
+
 
 Finally, the user can generate the counts data corressponding to regional diversity using the \begin{verb} DispersionFieldTocounts() \end{verb} function
 
@@ -455,6 +478,16 @@ Finally, the user can generate the counts data corressponding to regional divers
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
 \hlstd{regional_counts} \hlkwb{<-} \hlkwd{DispersionFieldToCounts}\hlstd{(dispersion.field)}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{dim}\hlstd{(regional_counts)}
+
+\hlstd{regional_counts[}\hlnum{1}\hlopt{:}\hlnum{5}\hlstd{,}\hlnum{1}\hlopt{:}\hlnum{5}\hlstd{]}
 \end{alltt}
 \end{kframe}
 \end{knitrout}
@@ -474,6 +507,14 @@ In order to build counts data corresponding to functional diversity, we order th
 \end{kframe}
 \end{knitrout}
 
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{dim}\hlstd{(func_counts)}
+\hlkwd{head}\hlstd{(func_counts[,}\hlnum{1}\hlopt{:}\hlnum{5}\hlstd{])}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
 
 \section{Extras}
 

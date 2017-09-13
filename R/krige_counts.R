@@ -8,6 +8,9 @@
 #' @param order  The ordered feature information used for computing distance information
 #'               in kriging.
 #' @param krige.control The control parameters for kriging.
+#' @param jitter A jitter value to be added in case of any singularity problem due to lack of
+#'               uniqueness of ordering metadata. Default is 10^-6. The user may tune it in case
+#'               of a singularity problem found.
 #'
 #' @return Returns a counts data with the zero count cells being interpolated by
 #' a simple kriging predictor (using \code{SpatialExtremes} package).
@@ -16,10 +19,11 @@
 #' @export
 
 
-krige_counts <- function (counts, order, krige.control = list()){
+krige_counts <- function (counts, order, krige.control = list(), jitter = 1e-06){
 
+  order <- order + abs(runif(length(order), 0, jitter))
   krige.control.default <- list(cov.mod = "whitmat",
-                                sill=1, range=sd(order)/10, smooth=.01)
+                                sill=0.01, range=sd(order)/50, smooth=0.3)
   krige.control <- modifyList(krige.control, krige.control.default)
 
   z <- matrix(0, nrow(counts), ncol(counts))

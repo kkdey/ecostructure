@@ -45,18 +45,17 @@
 #' @keywords counts data, local site-species data, global dispersion field
 #'
 #' @importFrom rgdal readOGR
-#' @importFrom raster raster setValues mask
-#' @importFrom raster stack
+#' @importFrom raster raster setValues mask calc stack
 #' @export
 
 CreateGlobalDispersionFields = function(local_data,
-                                       shapefiles_dir=NULL,
-                                       raster_latlim = c(5,50),
-                                       raster_longlim = c(50,120),
-                                       raster_resolution = 8,
-                                       base_local = 0,
-                                       optional_species_names = NULL,
-                                       include_shp_attributes = c("x@data$SEASONAL==1", "x@data$SEASONAL==2")){
+                                        shapefiles_dir=NULL,
+                                        raster_latlim = c(5,50),
+                                        raster_longlim = c(50,120),
+                                        raster_resolution = 8,
+                                        base_local = 0,
+                                        optional_species_names = NULL,
+                                        include_shp_attributes = c("x@data$SEASONAL==1", "x@data$SEASONAL==2")){
 
 
   if(is.null(optional_species_names)){
@@ -121,7 +120,6 @@ CreateGlobalDispersionFields = function(local_data,
                         ymx=ymax)
 
     r<- raster::setValues(r, 1)
-
     a <- raster::mask(r, breedingranges[[1]], updatevalue=0)
     for (i in 2:length(breedingranges)){
       a<- raster::stack(a,mask(r, breedingranges[[i]], updatevalue=0))}

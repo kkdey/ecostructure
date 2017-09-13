@@ -4,7 +4,7 @@
 \alias{krige_counts}
 \title{Kriging smoothed counts data preparation}
 \usage{
-krige_counts(counts, order, krige.control = list())
+krige_counts(counts, order, krige.control = list(), jitter = 1e-06)
 }
 \arguments{
 \item{counts}{The abundance counts data matrix with samples along the rows and the
@@ -14,6 +14,10 @@ species along the columns.}
 in kriging.}
 
 \item{krige.control}{The control parameters for kriging.}
+
+\item{jitter}{A jitter value to be added in case of any singularity problem due to lack of
+uniqueness of ordering metadata. Default is 10^-6. The user may tune it in case
+of a singularity problem found.}
 }
 \value{
 Returns a counts data with the zero count cells being interpolated by

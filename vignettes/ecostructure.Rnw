@@ -189,28 +189,55 @@ dim(phylo_counts)
 
 \subsection{regional motif}
 
-For the regional profile, \textbf{ecostructure} allows the user to create Global assemblage dispersion fields and build maps data from the dispersion fields created. An example is shown below.
+For the regional profile, \textbf{ecostructure} allows the user to create Global assemblage dispersion fields and build maps data from those fields. To create the assemblage dispersion fields, the user would require to obatin the shapefiles (*.shp* files) for the all the species in the observed data.
+
+One source of obtaining the *.shp* files for mapping to geographic boundaries is from the Natural Earth webpage (www.naturalearthdata.com/downloads). For our Himalyan birds data, we obatined the *.shp* files from BirdLife International (www.birdlife.org).
+
+The user can put all the *.shp* files in the \begin{verb} all_bird_shapefiles () \end{verb} and then using this folder of shapefiles and the local taxonomic data, the user can create the global assemblage dispersion fields as follows
 
 <<abundance_fields, eval = FALSE>>=
 disp <- CreateGlobalDispersionFields(taxonomic_counts,
-              shapefiles_dir = system.file("extdata",
-                    "ne_50m_admin_0_countries", package = "ecostructure"))
+              shapefiles_dir = "all_bird_sjapefiles/")
 @
 
 
 <<mapsdisp_fields, eval=FALSE>>=
-dispersion.field <- disp
+dispersion.field <- readRDS(system.file("extdata",
+                    "dispersion_field_list.rds", package = "ecostructure"))
 proj <- CRS(' +proj=longlat +ellps=WGS84')
 global_shapefile <- readShapeLines(system.file("extdata",
          "ne_50m_admin_0_countries/ne_50m_admin_0_countries.shp",
           package = "ecostructure"), proj4string=proj)
+par(mfrow)
 maps <- CreateMapsFromDispersionFields(dispersion.field, global_shapefile)
 @ %def
+
+The function returns a list of map plots with as many elements as the number of sites. We can see the maps as follows
+
+<<plot_map, eval=FALSE>>=
+maps[[1]]
+@ %def
+
+\begin{figure}[htp]
+\begin{center}
+\includegraphics[width=6in,height=6in]{figure/maps.png}
+\end{center}
+\end{figure}
+
+
 
 Finally, the user can generate the counts data corressponding to regional diversity using the \begin{verb} DispersionFieldTocounts() \end{verb} function
 
 <<reg_counts, eval=FALSE>>=
 regional_counts <- DispersionFieldToCounts(dispersion.field)
+@ %def
+
+<<reg_counts_2, eval=FALSE>>=
+
+dim(regional_counts)
+
+regional_counts[1:5,1:5]
+
 @ %def
 
 
@@ -220,10 +247,14 @@ In order to build counts data corresponding to functional diversity, we order th
 
 <<krige_counts, eval = FALSE>>=
 func_counts <- krige_counts(taxonomic_counts,
-        order = species_metadata$,
+        order = species_metadata$bill_length,
             krige.control = list(cov.mod = "whitmat", sill=0.5, smooth=.01))
 @ %def
 
+<<krige_counts_2, eval = FALSE>>=
+dim(func_counts)
+head(func_counts[,1:5])
+@ %def
 
 \section{Extras}
 
@@ -268,13 +299,6 @@ topic_meta_diversity(annotation)
 \includegraphics[width=6in,height=6in]{figure/topic-meta-diversity.png}
 \end{center}
 \end{figure}
-
-In cases, where a climate raster corresponding to precipitation, temperature etc is present, \textbf{ecostructure} provides tools to mask the climate raster by the
-regional motif map raster. This was how the plots in Fig ?? were generated.
-
-<<mask_climate_mask, eval=FALSE>>=
-mask_climate_raster_by_GoM(motif_map_raster, climate_raster, quant = 0.10)
-@
 
 
 
