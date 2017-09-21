@@ -203,18 +203,18 @@ Here we illustrate how one can fit the Grade of Membership model and perform the
 ## 
 ## Estimating on a 38 document collection.
 ## Fit and Bayes Factor Estimation for K = 2
-## log posterior increase: 2811.7, 112.9, 14.8, 2.1, 3.4, 3, done.
-## log BF( 2 ) = 1950.57
+## log posterior increase: 3789, 36.6, 0.7, 4.2, 51.7, done.
+## log BF( 2 ) = 2192.15
 ## 
 ## Estimating on a 38 document collection.
 ## Fit and Bayes Factor Estimation for K = 3
-## log posterior increase: 3727.4, 83.6, 7.4, 0, done.
-## log BF( 3 ) = 2569.32
+## log posterior increase: 3568.5, 7.3, 43.3, 14, 57.9, 12.9, 0.2, done.
+## log BF( 3 ) = 2448.06
 ## 
 ## Estimating on a 38 document collection.
 ## Fit and Bayes Factor Estimation for K = 4
-## log posterior increase: 4320.1, 69.2, 3.2, 0.9, done.
-## log BF( 4 ) = 2150.56
+## log posterior increase: 3535.7, 24.4, 89.4, 44, 1.3, 2.5, 64.8, 28.4, 0.9, 1.1, done.
+## log BF( 4 ) = 2161.59
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -231,12 +231,12 @@ Here we illustrate how one can fit the Grade of Membership model and perform the
 \begin{verbatim}
 ##         topic
 ## document        1        2        3
-##       A2 7.97e-05 1.00e+00 1.04e-04
-##       A3 7.88e-05 9.99e-01 6.93e-04
-##       A4 1.60e-04 9.98e-01 1.88e-03
-##       A6 4.36e-04 1.24e-04 9.99e-01
-##       A7 3.27e-04 9.72e-05 1.00e+00
-##       A8 1.39e-04 1.00e+00 9.36e-05
+##       A2 0.999819 9.66e-05 8.43e-05
+##       A3 0.999357 5.47e-04 9.61e-05
+##       A4 0.998530 1.25e-03 2.21e-04
+##       A6 0.000143 9.99e-01 5.93e-04
+##       A7 0.000110 9.99e-01 4.94e-04
+##       A8 0.999736 9.35e-05 1.71e-04
 \end{verbatim}
 \begin{alltt}
 \hlkwd{rowSums}\hlstd{(omega)}
@@ -254,12 +254,12 @@ Here we illustrate how one can fit the Grade of Membership model and perform the
 \begin{verbatim}
 ##                            topic
 ## phrase                             1        2        3
-##   Macropygia_unchall        7.08e-07 6.05e-07 2.50e-03
-##   Streptopelia_chinensis    3.12e-06 7.71e-03 6.89e-07
-##   Streptopelia_senegalensis 7.08e-07 3.30e-03 6.87e-07
-##   Columba_pulchricollis     7.07e-07 6.05e-07 1.25e-03
-##   Streptopelia_orientalis   1.25e-02 2.50e-03 8.47e-07
-##   Chalcophaps_indica        7.09e-07 3.30e-03 6.89e-07
+##   Macropygia_unchall        6.08e-07 2.05e-03 9.07e-07
+##   Streptopelia_chinensis    7.27e-03 5.66e-07 7.03e-04
+##   Streptopelia_senegalensis 3.32e-03 5.64e-07 9.06e-07
+##   Columba_pulchricollis     6.08e-07 1.03e-03 9.06e-07
+##   Streptopelia_orientalis   2.32e-03 6.38e-07 1.63e-02
+##   Chalcophaps_indica        3.32e-03 5.65e-07 9.07e-07
 \end{verbatim}
 \begin{alltt}
 \hlkwd{colSums}\hlstd{(theta)}
@@ -307,38 +307,38 @@ the samples (along the rows of the Structure plot) are arranged by a second meta
 ## 
 ## Estimating on a 38 document collection.
 ## Fit and Bayes Factor Estimation for K = 2
-## log posterior increase: 2742.9, done.
-## log BF( 2 ) = 275.16
+## log posterior increase: 2945.2, done.
+## log BF( 2 ) = 360.74
 ## 
 ## Estimating on a 38 document collection.
 ## Fit and Bayes Factor Estimation for K = 2
-## log posterior increase: 3311.1, done.
-## log BF( 2 ) = 368.73
+## log posterior increase: 3153.1, done.
+## log BF( 2 ) = 406.06
 ## 
 ## Estimating on a 38 document collection.
 ## Fit and Bayes Factor Estimation for K = 2
-## log posterior increase: 2988.5, done.
-## log BF( 2 ) = 367.19
+## log posterior increase: 2741.2, done.
+## log BF( 2 ) = 249.28
 ## 
 ## Estimating on a 38 document collection.
 ## Fit and Bayes Factor Estimation for K = 2
-## log posterior increase: 3046.8, done.
-## log BF( 2 ) = 417.72
+## log posterior increase: 2599.8, done.
+## log BF( 2 ) = 391.53
 ## 
 ## Estimating on a 38 document collection.
 ## Fit and Bayes Factor Estimation for K = 2
-## log posterior increase: 2769.2, done.
-## log BF( 2 ) = 253.6
+## log posterior increase: 2570.9, done.
+## log BF( 2 ) = 265.86
 ## 
 ## Estimating on a 38 document collection.
 ## Fit and Bayes Factor Estimation for K = 2
-## log posterior increase: 2773.7, done.
-## log BF( 2 ) = 964.47
+## log posterior increase: 3268.9, done.
+## log BF( 2 ) = 1115.29
 ## $GoMBF.obs
-## [1] 15992
+## [1] 16076
 ## 
 ## $GoMBF.rand
-## [1] 12793 13372 13233 12807 13418
+## [1] 13376 12534 13173 13762 13191
 ## 
 ## $pval
 ## [1] 0
@@ -372,6 +372,9 @@ The function reads in the taxonomic counts data and the phylogenetic tree data a
                                          \hlstd{tree,} \hlkwc{collapse_at} \hlstd{=} \hlnum{10}\hlstd{)}
 \hlkwd{dim}\hlstd{(phylo_counts)}
 \end{alltt}
+\begin{verbatim}
+## [1]  38 196
+\end{verbatim}
 \end{kframe}
 \end{knitrout}
 
@@ -402,7 +405,7 @@ The user can put all the *.shp* files in the \begin{verb} all_bird_shapefiles ()
 \hlstd{global_shapefile} \hlkwb{<-} \hlkwd{readShapeLines}\hlstd{(}\hlkwd{system.file}\hlstd{(}\hlstr{"extdata"}\hlstd{,}
          \hlstr{"ne_50m_admin_0_countries/ne_50m_admin_0_countries.shp"}\hlstd{,}
           \hlkwc{package} \hlstd{=} \hlstr{"ecostructure"}\hlstd{),} \hlkwc{proj4string}\hlstd{=proj)}
-\hlkwd{par}\hlstd{(mfrow)}
+\hlkwd{par}\hlstd{(}\hlkwc{mfrow} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{1}\hlstd{,}\hlnum{1}\hlstd{))}
 \hlstd{maps} \hlkwb{<-} \hlkwd{CreateMapsFromDispersionFields}\hlstd{(dispersion.field, global_shapefile)}
 \end{alltt}
 \end{kframe}
@@ -415,7 +418,251 @@ The function returns a list of map plots with as many elements as the number of 
 \begin{alltt}
 \hlstd{maps[[}\hlnum{1}\hlstd{]]}
 \end{alltt}
-\end{kframe}
+
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call(L\_textBounds, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call(L\_textBounds, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call(L\_textBounds, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call(L\_textBounds, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call(L\_textBounds, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call(L\_textBounds, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call(L\_textBounds, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call(L\_textBounds, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call(L\_textBounds, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call(L\_textBounds, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call(L\_textBounds, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call(L\_textBounds, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call(L\_textBounds, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call(L\_textBounds, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call(L\_textBounds, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call(L\_textBounds, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call(L\_textBounds, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call(L\_textBounds, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call(L\_textBounds, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call(L\_textBounds, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call(L\_textBounds, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call(L\_textBounds, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call(L\_textBounds, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call(L\_textBounds, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call(L\_textBounds, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call(L\_textBounds, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call(L\_textBounds, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call(L\_textBounds, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call(L\_textBounds, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call(L\_textBounds, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call(L\_textBounds, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call(L\_textBounds, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call(L\_textBounds, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call(L\_textBounds, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call(L\_textBounds, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call(L\_textBounds, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call(L\_textBounds, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call(L\_textBounds, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call(L\_textBounds, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call(L\_textBounds, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call(L\_textBounds, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call(L\_textBounds, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call(L\_textBounds, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call(L\_textBounds, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call(L\_textBounds, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call(L\_textBounds, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call(L\_textBounds, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call(L\_textBounds, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call(L\_textBounds, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call(L\_textBounds, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call(L\_textBounds, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call(L\_textBounds, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call.graphics(L\_text, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call.graphics(L\_text, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call.graphics(L\_text, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call.graphics(L\_text, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call.graphics(L\_text, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call.graphics(L\_text, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call.graphics(L\_text, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call.graphics(L\_text, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call.graphics(L\_text, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call.graphics(L\_text, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call.graphics(L\_text, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call.graphics(L\_text, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call.graphics(L\_text, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call.graphics(L\_text, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call.graphics(L\_text, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call.graphics(L\_text, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call.graphics(L\_text, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call.graphics(L\_text, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call.graphics(L\_text, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call.graphics(L\_text, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call.graphics(L\_text, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call.graphics(L\_text, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call.graphics(L\_text, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call.graphics(L\_text, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call.graphics(L\_text, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call.graphics(L\_text, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call.graphics(L\_text, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call.graphics(L\_text, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call.graphics(L\_text, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call.graphics(L\_text, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call.graphics(L\_text, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call.graphics(L\_text, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call.graphics(L\_text, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call.graphics(L\_text, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call.graphics(L\_text, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call.graphics(L\_text, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call.graphics(L\_text, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call.graphics(L\_text, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call.graphics(L\_text, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call.graphics(L\_text, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call.graphics(L\_text, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call.graphics(L\_text, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call.graphics(L\_text, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call.graphics(L\_text, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call.graphics(L\_text, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call.graphics(L\_text, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call.graphics(L\_text, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call.graphics(L\_text, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call.graphics(L\_text, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call.graphics(L\_text, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call.graphics(L\_text, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call.graphics(L\_text, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call.graphics(L\_text, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call.graphics(L\_text, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call.graphics(L\_text, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call.graphics(L\_text, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call.graphics(L\_text, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call.graphics(L\_text, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call.graphics(L\_text, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call.graphics(L\_text, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call.graphics(L\_text, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call.graphics(L\_text, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call.graphics(L\_text, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call.graphics(L\_text, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call.graphics(L\_text, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call.graphics(L\_text, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call.graphics(L\_text, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call.graphics(L\_text, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call.graphics(L\_text, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in grid.Call.graphics(L\_text, as.graphicsAnnot(x\$label), x\$x, x\$y, : font "{}Symbol"{} could not be found for family "{}"{}}}\end{kframe}
 \end{knitrout}
 
 \begin{figure}[htp]
@@ -440,9 +687,21 @@ Finally, the user can generate the counts data corressponding to regional divers
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
 \hlkwd{dim}\hlstd{(regional_counts)}
-
+\end{alltt}
+\begin{verbatim}
+## [1]     38 201600
+\end{verbatim}
+\begin{alltt}
 \hlstd{regional_counts[}\hlnum{1}\hlopt{:}\hlnum{5}\hlstd{,}\hlnum{1}\hlopt{:}\hlnum{5}\hlstd{]}
 \end{alltt}
+\begin{verbatim}
+##    [,1] [,2] [,3] [,4] [,5]
+## U1    0    0    0    0    0
+## U2    1    1    1    1    1
+## MA    0    0    0    0    0
+## A2    0    0    0    0    0
+## A3    0    0    0    0    0
+\end{verbatim}
 \end{kframe}
 \end{knitrout}
 

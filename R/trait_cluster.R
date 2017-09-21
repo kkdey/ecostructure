@@ -1,7 +1,6 @@
-#' @title Trait based Hierarchical clustering of species with varying proportional diversity
-#'
-#' @description Performs interpolation of 0 counts (treated as missing data) using
-#' kriging over an ordered feature information \code{order}.
+#' @title Collapsing the species in a ecological counts data using trait based grouping
+#' @description Performs grouping of species in the abundance counts daya based on trait based
+#' hierarchical clustering of the species
 #'
 #' @param counts The abundance counts data matrix with samples along the rows and the
 #'               species along the columns. The sample names are provided as row names
@@ -26,9 +25,8 @@
 #' @export
 
 
-
-
 trait_cluster <- function(counts, traits, prop_div = 0.3){
+
   z <- round(dim(traits)[[1]]*prop_div)
   res.hc<-hclust(dist(traits))
   memb <- cutree(res.hc, k = z)

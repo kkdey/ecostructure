@@ -2,7 +2,7 @@
 % Please edit documentation in R/trait_cluster.R
 \name{trait_cluster}
 \alias{trait_cluster}
-\title{Trait based Hierarchical clustering of species with varying proportional diversity}
+\title{Collapsing the species in a ecological counts data using trait based grouping}
 \usage{
 trait_cluster(counts, traits, prop_div = 0.3)
 }
@@ -23,8 +23,8 @@ the column name corresponding to the first of the species forming the cluster. T
 matrix is taken as input to the CountClust:FitGoM function.
 }
 \description{
-Performs interpolation of 0 counts (treated as missing data) using
-kriging over an ordered feature information \code{order}.
+Performs grouping of species in the abundance counts daya based on trait based
+hierarchical clustering of the species
 }
 \examples{
 
