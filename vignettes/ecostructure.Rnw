@@ -256,6 +256,26 @@ dim(func_counts)
 head(func_counts[,1:5])
 @ %def
 
+
+We can also use traits to collapse the bird species by performing hierarchical clustering of the bird species based on a single trait or multiple traits. We perform this using the `trait_cluster()` function in **ecostructure**. We demonstrate its application next.
+
+<<trait_cluster, eval=TRUE>>=
+
+## pooling all the bill traits metadata to be used as traits for the hierarchical clustering
+
+bill_traits <- as.matrix(dist(scale(species_metadata[,c(1:3)])))
+
+## applying the hierarchical clustering of species based on bill traits
+
+bill_trait_clust <- trait_cluster(counts = taxonomic_counts, traits = bill_traits, prop_div=0.3)
+
+@
+
+We first generate a traits matrix, with the columns representing the traits and rows corresponding to the trait values for each species. Then we use that to perform a hierarchical clustering of species and cut the dendrogram at a specified level, gven by  `prop_div`, determined by the proportional diversity of the abundance counts data explained by the clusters at that level.
+
+These clusters of species are then used to collapse the counts data and reduce the original counts matrix with species along the columns to one with the clusters along the columns. This matrix is then used as input for the `CountClust::FitGoM` or `CountClust::FitGoMpool`  to determined how the species traits influence the clustering patterns.
+
+
 \section{Extras}
 
 \textbf{ecostructure} provides additional functions for plotting a variable of interest (which could be the grades of membership or the motif pattern) against a metadata and a diversity measure or against two metadata in three way scatter plot functions.

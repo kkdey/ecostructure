@@ -7,57 +7,7 @@
 % library('knitr'); rm(list=ls()); knit2pdf('CountClust/vignettes/count-clust.Rnw'); openPDF('count-clust.pdf')
 % !Rnw weave = knitr
 
-\documentclass[12pt]{article}\usepackage[]{graphicx}\usepackage[usenames,dvipsnames]{color}
-%% maxwidth is the original width if it is less than linewidth
-%% otherwise use linewidth (to make sure the graphics do not exceed the margin)
-\makeatletter
-\def\maxwidth{ %
-  \ifdim\Gin@nat@width>\linewidth
-    \linewidth
-  \else
-    \Gin@nat@width
-  \fi
-}
-\makeatother
-
-\definecolor{fgcolor}{rgb}{0.345, 0.345, 0.345}
-\newcommand{\hlnum}[1]{\textcolor[rgb]{0.686,0.059,0.569}{#1}}%
-\newcommand{\hlstr}[1]{\textcolor[rgb]{0.192,0.494,0.8}{#1}}%
-\newcommand{\hlcom}[1]{\textcolor[rgb]{0.678,0.584,0.686}{\textit{#1}}}%
-\newcommand{\hlopt}[1]{\textcolor[rgb]{0,0,0}{#1}}%
-\newcommand{\hlstd}[1]{\textcolor[rgb]{0.345,0.345,0.345}{#1}}%
-\newcommand{\hlkwa}[1]{\textcolor[rgb]{0.161,0.373,0.58}{\textbf{#1}}}%
-\newcommand{\hlkwb}[1]{\textcolor[rgb]{0.69,0.353,0.396}{#1}}%
-\newcommand{\hlkwc}[1]{\textcolor[rgb]{0.333,0.667,0.333}{#1}}%
-\newcommand{\hlkwd}[1]{\textcolor[rgb]{0.737,0.353,0.396}{\textbf{#1}}}%
-\let\hlipl\hlkwb
-
-\usepackage{framed}
-\makeatletter
-\newenvironment{kframe}{%
- \def\at@end@of@kframe{}%
- \ifinner\ifhmode%
-  \def\at@end@of@kframe{\end{minipage}}%
-  \begin{minipage}{\columnwidth}%
- \fi\fi%
- \def\FrameCommand##1{\hskip\@totalleftmargin \hskip-\fboxsep
- \colorbox{shadecolor}{##1}\hskip-\fboxsep
-     % There is no \\@totalrightmargin, so:
-     \hskip-\linewidth \hskip-\@totalleftmargin \hskip\columnwidth}%
- \MakeFramed {\advance\hsize-\width
-   \@totalleftmargin\z@ \linewidth\hsize
-   \@setminipage}}%
- {\par\unskip\endMakeFramed%
- \at@end@of@kframe}
-\makeatother
-
-\definecolor{shadecolor}{rgb}{.97, .97, .97}
-\definecolor{messagecolor}{rgb}{0, 0, 0}
-\definecolor{warningcolor}{rgb}{1, 0, 1}
-\definecolor{errorcolor}{rgb}{1, 0, 0}
-\newenvironment{knitrout}{}{} % an empty environment to be redefined in TeX
-
-\usepackage{alltt}
+\documentclass[12pt]{article}
 
 \newcommand{\ecostructure}{\textit{ecostructure}}
 \usepackage{dsfont}
@@ -73,7 +23,7 @@
 
 
 \bioctitle[\ecostructure{} - Grade of Membership Model and Visualization for ecological species abundance data]{\ecostructure{} - Grade of Membership Model and Visualization for ecological species abundance data}
-\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+
 \begin{document}
 
 \maketitle
@@ -103,6 +53,14 @@ Load the package as
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
 \hlkwd{library}\hlstd{(ecostructure)}
+\end{alltt}
+
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning: replacing previous import 'ape::rotate' by 'raster::rotate' when loading 'ecostructure'}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning: replacing previous import 'ape::zoom' by 'raster::zoom' when loading 'ecostructure'}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning: replacing previous import 'raster::density' by 'stats::density' when loading 'ecostructure'}}\begin{alltt}
 \hlkwd{library}\hlstd{(Biobase)}
 \end{alltt}
 \end{kframe}
@@ -198,16 +156,14 @@ Along with the taxonomic data and metadata, the package provides the phylogeneti
 \begin{alltt}
 \hlstd{phylo_tree} \hlkwb{<-} \hlstd{ape}\hlopt{::}\hlkwd{read.tree}\hlstd{(}\hlkwd{system.file}\hlstd{(}\hlstr{"extdata"}\hlstd{,} \hlstr{"AllHim_Mar_27_2015.tre"}\hlstd{,}
                              \hlkwc{package} \hlstd{=} \hlstr{"ecostructure"}\hlstd{))}
+\end{alltt}
+
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in ape::read.tree(system.file("{}extdata"{}, "{}AllHim\_Mar\_27\_2015.tre"{}, : empty character string.}}\begin{alltt}
 \hlstd{phylo_tree}
 \end{alltt}
 \begin{verbatim}
-## 
-## Phylogenetic tree with 589 tips and 588 internal nodes.
-## 
-## Tip labels:
-## 	Macropygia_unchall, Streptopelia_chinensis, Streptopelia_senegalensis, Columba_hodgsonii, Columba_pulchricollis, Columba_palumbus, ...
-## 
-## Rooted; includes branch lengths.
+## NULL
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -220,16 +176,14 @@ The shape files for the regional motif analysis can be loaded as follows
 \begin{alltt}
 \hlstd{shp_file} \hlkwb{<-} \hlstd{ape}\hlopt{::}\hlkwd{read.tree}\hlstd{(}\hlkwd{system.file}\hlstd{(}\hlstr{"extdata"}\hlstd{,} \hlstr{"AllHim_Mar_27_2015.tre"}\hlstd{,}
                              \hlkwc{package} \hlstd{=} \hlstr{"ecostructure"}\hlstd{))}
+\end{alltt}
+
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in ape::read.tree(system.file("{}extdata"{}, "{}AllHim\_Mar\_27\_2015.tre"{}, : empty character string.}}\begin{alltt}
 \hlstd{shp_file}
 \end{alltt}
 \begin{verbatim}
-## 
-## Phylogenetic tree with 589 tips and 588 internal nodes.
-## 
-## Tip labels:
-## 	Macropygia_unchall, Streptopelia_chinensis, Streptopelia_senegalensis, Columba_hodgsonii, Columba_pulchricollis, Columba_palumbus, ...
-## 
-## Rooted; includes branch lengths.
+## NULL
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -249,18 +203,18 @@ Here we illustrate how one can fit the Grade of Membership model and perform the
 ## 
 ## Estimating on a 38 document collection.
 ## Fit and Bayes Factor Estimation for K = 2
-## log posterior increase: 3159.3, 47.2, 1.7, 1.4, 0.1, done.
-## log BF( 2 ) = 1718.17
+## log posterior increase: 2811.7, 112.9, 14.8, 2.1, 3.4, 3, done.
+## log BF( 2 ) = 1950.57
 ## 
 ## Estimating on a 38 document collection.
 ## Fit and Bayes Factor Estimation for K = 3
-## log posterior increase: 4621, 130.5, 34.8, 57.9, 6.8, done.
-## log BF( 3 ) = 2439.02
+## log posterior increase: 3727.4, 83.6, 7.4, 0, done.
+## log BF( 3 ) = 2569.32
 ## 
 ## Estimating on a 38 document collection.
 ## Fit and Bayes Factor Estimation for K = 4
-## log posterior increase: 4487.2, 44.1, 1.4, 4.3, 4.9, 1, 0.3, done.
-## log BF( 4 ) = 2132.8
+## log posterior increase: 4320.1, 69.2, 3.2, 0.9, done.
+## log BF( 4 ) = 2150.56
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -277,12 +231,12 @@ Here we illustrate how one can fit the Grade of Membership model and perform the
 \begin{verbatim}
 ##         topic
 ## document        1        2        3
-##       A2 0.999820 9.55e-05 0.000085
-##       A3 0.999369 5.27e-04 0.000104
-##       A4 0.998577 1.18e-03 0.000244
-##       A6 0.000146 9.99e-01 0.000680
-##       A7 0.000112 9.99e-01 0.000559
-##       A8 0.999715 9.35e-05 0.000192
+##       A2 7.97e-05 1.00e+00 1.04e-04
+##       A3 7.88e-05 9.99e-01 6.93e-04
+##       A4 1.60e-04 9.98e-01 1.88e-03
+##       A6 4.36e-04 1.24e-04 9.99e-01
+##       A7 3.27e-04 9.72e-05 1.00e+00
+##       A8 1.39e-04 1.00e+00 9.36e-05
 \end{verbatim}
 \begin{alltt}
 \hlkwd{rowSums}\hlstd{(omega)}
@@ -300,12 +254,12 @@ Here we illustrate how one can fit the Grade of Membership model and perform the
 \begin{verbatim}
 ##                            topic
 ## phrase                             1        2        3
-##   Macropygia_unchall        6.12e-07 2.00e-03 9.39e-07
-##   Streptopelia_chinensis    6.88e-03 5.50e-07 1.40e-03
-##   Streptopelia_senegalensis 3.34e-03 5.49e-07 9.39e-07
-##   Columba_pulchricollis     6.11e-07 1.00e-03 9.38e-07
-##   Streptopelia_orientalis   2.25e-03 6.13e-07 1.70e-02
-##   Chalcophaps_indica        3.34e-03 5.50e-07 9.40e-07
+##   Macropygia_unchall        7.08e-07 6.05e-07 2.50e-03
+##   Streptopelia_chinensis    3.12e-06 7.71e-03 6.89e-07
+##   Streptopelia_senegalensis 7.08e-07 3.30e-03 6.87e-07
+##   Columba_pulchricollis     7.07e-07 6.05e-07 1.25e-03
+##   Streptopelia_orientalis   1.25e-02 2.50e-03 8.47e-07
+##   Chalcophaps_indica        7.09e-07 3.30e-03 6.89e-07
 \end{verbatim}
 \begin{alltt}
 \hlkwd{colSums}\hlstd{(theta)}
@@ -353,38 +307,38 @@ the samples (along the rows of the Structure plot) are arranged by a second meta
 ## 
 ## Estimating on a 38 document collection.
 ## Fit and Bayes Factor Estimation for K = 2
-## log posterior increase: 3179.9, done.
-## log BF( 2 ) = 318.6
+## log posterior increase: 2742.9, done.
+## log BF( 2 ) = 275.16
 ## 
 ## Estimating on a 38 document collection.
 ## Fit and Bayes Factor Estimation for K = 2
-## log posterior increase: 2521.4, done.
-## log BF( 2 ) = 365.94
+## log posterior increase: 3311.1, done.
+## log BF( 2 ) = 368.73
 ## 
 ## Estimating on a 38 document collection.
 ## Fit and Bayes Factor Estimation for K = 2
-## log posterior increase: 2780.9, done.
-## log BF( 2 ) = 272.6
+## log posterior increase: 2988.5, done.
+## log BF( 2 ) = 367.19
 ## 
 ## Estimating on a 38 document collection.
 ## Fit and Bayes Factor Estimation for K = 2
-## log posterior increase: 2565.9, done.
-## log BF( 2 ) = 352.32
+## log posterior increase: 3046.8, done.
+## log BF( 2 ) = 417.72
 ## 
 ## Estimating on a 38 document collection.
 ## Fit and Bayes Factor Estimation for K = 2
-## log posterior increase: 2449.2, done.
-## log BF( 2 ) = 299.45
+## log posterior increase: 2769.2, done.
+## log BF( 2 ) = 253.6
 ## 
 ## Estimating on a 38 document collection.
 ## Fit and Bayes Factor Estimation for K = 2
-## log posterior increase: 2732.2, done.
-## log BF( 2 ) = 824.99
+## log posterior increase: 2773.7, done.
+## log BF( 2 ) = 964.47
 ## $GoMBF.obs
-## [1] 15847
+## [1] 15992
 ## 
 ## $GoMBF.rand
-## [1] 13063 13364 13100 12954 13027
+## [1] 12793 13372 13233 12807 13418
 ## 
 ## $pval
 ## [1] 0
@@ -516,88 +470,12 @@ In order to build counts data corresponding to functional diversity, we order th
 \end{kframe}
 \end{knitrout}
 
-\section{Extras}
 
-\textbf{ecostructure} provides additional functions for plotting a variable of interest (which could be the grades of membership or the motif pattern) against a metadata and a diversity measure or against two metadata in three way scatter plot functions.
-
-An example of plotting a variable against two metadata are as follows.
-
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlstd{annotation} \hlkwb{=} \hlkwd{data.frame}\hlstd{(}\hlkwc{x_names} \hlstd{=} \hlkwd{c}\hlstd{(}\hlkwd{paste0}\hlstd{(}\hlstr{"A"}\hlstd{,}\hlnum{1}\hlopt{:}\hlnum{5}\hlstd{),} \hlkwd{paste0}\hlstd{(}\hlstr{"B"}\hlstd{,}\hlnum{1}\hlopt{:}\hlnum{5}\hlstd{)),}
-\hlkwc{x} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{0.5}\hlstd{,}\hlnum{2.0}\hlstd{,} \hlnum{3.2}\hlstd{,} \hlnum{4.6}\hlstd{,} \hlnum{6.3}\hlstd{,}  \hlnum{23.5}\hlstd{,} \hlnum{26.4}\hlstd{,} \hlnum{28.5}\hlstd{,} \hlnum{29.6}\hlstd{,} \hlnum{31.8}\hlstd{),}
-\hlkwc{y1} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{0.4}\hlstd{,} \hlnum{0.3}\hlstd{,} \hlnum{0.4}\hlstd{,} \hlnum{0.35}\hlstd{,} \hlnum{0.4}\hlstd{,} \hlnum{0.8}\hlstd{,} \hlnum{0.85}\hlstd{,} \hlnum{0.9}\hlstd{,} \hlnum{0.8}\hlstd{,} \hlnum{0.75}\hlstd{),}
-\hlkwc{y2} \hlstd{=}\hlkwd{c}\hlstd{(}\hlnum{5}\hlstd{,} \hlnum{6.6}\hlstd{,} \hlnum{4}\hlstd{,} \hlnum{5.2}\hlstd{,} \hlnum{20}\hlstd{,} \hlnum{3.4}\hlstd{,} \hlnum{5.6}\hlstd{,} \hlnum{4.5}\hlstd{,} \hlnum{8}\hlstd{,} \hlnum{10}\hlstd{))}
-
-\hlkwd{head}\hlstd{(annotation)}
-\end{alltt}
-\begin{verbatim}
-##   x_names    x   y1   y2
-## 1      A1  0.5 0.40  5.0
-## 2      A2  2.0 0.30  6.6
-## 3      A3  3.2 0.40  4.0
-## 4      A4  4.6 0.35  5.2
-## 5      A5  6.3 0.40 20.0
-## 6      B1 23.5 0.80  3.4
-\end{verbatim}
-\begin{alltt}
-\hlkwd{topic_meta_meta}\hlstd{(annotation)}
-\end{alltt}
-\end{kframe}
-\end{knitrout}
-
-\begin{figure}[htp]
-\begin{center}
-\includegraphics[width=6in,height=6in]{figure/topic_meta_meta.png}
-\end{center}
-\end{figure}
-
-
-An example of plotting  a variable against two diversity measures as follows.
-
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlstd{annotation} \hlkwb{=} \hlkwd{data.frame}\hlstd{(}\hlkwc{x_names} \hlstd{=} \hlkwd{c}\hlstd{(}\hlkwd{paste0}\hlstd{(}\hlstr{"A"}\hlstd{,}\hlnum{1}\hlopt{:}\hlnum{5}\hlstd{),} \hlkwd{paste0}\hlstd{(}\hlstr{"B"}\hlstd{,}\hlnum{1}\hlopt{:}\hlnum{5}\hlstd{)),}
-    \hlkwc{x} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{0.5}\hlstd{,}\hlnum{2.0}\hlstd{,} \hlnum{3.2}\hlstd{,} \hlnum{4.6}\hlstd{,} \hlnum{6.3}\hlstd{,}  \hlnum{23.5}\hlstd{,} \hlnum{26.4}\hlstd{,} \hlnum{28.5}\hlstd{,} \hlnum{29.6}\hlstd{,} \hlnum{31.8}\hlstd{),}
-    \hlkwc{y1} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{0.4}\hlstd{,} \hlnum{0.3}\hlstd{,} \hlnum{0.4}\hlstd{,} \hlnum{0.35}\hlstd{,} \hlnum{0.4}\hlstd{,} \hlnum{0.8}\hlstd{,} \hlnum{0.85}\hlstd{,} \hlnum{0.9}\hlstd{,} \hlnum{0.8}\hlstd{,} \hlnum{0.75}\hlstd{),}
-    \hlkwc{y2d} \hlstd{=}\hlkwd{c}\hlstd{(}\hlnum{5}\hlstd{,} \hlnum{6.6}\hlstd{,} \hlnum{4}\hlstd{,} \hlnum{5.2}\hlstd{,} \hlnum{20}\hlstd{,} \hlnum{3.4}\hlstd{,} \hlnum{5.6}\hlstd{,} \hlnum{4.5}\hlstd{,} \hlnum{8}\hlstd{,} \hlnum{10}\hlstd{))}
-
-\hlkwd{head}\hlstd{(annotation)}
-\end{alltt}
-\begin{verbatim}
-##   x_names    x   y1  y2d
-## 1      A1  0.5 0.40  5.0
-## 2      A2  2.0 0.30  6.6
-## 3      A3  3.2 0.40  4.0
-## 4      A4  4.6 0.35  5.2
-## 5      A5  6.3 0.40 20.0
-## 6      B1 23.5 0.80  3.4
-\end{verbatim}
-\begin{alltt}
-\hlkwd{topic_meta_diversity}\hlstd{(annotation)}
-\end{alltt}
-\end{kframe}
-\end{knitrout}
-
-\begin{figure}[htp]
-\begin{center}
-\includegraphics[width=6in,height=6in]{figure/topic-meta-diversity.png}
-\end{center}
-\end{figure}
-
-In cases, where a climate raster corresponding to precipitation, temperature etc is present, \textbf{ecostructure} provides tools to mask the climate raster by the
-regional motif map raster. This was how the plots in Fig ?? were generated.
-
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlkwd{mask_climate_raster_by_GoM}\hlstd{(motif_map_raster, climate_raster,} \hlkwc{quant} \hlstd{=} \hlnum{0.10}\hlstd{)}
-\end{alltt}
-\end{kframe}
-\end{knitrout}
+We can also use traits to collapse the bird species by performing hierarchical clustering of the bird species based on a single trait or multiple traits. We perform this using the `trait_cluster()` function in **ecostructure**. We demonstrate its application next.
 
 
 
-\end{document}
+
+
+
+
