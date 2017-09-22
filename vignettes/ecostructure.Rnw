@@ -35,39 +35,39 @@ BiocStyle::latex()
 
 \section{Introduction}
 
-The \textbf{ecostructure} package is an R package that replicates the statistical analysis in this paper, but its toolbox of functions is generic enough in handling and analyzing other species abundance data. The package provides functions for fitting the Grade of Membership (GoM) model, along with the visualization of model fit using Block Structure plot \ref{Pritchard}\ref{Taddy}. The package comes with the raw taxonomic data saved as an ExpressionSet object and provides a pipeline for reading and processing counts data corresponding to different dimensions of diversity, e.g. - phylogenetic, regional and functional, which serve as readymade input for the GoM model. This package is an upgraded version of the CountClust package due to Dey et al \ref{Dey} for fitting GoM models on RNA-seq data
+The \textbf{ecostructure} R package is primarily aimed at providing tools and functions to replicate the statistical analysis in this paper. However we note that its toolbox is generic enough in handling and analyzing other species abundance data. We provide the bird species abundance data along with the relevant sample metadata and species metadata as an ExpressionSet object in this package. We provide a pipeline for reading and processing the data and the metadata and also to extract or process the data corresponding to different axes of diversity - for example, phylogenetic, regional and trait-based. We discuss how the Grade of Membership (GoM) model can be fitted to the counts data and the results from the fit can be viewed using the Block Structure Plot representation, which is analogous to the STRUCTURE plot visualization in \cite{Rosenberg2002} \cite{Pritchard2000}, but can account for ordering and blocking metadata. This package is an upgraded version of the CountClust Bioconductor package due to Dey et al \cite{Dey2016} that is better suited at processing and analyzing the structure of ecological abundance data.
 
 \section{Installation}
 
-The package is available on Github and can be installed as follows
+The \textbf{ecostructure} package is available on Github and can be installed as follows
 
 <<options, results="hide", echo=FALSE>>=
 options(digits=3, width=80, prompt=" ", continue=" ")
 @
 
-<<install_ecostructure_bio, eval=FALSE>>=
+<<install_ecostructure_bio, eval=FALSE, warning = FALSE, message = FALSE>>=
 library(devtools)
 install_github("kkdey/ecostructure")
 @ %def
 
 Load the package as
 
-<<load_ecostructure_bio, eval = TRUE>>=
+<<load_ecostructure_bio, eval = TRUE, warning = FALSE, message = FALSE>>=
 library(ecostructure)
 library(Biobase)
 @ %def
 
-to use the GoM model, the user needs to install the **maptpx** package
+For fitting the Grade of Membership model, we recommend the user to install the latest version of the \textbf{maptpx} package as follows.
 
 <<install_github, eval=FALSE>>=
 library(devtools)
-install_github("kkdey/maptpx")
+install_github("Taddylab/maptpx")
 @ %def
 
 
-\section{Data Preparation}
+\section{Data Processing}
 
-One can load the taxonomic data, together with the grid metadata ans species metadata as an ExpressionSet object as follows
+The bird taxonomic abundance data for 304 bird species across 38 Himalayan forest patches, together with the grid metadata and species metadata, are saved as an ExpressionSet object which the user can read into R as follows.
 
 <<data, eval=TRUE>>=
 data <- get(load(system.file("extdata", "HimalayanBirdsData.rda",
@@ -77,14 +77,14 @@ taxonomic_counts[1:5,1:5]
 @ %def
 
 
-The corresponding grid metadata can be read as
+The corresponding grid metadata, comprising of the elevation, latitude and longitude information of the forest patches or grids, can be read as follows
 
 <<pdata, eval = TRUE>>=
 grid_metadata <- pData(phenoData(data))
 head(grid_metadata)
 @ %def
 
-The species metadata can be read as follows
+Finally, the species metadata, comprising of the bill traits, wing size, tarsus and mass of the birds, can be read as follows
 
 <<fdata, eval = TRUE>>=
 species_metadata <- pData(featureData(data))
@@ -92,42 +92,43 @@ head(species_metadata)
 @ %def
 
 
-Along with the taxonomic data and metadata, the package provides the phylogenetic tree data for the bird species as a **.tre** file that can be loaded as follows, using the package **ape**.
+Besides with the taxonomic data and metadata, we provide the phylogenetic tree data for the bird species as a \textit{.tre} file that can be loaded as follows, using the package \textbf{ape}.
 
-<<tree, eval = TRUE>>=
+<<tree, eval = TRUE, warning = FALSE, message = FALSE>>=
 phylo_tree <- ape::read.tree(system.file("extdata", "AllHim_Mar_27_2015.tre",
                              package = "ecostructure"))
-phylo_tree
 @ %def
 
 
-The shape files for the regional motif analysis can be loaded as follows
+We also provide the shapefiles for the regional motif analysis.
 
-<<shp, eval = TRUE>>=
+<<shp, eval = TRUE, warning = FALSE, message = FALSE>>=
 shp_file <- ape::read.tree(system.file("extdata", "AllHim_Mar_27_2015.tre",
                              package = "ecostructure"))
-shp_file
 @ %def
 
 \section{Grade of Membership Model and Visualization}
 
-Here we illustrate how one can fit the Grade of Membership model and perform the visualization of the model fit using the Block Structure plot. Here we present a case study with number of clusters chosen to be between $2$ and $4$.
+Here we illustrate how one can fit the Grade of Membership model on the taxonomic data processed above and perform the visualization of the model fit using the Block Structure plot. Here we perform the fit for a number of clusters varying from 2 to 4.
 
-<<blockstructure, eval=TRUE>>=
+<<blockstructure, eval=TRUE, warning = FALSE>>=
 elevation_metadata=grid_metadata$Elevation;
 east_west_dir = grid_metadata$WorE;
 gom_fit <- CountClust::FitGoM(taxonomic_counts, K=2:4, tol=0.1)
 @ %def
 
 
-\begin{verb} gom_fit \end{verb} is a list of size 3, with each component representing the model fit for the cluster $k$, varying from 2 to 4. The two main components of the model fit are the membership proportion matrix $\omega$, given by \begin{verb} gom_fit[[k]]$omega \end{verb} and the motif matrix \begin{verb} gom_fit[[k]]$theta \end{verb}. Examples for $K=2$ are
+\begin{verb} gom_fit \end{verb} is a list of size 3, with each component representing the model fit for the cluster $k$, where k varies from 2 to 4. The two main components of the model fit are the cluster membership proportion matrix $\omega$, given by \begin{verb} gom_fit[[k]]$omega \end{verb} and the cluster motif matrix \begin{verb} gom_fit[[k]]$theta \end{verb}, which is a description of the cluster using species compositions. We illustrate the results for $K=2$.
 
-<<omega, eval=TRUE>>=
+<<omega_theta, eval=TRUE>>=
+
+############ membership proportion matrix (omega)  #################
 
 omega <- gom_fit[[2]]$omega
 head(omega)
 rowSums(omega)
 
+########### cluster motif matrix (theta)  ###################
 
 theta <- gom_fit[[2]]$theta
 head(theta)
@@ -135,8 +136,7 @@ colSums(theta)
 
 @ %def
 
-Using the grid metadata, we provide a Block Structure Plot representation of the membership proportion matrix. In a block Structure plot representation, one metadata is used for forming blocks (here the East/West direction) and in each block, the
-the samples (along the rows of the Structure plot) are arranged by a second metadata (say Elevation).
+We visulize the cluster membership proportions matrix \begin{verb} omega \end{verb} using a Block Structure Plot representation. In this representation, we use one metadata for forming blocks (the East/West direction in the figure below) and in each block, the samples are arranged by a second metadata ( Elevation in the figure below).
 
 <<block_structure, eval=TRUE, fig.height = 4, fig.height = 6>>=
 BlockStructure(omega, blocker_metadata = east_west_dir,
@@ -154,7 +154,7 @@ BlockStructure(omega, blocker_metadata = east_west_dir,
 
 \newpage
 
-\textbf{ecostructure} provides tools to compare the GoM model fit on the data with respect to null model using the \begin{verb} nullmodel_GoM \end{verb} function.
+\textbf{ecostructure} also provides tools to compare the GoM model fit for a particular $K$ (number of clusters) on the data, with respect to null model using the \begin{verb} nullmodel_GoM \end{verb} function. The package lets the user choose different null model types - \textit{frequency}, \textit{richness}, \textit{independent swap} and \textit{trial swap}.
 
 <<nullmodel, eval=TRUE, fig.height = 4, fig.height = 5>>=
 nullmodel_GoM(taxonomic_counts, K=2,
@@ -162,21 +162,19 @@ nullmodel_GoM(taxonomic_counts, K=2,
                iter_randomized=5, plot=FALSE)
 @
 
-The function returns for a fixed $K$, the observed Bayes factor for the GoM model fit on the actual counts data, as well as the Bayes factor from applying GoM model on \begin{verb} iter_randomized \end{verb} many counts matrices generated under a specified null model. It also provdies a p-value of the observed Bayes factor with respect to the distribution of the Bayes factors from GoM on null model generated matrices.
-
-In the above example \textbf{frequency} based null model was used. The other options are \textbf{richness}, \textbf{trialswap} and \textbf{independentswap}. Ideally if the observed Bayes factor should be higher than the Bayes factors from null model generated counts data.
+The function returns for a fixed $K$, the observed Bayes factor for the GoM model fit on the actual counts data, as well as the Bayes factor from applying GoM model on \begin{verb} iter_randomized \end{verb} many counts matrices generated under the specified null model. It also provdies a p-value of the observed Bayes factor with respect to the distribution of the Bayes factors from GoM on null model generated matrices.
 
 
-\section{Processing motif data}
+\section{Processing data along different axes of diversity}
 
 In this section, we demonstrate how \textbf{ecostructure} can be used to process
-grid level counts data corresponding to different axes of diversity, that may range from being functional to regional to phylogenetic.
+grid level counts data corresponding to different axes of diversity - regional, phylogenetic and trait-based. The idea is to obtain motifs or clusters defined by these different axes of diversity.
 
-\subsection{phylogenetic motif}
+\subsection{Phylogenetic analysis}
 
-For building the counts data corresponding to phylogenetic diversity, we provide a function,
+For building the counts data based on phylogenetic diversity, we provide a function,\\
 \begin{verb} collapse_counts_by_phylo () \end{verb} to collapse the taxa in the taxonomic counts data based on the phylogenetic similarity profile of the species.
-The function reads in the taxonomic counts data and the phylogenetic tree data and a user defined cut off at which to slice the tree and collapse the taxa in each branch into a single phylogenetic unit.
+The function reads in the taxonomic counts data and the phylogenetic tree data and a user defined cut off at which to slice the tree and collapse the taxa under each branch into a single phylogenetic unit.
 
 <<motif, eval = TRUE>>=
 tree <- ape::read.tree(system.file("extdata",
@@ -187,19 +185,24 @@ phylo_counts <- collapse_counts_by_phylo(taxonomic_counts,
 dim(phylo_counts)
 @ %def
 
-\subsection{regional motif}
+We see that at the branching time \begin{verb} collapse_at \end{verb} of $10$, we get $196$ phylogenetic clusters of species, and the abundance data are summed over all taxa in a particular cluster to generate the output \begin{verb} phylo_counts \end{verb}.
 
-For the regional profile, \textbf{ecostructure} allows the user to create Global assemblage dispersion fields and build maps data from those fields. To create the assemblage dispersion fields, the user would require to obatin the shapefiles (*.shp* files) for the all the species in the observed data.
+We ue the data \begin{verb} phylo_counts \end{verb} as input for the \begin{verb} CountClust::FitGoM \end{verb} or  \begin{verb} CountClust::FitGoMpool \end{verb}  funtions to determine how clustering patterns are influenced by phylogenetic diversity.
 
-One source of obtaining the *.shp* files for mapping to geographic boundaries is from the Natural Earth webpage (www.naturalearthdata.com/downloads). For our Himalyan birds data, we obatined the *.shp* files from BirdLife International (www.birdlife.org).
+\subsection{Regional analysis}
 
-The user can put all the *.shp* files in the \begin{verb} all_bird_shapefiles () \end{verb} and then using this folder of shapefiles and the local taxonomic data, the user can create the global assemblage dispersion fields as follows
+For the regional profile, \textbf{ecostructure} allows the user to create Global assemblage dispersion fields and build maps data from those fields. To create these assemblage dispersion fields, the user is required to obtain the shapefiles (\textit{.shp} files) for the all the species in the observed data.
+
+One source of obtaining the \textit{.shp} files for mapping to geographic boundaries is from the Natural Earth webpage (www.naturalearthdata.com/downloads). For our Himalyan birds data, we obtained the \textit{.shp} files from BirdLife International (www.birdlife.org).
+
+The user can put all the \textit{.shp} files in the \begin{verb} all_bird_shapefiles () \end{verb} and then, using this folder of shapefiles and the local taxonomic data, the user can create the global assemblage dispersion fields using the \begin{verb} CreateGlobalDispersionFields \end{verb} function as demonstrated below.
 
 <<abundance_fields, eval = FALSE>>=
 disp <- CreateGlobalDispersionFields(taxonomic_counts,
               shapefiles_dir = "all_bird_sjapefiles/")
 @
 
+We next show how the maps can be generated from the above dispersion field and the global shape file using the \begin{verb} CreateMapsFromDispersionFields \end{verb} function.
 
 <<mapsdisp_fields, eval=TRUE, message = FALSE, warning=FALSE>>=
 dispersion.field <- readRDS(system.file("extdata",
@@ -212,9 +215,9 @@ par(mfrow = c(1,1))
 maps <- CreateMapsFromDispersionFields(dispersion.field, global_shapefile)
 @ %def
 
-The function returns a list of map plots with as many elements as the number of sites. We can see the maps as follows
+The function returns a list of map plots with as many elements as the number of sites. We demonstrate an example visualization of the map for the first site.
 
-<<plot_map, eval=TRUE, fig.height = 7, fig.width = 7>>=
+<<plot_map, eval=TRUE, fig.height = 7, fig.width = 7, message = FALSE, warning = FALSE>>=
 maps[[1]]
 @ %def
 
@@ -224,9 +227,8 @@ maps[[1]]
 \end{center}
 \end{figure}
 
-
-
-Finally, the user can generate the counts data corressponding to regional diversity using the \begin{verb} DispersionFieldTocounts() \end{verb} function
+Finally, the user can generate the counts data corressponding to regional diversity profile using the \\
+\begin{verb} DispersionFieldTocounts() \end{verb} function
 
 <<reg_counts, eval=TRUE, warning=FALSE, message = FALSE>>=
 regional_counts <- DispersionFieldToCounts(dispersion.field)
@@ -240,10 +242,14 @@ regional_counts[1:5,1:5]
 
 @ %def
 
+The columns in this data represent 1 degree by 1 degree cells on which the dispersion fields are assembled. The cells are serially stacked along latitudes to form columns in the above matrix. This data is then used as an input for \begin{verb} CountClust::FitGoM \end{verb} or \begin{verb} CountClust::FitGoMpool \end{verb}  to determine how clustering patterns are influenced by regional diversity.
 
-\subsection{functional motif}
 
-In order to build counts data corresponding to functional diversity, we order the species based on some ordering metadata (like bill shape, size of the bird etc in our example). But there will be many zeros in the matrix as the species abundance data is sparse. To effectively account for the functional diversity and take into account the relatedness among the bird species, the zeros are filled in by kriging based on the species with non-zero abundance. We use the function \begin{verb} krige_counts \end{verb}.
+\subsection{Trait based analysis}
+
+In order to build grid counts data based on functional diversity, we discuss two approaches.
+
+In the first approach, we order the species based on some ordering metadata (like bill shape, size of the bird etc in our example). But there will be many zeros in the matrix as the species abundance data is sparse. To effectively account for the functional diversity and take into account the relatedness among the bird species, the zeros are filled in by kriging based on the species with non-zero abundance. We use the function \begin{verb} krige_counts \end{verb} to perform this.
 
 <<krige_counts, eval = FALSE>>=
 func_counts <- krige_counts(taxonomic_counts,
@@ -257,17 +263,17 @@ head(func_counts[,1:5])
 @ %def
 
 
-We can also use traits to collapse the bird species by performing hierarchical clustering of the bird species based on a single trait or multiple traits. We perform this using the `trait_cluster()` function in **ecostructure**. We demonstrate its application next.
+The other approach is to use a trait or traits  to collapse the bird species by performing hierarchical clustering of the bird species, cutting off a dendrogram at a particular level, thereby forming several clusters and then for each grid point, aggregating the counts data for all the species in the cluster. The cut level is chosen subjectively based on what proportion of variation in the actual abundance data is explained by the clusters at that level. We use the \begin{verb} trait_cluster() \end{verb} function in \textbf{ecostructure} to perform this, an application of which is demonstrated below.
 
 <<trait_cluster, eval=TRUE>>=
 bill_traits <- as.matrix(dist(scale(species_metadata[,c(1:3)])))
-bill_trait_clust <- trait_cluster(counts = taxonomic_counts, traits = bill_traits, prop_div=0.3)
+bill_trait_clust <- trait_cluster(counts = taxonomic_counts,
+                                  traits = bill_traits, prop_div=0.3)
 @ %def
 
-We first generate a traits matrix, with the columns representing the traits and rows corresponding to the trait values for each species. Then we use that to perform a hierarchical clustering of species and cut the dendrogram at a specified level, gven by  `prop_div`, determined by the proportional diversity of the abundance counts data explained by the clusters at that level.
+We first generate a traits matrix, with the columns representing the traits and rows corresponding to the species. Then we use that to perform a hierarchical clustering of species and cut the dendrogram at a specified level, given by  \begin{verb} prop_div \end{verb}.
 
-These clusters of species are then used to collapse the counts data and reduce the original counts matrix with species along the columns to one with the clusters along the columns. This matrix is then used as input for the `CountClust::FitGoM` or `CountClust::FitGoMpool`  to determined how the species traits influence the clustering patterns.
-
+The clusters of species formed by cutting the dendrogram are then used to collapse the counts data and reduce the original counts matrix with species along the columns to one with the clusters along the columns. This matrix can then used as input for the \begin{verb} CountClust::FitGoM \end{verb} or \begin{verb} CountClust::FitGoMpool \end{verb}  to determine how clustering patterns are influenced by species traits.
 
 \section{Extras}
 
@@ -313,6 +319,35 @@ topic_meta_diversity(annotation)
 \end{center}
 \end{figure}
 
+\section{Session Info}
 
+<<session_info, eval=TRUE>>=
+sessionInfo()
+@ %def
+
+\begin{thebibliography}
+
+\bibitem{Dey2016}
+Dey K, Hsiao J and Stephens M.
+CountClust: Clustering and Visualizing RNA-Seq Expression Data using Grade of Membership Models. 2016.
+\textit{R package version 0.1.2.} https://github.com/kkdey/CountClust
+
+\bibitem{Pritchard2000}
+Pritchard, Jonathan K., Matthew Stephens, and Peter Donnelly. 2000.
+Inference of population structure using multilocus genotype data.
+\textit{Genetics}. 155.2,  945-959.
+
+\bibitem{Rosenberg2002}
+Rosenberg NA, Pritchard JK,  Weber JL, Cann HM,  Kidd KK,  Zhivotovsky LA,  Feldman MW. 2002.
+The genetic structure of human populations.
+\textit{Science}. 298,  2381-2385.
+
+
+
+
+
+
+
+\end{thebibliography}
 
 \end{document}

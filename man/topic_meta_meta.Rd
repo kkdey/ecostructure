@@ -9,7 +9,7 @@ topic_meta_meta(annotation, margin = c(5, 5, 2, 5), col.pts1 = "red3",
   cex.axis = 0.5, col.pts2 = "blue", pch.pts2 = 18, lwd.pts2 = 2,
   lty.pts2 = 3, cex.pts2 = 1.5, las = 2, text.x = "X", text.y1 = "Y",
   text.y2 = "Y2", ylim = NULL, y2lim = NULL, line.x = 3, line.y = 3,
-  line.y2 = 3, round_off = 0, legend.pos = "topleft")
+  line.y2 = 3, round_off = 0, cex_legend = 0.5, legend.pos = "topleft")
 }
 \description{
 a bi-Y axis plot of topic proportions (or any site metadata) across sites arranged
@@ -49,6 +49,7 @@ drop/jump in topic proportions across sites is related to the two metadata.
  @param  line.y The gap between the first Y-axis label and the first Y-axis
  @param  line.y2 The gap between the second Y-axis label and the second Y axis
  @param  round_off the rounding factor used to report the X-axis metadata with names
+ @param  cex_legend the size of the legend.
  @param  legend.pos the position of the legend
 
  @return Produces a bi-Y plot of \code{annotation$y} and  \code{annotation$y2}

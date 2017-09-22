@@ -37,6 +37,7 @@
 #'  @param  line.y The gap between the first Y-axis label and the first Y-axis
 #'  @param  line.y2 The gap between the second Y-axis label and the second Y axis
 #'  @param  round_off the rounding factor used to report the X-axis metadata with names
+#'  @param  cex_legend the size of the legend.
 #'  @param  legend.pos the position of the legend
 #'
 #'  @return Produces a bi-Y plot of \code{annotation$y} and  \code{annotation$y2}
@@ -77,6 +78,7 @@ topic_meta_meta = function(   annotation,
                               line.y=3,
                               line.y2=3,
                               round_off=0,
+                              cex_legend = 0.5,
                               legend.pos="topleft" ){
 
   if(is.null(ylim)){
@@ -115,6 +117,7 @@ topic_meta_meta = function(   annotation,
   legend(legend.pos,
          legend=c(text.y2, text.y1),
          pch=c(pch.pts2, pch.pts1),
-         col=c(col.pts2, col.pts1))
+         col=c(col.pts2, col.pts1),
+         cex = cex_legend)
 }
 

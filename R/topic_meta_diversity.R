@@ -34,6 +34,7 @@
 #'  @param  line.y The gap between the first Y-axis label and the first Y-axis
 #'  @param  line.y2d The gap between the second Y-axis label and the second Y axis
 #'  @param  round_off the rounding factor used to report the X-axis metadata with names
+#'  @param  cex_legend the size of the legend.
 #'  @param  legend.pos the position of the legend
 #'
 #'  @return Produces a bi-Y plot of \code{annotation$y} and segments of \code{annotation$y2d}
@@ -72,6 +73,7 @@ topic_meta_diversity = function(annotation,
                               line.y=3,
                               line.y2d=3,
                               round_off=0,
+                              cex_legend = 0.5,
                               legend.pos="topleft"){
 
 if(is.null(ylim)){
@@ -111,5 +113,6 @@ mtext(side = 4, line = line.y2d, text.y2d)
 
 legend(legend.pos,
        legend=c(text.y2d, text.y1),
-       lty=c(lty.segments,0), pch=c(NA, pch.pts), col=c(col.segments, col.pts))
+       lty=c(lty.segments,0), pch=c(NA, pch.pts), col=c(col.segments, col.pts),
+       cex = cex_legend)
 }

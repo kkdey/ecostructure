@@ -9,7 +9,7 @@ topic_meta_diversity(annotation, margin = c(5, 5, 2, 5), col.pts = "red3",
   col.segments = "blue", lwd.segments = 2, lty.segments = 1, las = 2,
   text.x = "X", text.y1 = "Y", text.y2d = "Y2d", ylim = NULL,
   y2dlim = NULL, line.x = 3, line.y = 3, line.y2d = 3, round_off = 0,
-  legend.pos = "topleft")
+  cex_legend = 0.5, legend.pos = "topleft")
 }
 \description{
 a bi-Y axis plot of topic proportions (or any site metadata) across sites arranged
@@ -46,6 +46,7 @@ drop/jump in topic proportions across sites is related to the distance between a
  @param  line.y The gap between the first Y-axis label and the first Y-axis
  @param  line.y2d The gap between the second Y-axis label and the second Y axis
  @param  round_off the rounding factor used to report the X-axis metadata with names
+ @param  cex_legend the size of the legend.
  @param  legend.pos the position of the legend
 
  @return Produces a bi-Y plot of \code{annotation$y} and segments of \code{annotation$y2d}
