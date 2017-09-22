@@ -27,7 +27,7 @@ BiocStyle::latex()
 @
 
 
-\bioctitle[\ecostructure{} - Grade of Membership Model and Visualization for ecological species abundance data]{\ecostructure{} - Grade of Membership Model and Visualization for ecological species abundance data}
+\bioctitle[\ecostructure{} - companion R package for ecological data processing, model fit and visualization]{\ecostructure{} - companion R package for ecological data processing, model fitting and visualization}
 
 \begin{document}
 
@@ -35,7 +35,7 @@ BiocStyle::latex()
 
 \section{Introduction}
 
-The \textbf{ecostructure} R package is primarily aimed at providing tools and functions to replicate the statistical analysis in this paper. However we note that its toolbox is generic enough in handling and analyzing other species abundance data. We provide the bird species abundance data along with the relevant sample metadata and species metadata as an ExpressionSet object in this package. We provide a pipeline for reading and processing the data and the metadata and also to extract or process the data corresponding to different axes of diversity - for example, phylogenetic, regional and trait-based. We discuss how the Grade of Membership (GoM) model can be fitted to the counts data and the results from the fit can be viewed using the Block Structure Plot representation, which is analogous to the STRUCTURE plot visualization in \cite{Rosenberg2002} \cite{Pritchard2000}, but can account for ordering and blocking metadata. This package is an upgraded version of the CountClust Bioconductor package due to Dey et al \cite{Dey2016} that is better suited at processing and analyzing the structure of ecological abundance data.
+The \textbf{ecostructure} R package is primarily aimed at providing tools and functions to replicate the statistical analysis in this paper. However we note that its toolbox is generic enough in handling and analyzing other species abundance data. We provide the bird species abundance data along with the relevant sample metadata and species metadata as an ExpressionSet object in this package. We provide a pipeline for reading and processing the data and the metadata and also to extract or process the data corresponding to different axes of diversity - for example, phylogenetic, regional and trait-based. We discuss how the Grade of Membership (GoM) model can be fitted to the counts data and the results from the fit can be viewed using the Block Structure Plot representation, which is analogous to the STRUCTURE plot visualization due to Pritchard et al \cite{Pritchard2000} and Rosenberg et al \cite{Rosenberg2002}, but can account for ordering and blocking metadata. This package is an upgraded version of the CountClust Bioconductor package due to Dey et al \cite{Dey2016} that is better suited at processing and analyzing the structure of ecological abundance data.
 
 \section{Installation}
 
@@ -45,7 +45,7 @@ The \textbf{ecostructure} package is available on Github and can be installed as
 options(digits=3, width=80, prompt=" ", continue=" ")
 @
 
-<<install_ecostructure_bio, eval=FALSE, warning = FALSE, message = FALSE>>=
+<<install_ecostructure_bio, eval=TRUE, warning = FALSE, message = FALSE>>=
 library(devtools)
 install_github("kkdey/ecostructure")
 @ %def
@@ -138,19 +138,19 @@ colSums(theta)
 
 We visulize the cluster membership proportions matrix \begin{verb} omega \end{verb} using a Block Structure Plot representation. In this representation, we use one metadata for forming blocks (the East/West direction in the figure below) and in each block, the samples are arranged by a second metadata ( Elevation in the figure below).
 
-<<block_structure, eval=TRUE, fig.height = 4, fig.height = 6>>=
+<<block_structure, eval=TRUE, fig.width = 6, fig.height = 6>>=
 BlockStructure(omega, blocker_metadata = east_west_dir,
                order_metadata = elevation_metadata,
                yaxis_label = "Elevation",
                levels_decreasing = FALSE)
 @ %def
 
-
 \begin{figure}[htp]
 \begin{center}
-\includegraphics[width=6in,height=6in]{figure/block_structure.png}
+\includegraphics[width=6in,height=5in]{figure/block_structure-2.png}
 \end{center}
 \end{figure}
+
 
 \newpage
 
@@ -223,9 +223,10 @@ maps[[1]]
 
 \begin{figure}[htp]
 \begin{center}
-\includegraphics[width=6in,height=6in]{figure/maps.png}
+\includegraphics[width=6in,height=6in]{figure/plot_map-1.png}
 \end{center}
 \end{figure}
+
 
 Finally, the user can generate the counts data corressponding to regional diversity profile using the \\
 \begin{verb} DispersionFieldTocounts() \end{verb} function
@@ -289,12 +290,12 @@ y2 =c(5, 6.6, 4, 5.2, 20, 3.4, 5.6, 4.5, 8, 10))
 
 head(annotation)
 
-topic_meta_meta(annotation)
+topic_meta_meta(annotation, cex_legend = 0.4)
 @
 
 \begin{figure}[htp]
 \begin{center}
-\includegraphics[width=6in,height=6in]{figure/topic_meta_meta.png}
+\includegraphics[width=4in,height=4in]{figure/topic_meta_meta-1.png}
 \end{center}
 \end{figure}
 
@@ -309,15 +310,16 @@ annotation = data.frame(x_names = c(paste0("A",1:5), paste0("B",1:5)),
 
 head(annotation)
 
-topic_meta_diversity(annotation)
+topic_meta_diversity(annotation, cex_legend = 0.4)
 
 @
 
 \begin{figure}[htp]
 \begin{center}
-\includegraphics[width=6in,height=6in]{figure/topic-meta-diversity.png}
+\includegraphics[width=4in,height=4in]{figure/topic_meta_diversity-1.png}
 \end{center}
 \end{figure}
+
 
 \section{Session Info}
 
@@ -325,7 +327,7 @@ topic_meta_diversity(annotation)
 sessionInfo()
 @ %def
 
-\begin{thebibliography}
+\begin{thebibliography}{9}
 
 \bibitem{Dey2016}
 Dey K, Hsiao J and Stephens M.

@@ -7,8 +7,8 @@ Reallocated glb_str_ptr (elt_size=4) to 20 items from 10.
 Reallocated global_strs (elt_size=20001) to 20 items from 10.
 Reallocated glb_str_end (elt_size=4) to 20 items from 10.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
-Warning--I didn't find a database entry for "Rosenberg2002"
 Warning--I didn't find a database entry for "Pritchard2000"
+Warning--I didn't find a database entry for "Rosenberg2002"
 Warning--I didn't find a database entry for "Dey2016"
 You've used 0 entries,
             2522 wiz_defined-function locations,
