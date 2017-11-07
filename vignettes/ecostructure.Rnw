@@ -124,13 +124,13 @@ gom_fit <- CountClust::FitGoM(taxonomic_counts, K=2:4, tol=0.1)
 
 ############ membership proportion matrix (omega)  #################
 
-omega <- gom_fit[[2]]$omega
+omega <- gom_fit[[1]]$omega
 head(omega)
 rowSums(omega)
 
 ########### cluster motif matrix (theta)  ###################
 
-theta <- gom_fit[[2]]$theta
+theta <- gom_fit[[1]]$theta
 head(theta)
 colSums(theta)
 
