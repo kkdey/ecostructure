@@ -11,11 +11,16 @@ Maintainer: Kushal Dey <kkdey@uchicago.edu>
 Description: Provides tools to visualize and analyze structure from a site-species abundance data using grade of membership models. Also provides functions to generate global abundance dispersion fields and subsequent global abundance count matrices from a local site-species abundance data and available shapefiles. Additionally, has functions to view how grades of membership or any feature of the site varies with the relative distance profile of the sites and ordering of sites (by some metadata- say elevation).
 Depends:
     R (>= 3.3.0),
-    ggplot2 (>= 2.1.0),
-    CountClust,
-    maptpx,
+    ggplot2 (>= 2.1.0)
+License: GPL (>= 2)
+LazyData: true
+Encoding: UTF-8
+URL: https://github.com/kkdey/ecostructure
+Imports:
     raster,
     rgdal,
+    CountClust,
+    maptpx,
     utils,
     grid,
     gridExtra,
@@ -24,10 +29,6 @@ Depends:
     ape,
     maptools,
     Biobase
-License: GPL (>= 2)
-LazyData: true
-Encoding: UTF-8
-URL: https://github.com/kkdey/ecostructure
 Suggests:
     knitr, BiocStyle, Biobase, roxygen2, RColorBrewer, devtools, xtable, Rcpp
 VignetteBuilder: knitr
