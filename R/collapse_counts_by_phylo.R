@@ -16,18 +16,32 @@
 #' @import phytools
 #' @export
 
-collapse_counts_by_phylo <- function(counts, tree, collapse_at){
-  root_node <- length(tree$tip.label) + 1
-  root_age <- ape::branching.times(tree)[names(ape::branching.times(tree)) == root_node]
-  trees_at_slice <- phytools::treeSlice(tree, root_age - collapse_at)
-  counts_at_slice <- as.data.frame(counts)
+collapse_counts_by_phylo <- function(dat, tree, collapse_at){
+  root_node <- length(newTree$tip.label) + 1
+  root_age <- ape::branching.times(newTree)[names(ape::branching.times(newTree)) == root_node]
+  trees_at_slice <- phytools::treeSlice(newTree, root_age - collapse_at)
+  counts_at_slice <- as.data.frame(dat)
+  num_in_groups <- c()
   for( i in 1:length(trees_at_slice)){
-    new.column <- as.data.frame(rowSums(counts_at_slice[,trees_at_slice[[i]]$tip.label]))
-    colnames(new.column) <- trees_at_slice[[i]]$tip.label[1]
-    drops <- trees_at_slice[[i]]$tip.label
-    counts_at_slice <- counts_at_slice[,!(names(counts_at_slice) %in% drops)]
-    counts_at_slice <- cbind(counts_at_slice, new.column)
+    slice_labels <- trees_at_slice[[i]]$tip.label
+    slice_labels_filtered <- intersect(colnames(dat), slice_labels)
+    if(length(slice_labels_filtered) == 0){
+      next
+    }else if(length(slice_labels_filtered) == 1){
+      new.column <- as.data.frame(dat[, slice_labels_filtered])
+      colnames(new.column) <- slice_labels_filtered
+      drops <- trees_at_slice[[i]]$tip.label
+      counts_at_slice <- cbind(counts_at_slice, new.column)
+      num_in_groups <- c(num_in_groups, 1)
+    }else{
+      new.column <- as.data.frame(rowSums(dat[,slice_labels_filtered]))
+      colnames(new.column) <- slice_labels_filtered[1]
+      drops <- trees_at_slice[[i]]$tip.label
+      counts_at_slice <- cbind(counts_at_slice, new.column)
+      num_in_groups <- c(num_in_groups, length(slice_labels_filtered))
+    }
+    counts_at_slice <- as.matrix(counts_at_slice)
   }
-  counts_at_slice <- as.matrix(counts_at_slice)
-  return(counts_at_slice)
+  counts_at_slice_2 <- counts_at_slice[, (dim(dat)[2]+1):dim(counts_at_slice)[2]]
+  return(list("outdat" = counts_at_slice_2, "num_groups" = num_in_groups))
 }
