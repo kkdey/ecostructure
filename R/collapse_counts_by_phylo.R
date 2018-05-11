@@ -17,9 +17,9 @@
 #' @export
 
 collapse_counts_by_phylo <- function(dat, tree, collapse_at){
-  root_node <- length(newTree$tip.label) + 1
-  root_age <- ape::branching.times(newTree)[names(ape::branching.times(newTree)) == root_node]
-  trees_at_slice <- phytools::treeSlice(newTree, root_age - collapse_at)
+  root_node <- length(tree$tip.label) + 1
+  root_age <- ape::branching.times(tree)[names(ape::branching.times(tree)) == root_node]
+  trees_at_slice <- phytools::treeSlice(tree, root_age - collapse_at)
   counts_at_slice <- as.data.frame(dat)
   num_in_groups <- c()
   for( i in 1:length(trees_at_slice)){
