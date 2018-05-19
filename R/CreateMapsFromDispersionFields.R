@@ -19,8 +19,8 @@
 #' global_shapefile <- readShapeLines('ne_50m_admin_0_countries.shp', proj4string=proj)
 #' maps <- CreateMapsFromDispersionFields(dispersion.field, global_shapefile )
 #'
-#' @import raster
-#' @import rasterVis
+#' @importFrom raster raster
+#' @importFrom rasterVis rasterTheme levelplot
 #' @import sp
 #' @importFrom latticeExtra layer
 #' @import grDevices

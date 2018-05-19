@@ -4,16 +4,16 @@
 \alias{collapse_counts_by_phylo}
 \title{Collapse counts data using phylogenetic tree hierarchy of features}
 \usage{
-collapse_counts_by_phylo(counts, tree, collapse_at)
+collapse_counts_by_phylo(dat, tree, collapse_at)
 }
 \arguments{
-\item{counts}{The abundance counts matrix with samples/sites along the rows and the
-species/features along the columns.}
-
 \item{tree}{The phylogenetic tree structure on the species or the column features
 of the counts matrix.}
 
 \item{collapse_at}{The point at which to collapse the tree}
+
+\item{counts}{The abundance counts matrix with samples/sites along the rows and the
+species/features along the columns.}
 }
 \value{
 Returns an counts matrix with the features being the collapsed species
