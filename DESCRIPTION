@@ -19,7 +19,6 @@ URL: https://github.com/kkdey/ecostructure
 Imports:
     raster,
     rgdal,
-    CountClust,
     maptpx,
     utils,
     grid,
