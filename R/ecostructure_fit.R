@@ -9,6 +9,8 @@
 #'            abundances. 
 #' @param K The number of clusters to fit
 #' @param tol The tolerance level of the model.
+#' @param num_trials Number of EM runs from different starting points. This is'
+#'                   key for picking the best fit model across multiple runs.
 #' @param fit_control The control parameters for the model.
 #' 
 #' @return Returns a model fit with \code{omega} as cluster membership 
@@ -34,6 +36,7 @@ ecostructure_fit <- function(dat,
                              max_dat = NULL,
                              K,
                              tol = 0.1,
+                             num_trials = 1,
                              fit_control = list()){
   if(all(dat - floor(dat) != 0)){
     stop("The matrix dat must be a matrix of integers - a binary or a counts matrix")
@@ -98,7 +101,7 @@ ecostructure_fit <- function(dat,
                           list(data = dat,
                                K = K,
                                tol = tol,
-                               num_trials = 1,
+                               num_trials = num_trials,
                                options = "BIC",
                                path_rda = NULL,
                                control = fit_control))

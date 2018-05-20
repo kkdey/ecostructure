@@ -24,9 +24,14 @@ Imports:
     grid,
     gridExtra,
     phytools,
+    fasterize,
+    latticeExtra,
+    picante,
+    rasterVis,
+    scales,
+    slam,
     SpatialExtremes,
     ape,
-    maptools,
     mapplots,
     Biobase
 Suggests:

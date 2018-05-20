@@ -5,6 +5,10 @@
 #' featureData which consists of feature metadata
 "himalayan_birds"
 
+#' An object of type phylo - which is a phylogenetic tree
+#' @format An object of type phylo of the 304 bird species of the Himalayas
+"phylo_tree"
+
 
 #' The presence-absence data of birds from Australia
 #' A dataset of bird presence absence data from Australia

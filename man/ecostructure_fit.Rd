@@ -4,7 +4,8 @@
 \alias{ecostructure_fit}
 \title{Fitting Grade of Membership model for clustering into communities}
 \usage{
-ecostructure_fit(dat, max_dat = NULL, K, tol = 0.1, fit_control = list())
+ecostructure_fit(dat, max_dat = NULL, K, tol = 0.1, num_trials = 1,
+  fit_control = list())
 }
 \arguments{
 \item{dat}{input data matrix of samples along rows and features along sites,
@@ -14,6 +15,9 @@ abundances.}
 \item{K}{The number of clusters to fit}
 
 \item{tol}{The tolerance level of the model.}
+
+\item{num_trials}{Number of EM runs from different starting points. This is'
+key for picking the best fit model across multiple runs.}
 
 \item{fit_control}{The control parameters for the model.}
 }
