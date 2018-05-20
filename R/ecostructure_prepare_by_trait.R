@@ -8,8 +8,9 @@
 #'
 #' @param counts The abundance counts matrix with samples/sites along the rows 
 #'               and the species/features along the columns.
-#' @param traits A matrix with species along the rows and traits along
-#'               the columns. 
+#' @param traits A distance metric between species - a square matrix with
+#'               species along rows and columns and the diagonal element equal to
+#'               0.  
 #' @param prop_div The proportion of the original counts matrix diversity at which
 #'               to cut the dendrogram.
 #'
@@ -18,16 +19,26 @@
 #' 
 #' @examples
 #'
-#' data <- get(load(system.file("extdata", "HimalayanBirdsData.rda", package = "ecostructure")))
-#' species_metadata <- pData(featureData(data))
-#' taxonomic_counts <- t(exprs(data))
-#' bill_traits <- as.matrix(dist(scale(species_metadata[,c(1:3)])))
-#' bill_trait_clust <- trait_cluster(counts = taxonomic_counts, traits = bill_traits, prop_div=0.3)
-#'
+#'data(himalayan_birds)
+#'species_metadata <- pData(featureData(himalayan_birds))
+#'taxonomic_counts <- t(exprs(himalayan_birds))
+#'bill_traits <- as.matrix(dist(scale(species_metadata[,c(1:3)])))
+#'counts_bill_traits <- ecostructure_prepare_by_trait(counts = taxonomic_counts, 
+#'                                                    traits = bill_traits, 
+#'                                                    prop_div=0.3)
+#'                                                    
 #' @export
 
 
 ecostructure_prepare_by_trait <- function(counts, traits, prop_div = 0.3){
+  
+  if(any(traits - t(traits) != 0)){
+    stop("traits matrix must be symmetric")
+  }
+  
+  if(dim(counts)[2] != dim(traits)[1]){
+    stop("the number of species in counts do not match with that in traits")
+  }
   
   z <- round(dim(traits)[[1]]*prop_div)
   res.hc<-hclust(dist(traits))

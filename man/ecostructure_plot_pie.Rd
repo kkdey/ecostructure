@@ -61,9 +61,9 @@ chosen so that they are distinct from one another.}
 \item{pie_control}{The list of control parameters to be passed into the 
 \code{add.pie} function of the package maptools.}
 
-\item{image_width}{The width of the image output. Defaults to 25,000.}
+\item{image_width}{The width of the image output. Defaults to 1000.}
 
-\item{image_height}{The height of the image output. Defaults to 15,000.}
+\item{image_height}{The height of the image output. Defaults to 800.}
 
 \item{path}{The path where the output image is saved.}
 }
@@ -75,4 +75,17 @@ Returns a pie chart representation of the memberships obtained
 \description{
 Make a pie chart representation of the membership probabilities
 \code{omega} output from the \code{ecostructure_fit} model.
+}
+\examples{
+ data("australia_birds")
+ data("australia_model")
+ ecostructure_plot_pie(omega = australia_model$omega,
+                     coords = australia_birds$latlong, 
+                     long_lim = c(110,160),
+                     lat_lim = c(-50,-10),
+                     color= c("orange", "red", "yellow", "deepskyblue", 
+                              "chartreuse", "blue"))
+
+
+
 }

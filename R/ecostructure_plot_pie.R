@@ -36,8 +36,8 @@
 #'              chosen so that they are distinct from one another.
 #' @param pie_control The list of control parameters to be passed into the 
 #'                    \code{add.pie} function of the package maptools. 
-#' @param image_width The width of the image output. Defaults to 25,000.
-#' @param image_height The height of the image output. Defaults to 15,000. 
+#' @param image_width The width of the image output. Defaults to 1000.
+#' @param image_height The height of the image output. Defaults to 800. 
 #' @param path The path where the output image is saved.
 #' 
 #' @return Returns a pie chart representation of the memberships obtained 
@@ -47,6 +47,18 @@
 #' @import sf
 #' @importFrom mapplots add.pie
 #' @importFrom scales alpha
+#' 
+#' @examples 
+#'  data("australia_birds")
+#'  data("australia_model")
+#'  ecostructure_plot_pie(omega = australia_model$omega,
+#'                      coords = australia_birds$latlong, 
+#'                      long_lim = c(110,160),
+#'                      lat_lim = c(-50,-10),
+#'                      color= c("orange", "red", "yellow", "deepskyblue", 
+#'                               "chartreuse", "blue"))
+#'
+#' 
 #' 
 #' @export
 

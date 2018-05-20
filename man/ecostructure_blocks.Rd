@@ -45,18 +45,14 @@ metadata and ordered in each block by an ordering metadata
 }
 \examples{
 
-library(HimalayanBirdsAbundance)
-data("HimalayanBirdsAbundance")
-library(Biobase)
-new_counts <- t(exprs(HimalayanBirdsAbundance));
-metadata <- pData(HimalayanBirdsAbundance);
-elevation_metadata=metadata$Elevation;
-east_west_dir = metadata$WorE;
-topic_clus <- maptpx::topics(new_counts, K=2, tol=0.1)
-omega <- topic_clus$omega
-BlockStructure(omega, blocker_metadata = east_west_dir,
-              order_metadata = elevation_metadata,
-              yaxis_label = "Elevation",
-              levels_decreasing = FALSE)
+data("himalayan_birds")
+species_abundance_counts <- t(exprs(himalayan_birds));
+site_metadata <- pData(himalayan_birds);
+elevation_metadata=site_metadata$Elevation;
+east_west_dir = site_metadata$WorE;
+topic_clus <- ecostructure_fit(species_abundance_counts, K = 2, tol = 0.1)
+ecostructure_blocks(topic_clus$omega,
+                   blocker_metadata = east_west_dir,
+                   order_metadata = elevation_metadata)
 
 }

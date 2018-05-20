@@ -16,6 +16,16 @@
 #'         
 #' @importFrom maptpx topics
 #' @importFrom methClust meth_topics
+#' 
+#' @examples 
+#' 
+#' data("himalayan_birds")
+#' species_abundance_counts <- t(exprs(himalayan_birds));
+#' fit <- ecostructure_fit(species_abundance_counts, K = 2, tol = 0.1)
+#' species_pa_counts <- species_abundance_counts
+#' species_pa_counts[species_pa_counts >=1] = 1
+#' fi2 <- ecostructure_fit(species_pa_counts, K = 2, tol = 0.1)
+#' 
 #' @export
 
 

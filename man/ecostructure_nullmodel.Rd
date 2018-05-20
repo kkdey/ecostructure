@@ -44,11 +44,11 @@ the clustering.
 }
 \examples{
 
-data("ex.counts")
-nullmodel_GoM(ex.counts,
-              K=2,
-              tol=500,
-              null.model="frequency",
-              iter_randomized=3,
-              plot=FALSE)
+data("himalayan_birds")
+species_abundance_counts <- t(exprs(himalayan_birds));
+out <- ecostructure_nullmodel(species_abundance_counts, K=2, 
+                iter_randomized=5, option = "BF")
+out2 <- ecostructure_nullmodel(species_abundance_counts, K=2, 
+                iter_randomized=5, ption = "BIC")              
+  
 }

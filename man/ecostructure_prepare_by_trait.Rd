@@ -10,8 +10,9 @@ ecostructure_prepare_by_trait(counts, traits, prop_div = 0.3)
 \item{counts}{The abundance counts matrix with samples/sites along the rows 
 and the species/features along the columns.}
 
-\item{traits}{A matrix with species along the rows and traits along
-the columns.}
+\item{traits}{A distance metric between species - a square matrix with
+species along rows and columns and the diagonal element equal to
+0.}
 
 \item{prop_div}{The proportion of the original counts matrix diversity at which
 to cut the dendrogram.}
@@ -29,10 +30,12 @@ a dendogram produced by hierarchical clustering.
 }
 \examples{
 
-data <- get(load(system.file("extdata", "HimalayanBirdsData.rda", package = "ecostructure")))
-species_metadata <- pData(featureData(data))
-taxonomic_counts <- t(exprs(data))
+data(himalayan_birds)
+species_metadata <- pData(featureData(himalayan_birds))
+taxonomic_counts <- t(exprs(himalayan_birds))
 bill_traits <- as.matrix(dist(scale(species_metadata[,c(1:3)])))
-bill_trait_clust <- trait_cluster(counts = taxonomic_counts, traits = bill_traits, prop_div=0.3)
-
+counts_bill_traits <- ecostructure_prepare_by_trait(counts = taxonomic_counts, 
+                                                   traits = bill_traits, 
+                                                   prop_div=0.3)
+                                                   
 }

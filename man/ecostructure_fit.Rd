@@ -26,3 +26,13 @@ A grade of membership model for clustering a site by features
 data - which could be presence-absence or counts abundance data of species
 in the sites.
 }
+\examples{
+
+data("himalayan_birds")
+species_abundance_counts <- t(exprs(himalayan_birds));
+fit <- ecostructure_fit(species_abundance_counts, K = 2, tol = 0.1)
+species_pa_counts <- species_abundance_counts
+species_pa_counts[species_pa_counts >=1] = 1
+fi2 <- ecostructure_fit(species_pa_counts, K = 2, tol = 0.1)
+
+}

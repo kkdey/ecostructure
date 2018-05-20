@@ -29,19 +29,15 @@
 #'
 #' @examples
 #'
-#' library(HimalayanBirdsAbundance)
-#' data("HimalayanBirdsAbundance")
-#' library(Biobase)
-#' new_counts <- t(exprs(HimalayanBirdsAbundance));
-#' metadata <- pData(HimalayanBirdsAbundance);
-#' elevation_metadata=metadata$Elevation;
-#' east_west_dir = metadata$WorE;
-#' topic_clus <- maptpx::topics(new_counts, K=2, tol=0.1)
-#' omega <- topic_clus$omega
-#' BlockStructure(omega, blocker_metadata = east_west_dir,
-#'               order_metadata = elevation_metadata,
-#'               yaxis_label = "Elevation",
-#'               levels_decreasing = FALSE)
+#' data("himalayan_birds")
+#' species_abundance_counts <- t(exprs(himalayan_birds));
+#' site_metadata <- pData(himalayan_birds);
+#' elevation_metadata=site_metadata$Elevation;
+#' east_west_dir = site_metadata$WorE;
+#' topic_clus <- ecostructure_fit(species_abundance_counts, K = 2, tol = 0.1)
+#' ecostructure_blocks(topic_clus$omega,
+#'                    blocker_metadata = east_west_dir,
+#'                    order_metadata = elevation_metadata)
 #'
 #' @importFrom CountClust StructureGGplot
 #' @import grid
@@ -51,7 +47,7 @@
 
 
 
-ecostructure_blocks = function( omega,
+ecostructure_blocks = function(omega,
                            blocker_metadata,
                            order_metadata,
                            palette = c("#E69F00", "#56B4E9", "#009E73", "#F0E442", 
@@ -70,7 +66,7 @@ ecostructure_blocks = function( omega,
   num_levels <- length(levels(blocker_metadata))
   
   if(missing(layout)){
-    layout <- c(ceiling(sqrt(num_levels)), ceiling(sqrt(num_levels)))
+    layout <- c(floor(sqrt(num_levels)), ceiling(sqrt(num_levels)))
   }
   
   structure_control_default <- list(split_line=list(split_lwd = 1,
