@@ -31,7 +31,7 @@ library(ecostructure)
 
 Some examples of produced using our **ecostructure** package
 
-<img src="bin/ecostructure.2.001.png" alt="misc" height="500" width="700" align = "middle">
+<img src="bin/ecostructure.2.001.png" alt="misc" height="600" width="800" align = "middle">
 
 We provide code to run the Australian bird species clustering on top left as part
 of our vignette.
