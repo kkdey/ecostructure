@@ -51,7 +51,7 @@
 
 
 
-block_structure = function( omega,
+ecostructure_blocks = function( omega,
                            blocker_metadata,
                            order_metadata,
                            palette = c("#E69F00", "#56B4E9", "#009E73", "#F0E442", 

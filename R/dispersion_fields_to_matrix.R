@@ -13,13 +13,13 @@
 #'
 #' @examples
 #'
-#' dispersion.field <- get(load("dispersion_field_mat.rda"))
-#' counts <- DispersionFieldToCounts(dispersion.field)
+#' data("dispersion_field_ex")
+#' mat <- dispersion_fields_to_matrix(dispersion_field_ex)
 #'
 #'
 #' @export
 
-DispersionFieldToCounts  = function(dispersion.field)
+dispersion_fields_to_matrix  = function(dispersion.field)
 {
   map_data <- vector()
   for(l in 1:length(dispersion.field)){
