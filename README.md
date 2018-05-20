@@ -52,8 +52,11 @@ If you find **ecostructure**, please cite us at
 ### Questions?
 
 For any queries or concerns related to the software, you can open an issue [here](https://github.com/kkdey/ecostructure/issues). Or you can contact 
-the package developer Kushal Dey at : *kshldey@gmail.com* or Alex White :
+us. Kushal Dey - *kshldey@gmail.com* or Alex White -
 *aewhite100@gmail.com*.
+
+We thank our mentors Prof. Matthew Stephens and Prof. Trevor Price
+for helpful suggestions and discussions. 
 
 You are also most welcome to contribute to **ecostructure** !!
 
