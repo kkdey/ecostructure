@@ -27,23 +27,17 @@ Then load **ecostructure**
 library(ecostructure)
 ```
 
-### Illustration
+### Demo
 
-ecostructure for K=6 on Australian birds - presence absence data.
+Some examples of produced using our **ecostructure** package
 
-<img src="bin/ecostructure.001.png" alt="misc" height="500" width="700" align = "middle">
+<img src="bin/ecostructure.2.001.png" alt="misc" height="500" width="700" align = "middle">
 
+We provide code to run the Australian bird species clustering on top left as part
+of our vignette.
 
-How well does it approximate the climate structure !!
+If you want to try **ecostructure**, see our tutorial [here](https://github.com/kkdey/ecostructure/blob/master/vignettes/ecostructure.Rmd).
 
-Other example illustrations are
-
-<img src="bin/ecostructure.002.png" alt="misc" height="500" width="700" align = "middle">
-
-
-### Workflow
-
-If you want to try **ecostructure**, see our tutorial here.
 
 ### Citation
 
@@ -55,8 +49,9 @@ For any queries or concerns related to the software, you can open an issue [here
 us. Kushal Dey - *kshldey@gmail.com* or Alex White -
 *aewhite100@gmail.com*.
 
-We thank our mentors Prof. Matthew Stephens and Prof. Trevor Price
-for helpful suggestions and discussions. 
+We thank Prof. Trevor D. Price and Dhananjai Mohan for data collection for our
+accompanying paper. We thank our mentors Prof. Matthew Stephens and 
+Prof. Trevor Price for helpful suggestions and discussions. 
 
 You are also most welcome to contribute to **ecostructure** !!
 
