@@ -5,12 +5,12 @@ Version: 0.99.1
 Authors@R: c(
         person("Kushal", "Dey", email = "kkdey@uchicago.edu", role = c("aut", "cre")),
         person("Alex", "White", email = "aewhite@uchicago.edu", role = "aut"),
-        person("Trevor", "Price", email = "pricet@uchicago.edu", role = "aut"),
-        person("Matthew", "Stephens", email = "mstephens@uchicago.edu", role = "aut"))
+        person("Trevor", "Price", email = "pricet@uchicago.edu", role = "ctb"),
+        person("Matthew", "Stephens", email = "mstephens@uchicago.edu", role = "ctb"))
 Maintainer: Kushal Dey <kkdey@uchicago.edu>
 Description: Provides tools to visualize and analyze structure from a site-species abundance data using grade of membership models. Also provides functions to generate global abundance dispersion fields and subsequent global abundance count matrices from a local site-species abundance data and available shapefiles. Additionally, has functions to view how grades of membership or any feature of the site varies with the relative distance profile of the sites and ordering of sites (by some metadata- say elevation).
 Depends:
-    R (>= 3.3.0),
+    R (>= 3.4.0),
     ggplot2 (>= 2.1.0)
 License: GPL (>= 2)
 LazyData: true
@@ -19,7 +19,6 @@ URL: https://github.com/kkdey/ecostructure
 Imports:
     raster,
     rgdal,
-    maptpx,
     utils,
     grid,
     gridExtra,
@@ -32,4 +31,5 @@ Suggests:
     knitr, BiocStyle, Biobase, roxygen2, RColorBrewer, devtools, xtable, Rcpp
 VignetteBuilder: knitr
 biocViews: Software, Visualization, Ecology
+Remotes: kkdey/methClust, kkdey/maptpx, kkdey/CountClust
 RoxygenNote: 6.0.1
