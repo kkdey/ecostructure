@@ -1,19 +1,21 @@
-#' @title Collapsing the species in a ecological counts data using trait based grouping
-#' @description Performs grouping of species in the abundance counts daya based on trait based
-#' hierarchical clustering of the species
+#' @title Prepare counts data for trait-collapsed species
+#' 
+#' @description Starting from a taxonomic species abundance matrix, produces
+#' a new matrix, with features now collpased vesions of the species where the
+#' collapsing is done by trait level information. Binning is done on the species
+#' based on their trait level similarity- where similarity is determined by
+#' a dendogram produced by hierarchical clustering. 
 #'
-#' @param counts The abundance counts data matrix with samples along the rows and the
-#'               species along the columns. The sample names are provided as row names
-#'               and the species names represent the column names.
-#' @param traits  A matrix with species along the rows. Teh species names along the rows
-#'               must match with the column names of the counts matrix input.
+#' @param counts The abundance counts matrix with samples/sites along the rows 
+#'               and the species/features along the columns.
+#' @param traits A matrix with species along the rows and traits along
+#'               the columns. 
 #' @param prop_div The proportion of the original counts matrix diversity at which
 #'               to cut the dendrogram.
 #'
-#' @return The output is a counts matrix with the columns corresponding to the clusters and
-#' the column name corresponding to the first of the species forming the cluster. This
-#' matrix is taken as input to the CountClust:FitGoM function.
-#'
+#' @return The output is a counts matrix with the columns corresponding to the 
+#' species bins - each bin designated here by the first species entry into the bin. 
+#' 
 #' @examples
 #'
 #' data <- get(load(system.file("extdata", "HimalayanBirdsData.rda", package = "ecostructure")))
@@ -25,8 +27,8 @@
 #' @export
 
 
-trait_cluster <- function(counts, traits, prop_div = 0.3){
-
+ecostructure_prepare_by_trait <- function(counts, traits, prop_div = 0.3){
+  
   z <- round(dim(traits)[[1]]*prop_div)
   res.hc<-hclust(dist(traits))
   memb <- cutree(res.hc, k = z)

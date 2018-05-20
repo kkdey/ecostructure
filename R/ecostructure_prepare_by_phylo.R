@@ -1,22 +1,25 @@
-#' @title Collapse counts data using phylogenetic tree hierarchy of features
+#' @title Prepare counts data for phylogenetically collapsed species
 #'
-#' @description To club the species in the columns of the
-#'  counts data based on a phylogenetic tree hierarchy
+#' @description Starting from a taxonomic species abundance matrix, produces
+#' a new matrix, with features now collpased vesions of the species where the
+#' collapsing is done by a phylogenetic tree structure. 
 #'
-#' @param counts The abundance counts matrix with samples/sites along the rows and the
-#'               species/features along the columns.
-#' @param tree The phylogenetic tree structure on the species or the column features
-#'             of the counts matrix.
-#' @param collapse_at The point at which to collapse the tree
+#' @param counts The abundance counts matrix with samples/sites along the rows 
+#'               and the species/features along the columns.
+#' @param tree The phylogenetic tree structure on the species or the 
+#'             column features of the counts matrix. Should be of the form
+#'             \code{.tre}. 
+#' @param collapse_at The point on the tree at which to collapse the tree
 #'
-#' @return Returns an counts matrix with the features being the collapsed species
-#' from the original data based on the tree structure.
+#' @return Returns a counts matrix with the features being the 
+#' phylogenetically collapsed species from the original data based on the 
+#' tree structure.
 #'
-#' @import ape
-#' @import phytools
+#' @importFrom ape branching.times
+#' @importFrom phytools treeSlice
 #' @export
 
-collapse_counts_by_phylo <- function(dat, tree, collapse_at){
+ecostructure_prepare_by_phylo <- function(dat, tree, collapse_at){
   root_node <- length(tree$tip.label) + 1
   root_age <- ape::branching.times(tree)[names(ape::branching.times(tree)) == root_node]
   trees_at_slice <- phytools::treeSlice(tree, root_age - collapse_at)
