@@ -27,5 +27,3 @@
 #' @format a dispersion field example created by \code{dispersion_fields_create}
 #' in matrix format.
 "dispersion_field_ex"
-
-

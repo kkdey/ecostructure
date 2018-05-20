@@ -18,6 +18,7 @@
 
 mask_climate_raster_by_geo_motif <- function(motif_map_raster, climate_raster, 
                                              quant = 0.10, index = 10){
+
   ras <- motif_map_raster
   ras[ras<(raster::quantile(ras,probs = seq(0, 1, quant), 
                             na.rm=T)[index])] <- NA
