@@ -9,7 +9,7 @@ model.
 ### Authors 
 
 - [Kushal K Dey](https://kkdey.github.io) 
-- Alexander E White
+- [Alexander E White](http://www.alexwhitebiology.com/)
 
 ### Installation
 
