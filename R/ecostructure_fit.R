@@ -85,7 +85,7 @@ ecostructure_fit <- function(dat,
                                       tol = tol), 
                                       fit_control))
     ll <- list("omega" = topic_clus$omega,
-               "theta" = topic_clus$theta,
+               "theta" = topic_clus$freq,
                "L" = topic_clus$L)
   }
   
