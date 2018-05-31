@@ -20,8 +20,6 @@ Mentored by
 
 Install **ecostructure** following the instructions below.
 
-
-
 ```R
 install.packages(devtools)
 devtools::install_github("kkdey/ecostructure")
@@ -36,12 +34,9 @@ library(ecostructure)
 
 Some examples of produced using our **ecostructure** package
 
-<img src="bin/ecostructure.2.001.png" alt="misc" height="600" width="800" align = "middle">
+<img src="bin/ecostructure.2.001.jpeg" alt="misc" height="600" width="800" align = "middle">
 
-We provide code to run the Australian bird species clustering on top left as part
-of our vignette.
-
-If you want to try **ecostructure**, see our tutorial [here](https://github.com/kkdey/ecostructure/blob/master/vignettes/ecostructure.Rmd).
+If you want to try **ecostructure** and replicate figures like this, please check our tutorial [here](https://github.com/kkdey/ecostructure/blob/master/vignettes/ecostructure.Rmd).
 
 
 ### Citation
