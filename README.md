@@ -1,10 +1,10 @@
 # ecostructure
-R package for Visualizing Structure in ecological site-species abundance data
+R package for Clustering and Visualization of structure in ecological site-species abundance data
 
 This package is targeted at fitting [STRUCTURE](http://www.genetics.org/content/155/2/945)
 type model on ecological species abundance and presence-absence data both at local
 and large geographic scales - together with high quality visualizations of the fitted
-model.
+models.
 
 ### Authors 
 
