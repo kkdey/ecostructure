@@ -1,10 +1,10 @@
 #' @title Produces ecological pie chart representations of ecostructure_fit model
 #'
 #' @description Make a pie chart representation of the membership probabilities
-#' \code{omega} output from the \code{ecostructure_fit} model. 
+#' \code{omega} output from the \code{ecos_fit} model. 
 #'
 #' @param omega Matrix of Cluster membership probabilities of each sample
-#'              obtained from \code{ecostructure_fit()}. The row sums 
+#'              obtained from \code{ecos_fit()}. The row sums 
 #'              sum to 1 for each sample.
 #' @param coords a matrix of latitude and longitude entries for each site (row)
 #'               of the \code{omega} matrix.This matrix has as many rows as 
@@ -41,7 +41,7 @@
 #' @param path The path where the output image is saved.
 #' 
 #' @return Returns a pie chart representation of the memberships obtained 
-#'         from \code{ecostructure_fit} on a global species 
+#'         from \code{ecos_fit} on a global species 
 #'         presence-absence/counts data
 #'         
 #' @import sf

@@ -2,16 +2,17 @@
 #'
 #' @description Generate randomized matrix of counts 
 #' given the observed data matrix for a particular null model, 
-#' run \code{ecostructure_fit} on these null matrices and compare the fit
+#' run \code{ecos_fit} on these null matrices and compare the fit
 #' on null model data with that on the observed data. Used for validating 
 #' the clustering. 
 #'
 #' @param counts The counts matrix (N x G): N- the number of samples (sites), 
 #'               G- number of features (bird species)
 #' @param K  The number of clusters to fit
-#' @param tol The tolerance limit of the \code{ecostructure_fit}.
+#' @param tol The tolerance limit of the \code{ecos_fit}.
 #' @param null.model The type of nullmodel used (similar to the
-#'                   randomizeMatrix() function argument in picante package)
+#'                   picante::randomizeMatrix() function argument in 
+#'                   picante package)
 #' @param iter_fill The number of swaps/fills in each randomized matrix build
 #' @param iter_randomized The number of randomization matrices generated
 #' @param plot If TRUE, plots density function of log Bayes factor over

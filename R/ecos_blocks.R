@@ -4,7 +4,7 @@
 #' metadata and ordered in each block by an ordering metadata
 #'
 #' @param omega Matrix of Cluster membership probabilities of each sample
-#'              obtained from \code{ecostructure_fit()}. The row sums 
+#'              obtained from \code{ecos_fit()}. The row sums 
 #'              sum to 1 for each sample.
 #' @param blocker_metadata a factor metadata used for creating blocks of 
 #'                         Structure plots.
