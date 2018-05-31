@@ -3,3 +3,7 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^bin/
+^analysis/
+^docs/
+^code/
+^output/

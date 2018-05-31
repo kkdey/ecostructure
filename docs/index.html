@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title></title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">ecostructure</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/kkdey/ecostructure">
+    <span class="fa fa-github"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+
+</div>
+
+
+<div class="figure">
+<img src="ecostructure.2.001.jpeg" alt="." />
+<p class="caption">.</p>
+</div>
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p><strong>ecostructure</strong> is an R package for clustering and visualizing structure in ecological assemblages using Mixed Membership or Grade of Membership (GoM) models (see <a href="https://www.stat.washington.edu/sites/default/files/files/reports/2006/tr492.pdf">reference</a>). The package can incorporate data on different spatial scales - assemblages can reflect species abundances in local communities (e.g., data in community ecology and microbiomics) or presence and absence of species across continent(s) (e.g., macroecology and biogeography). <strong>ecostructure</strong> also allows phylogenetic, geographic, and trait data to be incorporated in the clustering framework, producing clusters along different axes of bio-diversity, which we call <em>motifs</em>.</p>
+<p>This tutorial focuses on the analysis of bird assemblages at global and local scales, showcasing the use of these tools and methods to assess the turnover of species across samples and illustrate that turnover with visualizations.</p>
+<p>The main contributions of the <strong>ecostructure</strong> package are as follows</p>
+<p>The main contributions of the <strong>ecostructure</strong> package are:</p>
+<ul>
+<li><p>Functions to cluster species abundance and species presence/absence data by fitting GoM models.</p></li>
+<li><p>New methods for visualizing the structure of species assemblages (e.g., communities or biotas), leveraging the output from the appropriate GoM model.</p></li>
+<li><p>Tools to process species level data using a phylogeny, a trait dataset, or a GIS dataset in order to examine the contribution of history, function, and geography to species level structure.</p></li>
+</ul>
+<p>The analytical framework provided by <strong>ecostrucutre</strong> is employed in our accompanying <a href="White%20et%20al.%202018">paper</a>. The paper focuses on a survey of bird species abundances, conducted by Trevor Price and Dhananjai Mohan, at 38 local sites across the all elevations in the eastern and western Himalaya. This data is also provided as part of the <strong>ecostructure</strong> package.</p>
+<p>Next, we present an elaborate guided tutorial on how to use the <strong>ecostructure</strong> package.</p>
+</div>
+<div id="installation" class="section level1">
+<h1>Installation</h1>
+<div id="system-requirements" class="section level2">
+<h2>System requirements</h2>
+<p><strong>ecostructure</strong> requires core geospatial libraries supporting the use of GIS data in R - GDAL (<span class="math inline">\(&gt;= 2.0.1\)</span>), GEOS (<span class="math inline">\(&gt;= 3.4.0\)</span>), and PROJ.4 (<span class="math inline">\(&gt;= 4.8.0\)</span>). Typically these libraries get automatically installed as part of the dependency packages to <strong>ecostructure</strong>.</p>
+<p><strong>ecostructure</strong> requires access to the “gfortran” library. Mac OS X users may encounter the error “library not found for -lgfortran” when installing. To fix this error, please follow the instructions at this <a href="https://thecoatlessprofessor.com/programming/rcpp-rcpparmadillo-and-os-x-mavericks--lgfortran-and--lquadmath-error/">link</a> to</p>
+</div>
+<div id="r-requirements" class="section level2">
+<h2>R requirements</h2>
+<p><strong>ecostructure</strong> requires R version <span class="math inline">\(&gt;= 3.4.0\)</span></p>
+<p>To install <strong>ecostructure</strong>, follow the steps below</p>
+<pre class="r"><code>source(&quot;https://bioconductor.org/biocLite.R&quot;)
+biocLite(&quot;Biobase&quot;)
+install.packages(&quot;devtools&quot;)
+devtools::install_github(&quot;kkdey/ecostructure&quot;)</code></pre>
+<p>This will install <strong>ecostructure</strong> along with all its dependencies.</p>
+<p>Next, load the package into R.</p>
+<pre class="r"><code>library(Biobase)
+library(ecostructure)</code></pre>
+</div>
+</div>
+<div id="himalayan-bird-surveys" class="section level1">
+<h1>Himalayan Bird Surveys</h1>
+<p>We present the abundances of birds in 38 five ha forest patches across elevations in both the eastern and western Himalayas, together with the site metadata. There are 304 species in the dataset, and species morphological trait data are also presented along with a time-calibrated phylogeny of those species (see <a href="https://www.nature.com/articles/nature13272">paper</a> for details).</p>
+<p>The data is saved as an ExpressionSet object and can be read as follows</p>
+<pre class="r"><code>data(&quot;himalayan_birds&quot;)</code></pre>
+<p>One can extract the <em>species abundance matrix</em> as follows</p>
+<pre class="r"><code>species_counts &lt;- t(exprs(himalayan_birds))
+t(species_counts)[1:10,1:10]</code></pre>
+<pre><code>##                           A2 A3 A4 A6 A7 A8 B1 B2 B3 B4
+## Macropygia_unchall         0  0  0  0  0  0  0  0  0  0
+## Streptopelia_chinensis     0  0  0  0  0  0  0  0  0  0
+## Streptopelia_senegalensis  0  0  0  0  0  0  0  0  0  0
+## Columba_pulchricollis      0  0  0  0  2  0  0  0  0  0
+## Streptopelia_orientalis    0  0  0  0  0  0  0  0  0  0
+## Chalcophaps_indica         0  0  0  0  0  0  0  2  2  0
+## Treron_curvirostra         2  0  0  0  0  0  0  0  2  2
+## Treron_apicauda            0  2  2  0  0  2  0  0  2  0
+## Treron_sphenurus           0  0  0  0  0  0  0  0  0  4
+## Treron_phoenicopterus      0  0  0  0  0  0  0  0  0  0</code></pre>
+<p>The <em>site metadata</em> for the Himalayan sites - describing elevation, east/west, latitude, and longitude - can be extracted as follows.</p>
+<pre class="r"><code>site_metadata &lt;- pData(phenoData(himalayan_birds))
+head(site_metadata)</code></pre>
+<pre><code>##    Elevation    North     East WorE
+## A2    198.25 26.97898 92.92198    E
+## A3    734.25 27.00627 92.40457    E
+## A4   1243.25 27.02750 92.41041    E
+## A6   2629.00 27.14773 92.45938    E
+## A7   2340.25 27.09198 92.40857    E
+## A8    300.00 26.96138 93.01216    E</code></pre>
+<p>Finally, the <em>species metadata</em>, comprising of the bill traits, wing size, tarsus and mass of the birds, can be read as follows</p>
+<pre class="r"><code>species_metadata &lt;- pData(featureData(himalayan_birds))
+head(species_metadata, 4)</code></pre>
+<pre><code>##                           bill_length bill_width bill_depth    wing tarsus
+## Macropygia_unchall             11.080      4.260      4.970 197.550 26.305
+## Streptopelia_chinensis         10.765      3.505      3.870 140.000 22.620
+## Streptopelia_senegalensis       9.230      2.880      3.270 130.225 20.350
+## Columba_pulchricollis          12.983      5.595      5.678 203.075 25.373
+##                            mass
+## Macropygia_unchall        168.0
+## Streptopelia_chinensis    159.0
+## Streptopelia_senegalensis  83.9
+## Columba_pulchricollis     330.0</code></pre>
+<p>Besides the survey data, <strong>ecostructure</strong> also provides birds presence absence data in South-Eastern Asia, encompassing the region of the survey sites in the above data. This data has been prepared from publicly available shapefiles (.shp) from the <a href="http://www.birdlife.org/">BirdLife International</a>.</p>
+<pre class="r"><code>data(&quot;indian_birds_pa&quot;)</code></pre>
+</div>
+<div id="model-fitting-and-visualizations" class="section level1">
+<h1>Model fitting and Visualizations</h1>
+<p>The <code>ecos_fit</code> function fits Grade of Membership models either on binary presence-absence data or species abundance counts data. We illustrate each case below.</p>
+<div id="species-abundance-data" class="section level2">
+<h2>Species abundance data</h2>
+<p>We use <code>ecos_fit</code> to evaluate structure in our Himalayan birds dataset. These data are counts of species in sites, and so the function fits a Multinomial model to generate <em>species abundance motifs</em>. The data structure (abundance or presence/absence) is evaluated by the function automatically.</p>
+<pre class="r"><code>set.seed(1000)
+fit &lt;- ecos_fit(species_counts, K = 2, tol = 0.1, num_trials = 10)</code></pre>
+<pre><code>## 
+## Estimating on a 38 samples collection.
+## Fit and Bayes Factor Estimation for K = 2
+## log posterior increase: 18315.4, 83.3, 88.4, 0.6, done.
+## log BF( 2 ) = 2175.01
+## 
+## Estimating on a 38 samples collection.
+## Fit and Bayes Factor Estimation for K = 2
+## log posterior increase: 2937.3, 10.8, 0.5, done.
+## log BF( 2 ) = 1772.92
+## 
+## Estimating on a 38 samples collection.
+## Fit and Bayes Factor Estimation for K = 2
+## log posterior increase: 20698.2, 63.5, 12.4, 13.4, 6.6, 0.6, done.
+## log BF( 2 ) = 1791.65
+## 
+## Estimating on a 38 samples collection.
+## Fit and Bayes Factor Estimation for K = 2
+## log posterior increase: 15913.2, 73.6, 0.7, done.
+## log BF( 2 ) = 1922.38
+## 
+## Estimating on a 38 samples collection.
+## Fit and Bayes Factor Estimation for K = 2
+## log posterior increase: 2131.8, 61.4, 2, done.
+## log BF( 2 ) = 1951.69
+## 
+## Estimating on a 38 samples collection.
+## Fit and Bayes Factor Estimation for K = 2
+## log posterior increase: 3565.7, 4, done.
+## log BF( 2 ) = 1874.04
+## 
+## Estimating on a 38 samples collection.
+## Fit and Bayes Factor Estimation for K = 2
+## log posterior increase: 14118, 120, 45.1, 0.5, 0.3, 0.1, done.
+## log BF( 2 ) = 1953.93
+## 
+## Estimating on a 38 samples collection.
+## Fit and Bayes Factor Estimation for K = 2
+## log posterior increase: 2411.6, 47.5, 2.1, done.
+## log BF( 2 ) = 1950.96
+## 
+## Estimating on a 38 samples collection.
+## Fit and Bayes Factor Estimation for K = 2
+## log posterior increase: 20280.2, 88.5, 14.4, 4.2, 14.1, done.
+## log BF( 2 ) = 2186.57
+## 
+## Estimating on a 38 samples collection.
+## Fit and Bayes Factor Estimation for K = 2
+## log posterior increase: 23791.2, 31, 10.2, 25.1, 0.7, done.
+## log BF( 2 ) = 1936.48</code></pre>
+<p>The function outputs a lower rank representation of the data in <code>species_counts</code>, according to the value of K chosen by the user. Above, we chose to examine the primary partition of the data into 2 motifs by setting <code>K</code> = 2. Increasing <code>num_trials</code> will run more burn-in trials for the model fit, and decreasing <code>tol</code> will make the underlying algorithm run longer before convergence. These may need to be modified if the input data matrix is small.</p>
+<p>The main components of the output from <code>ecos_fit</code> are:</p>
+<ul>
+<li><p><code>omega</code> : A site <span class="math inline">\(\times\)</span> K matrix, K representing the number of clusters or species abundance motifs. The row sums equal 1 and the entries are positive. These represent the contribution of the different motifs to the composition (i.e., species abundance distribution) of each site.</p></li>
+<li><p><code>theta</code> : A species <span class="math inline">\(\times\)</span> K matrix, where the column sums equal 1. These values represent the contributions of each species to each motif k.</p></li>
+</ul>
+<div id="vizualing-motif-contributions-to-sites" class="section level3">
+<h3>Vizualing motif contributions to sites</h3>
+<p>We can take the output from the model fit and visualize the motif contributions matrix <code>omega</code> using a stacked bar chart.</p>
+<pre class="r"><code>east_west_dir &lt;- factor(site_metadata$WorE, levels = c(&quot;W&quot;, &quot;E&quot;))
+elevation_metadata &lt;- site_metadata$Elevation
+ecos_blocks(fit$omega,
+                    blocker_metadata = east_west_dir,
+                    order_metadata = elevation_metadata)</code></pre>
+<p><img src="index_files/figure-html/unnamed-chunk-9-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p>Because we are interested in species turnover across elevational and geographic locations, we block the two elevational gradients (western or eastern) and plot them side by side.</p>
+<p>This blocking structure (<code>blocker_metadata</code>) can be used for any environmental gradient of interest, allowing replicates or experimental treatments (in our case, geographic location) to be easily visualized together. <code>order_metadata</code> determines the order of the stacked bars in each block. Other parameters can be customized to modify the axes, titles, etc.</p>
+<p>See <code>ecos_plot_pie</code> below to plot the data in a spatially explicit context (i.e., on a map).</p>
+</div>
+<div id="identifying-species-contributions-to-motifs" class="section level3">
+<h3>Identifying species contributions to motifs</h3>
+<p>A central component of this framework is assessing the species contributions to each motif. One may be tempted to merely examine the <code>theta</code> matrix component of the model fit, and identify the the species that differentially drive the clustering.</p>
+<p>We use the function <code>ExtractTopFeatures</code> from the R package <a href="http://bioconductor.org/packages/release/bioc/html/CountClust.html">CountClust</a> to compute and record the top contributing species to each species abundance motif.</p>
+<pre class="r"><code>features &lt;- CountClust::ExtractTopFeatures(fit$theta, top_features = 5,
+                                           method = &quot;poisson&quot;, options = &quot;max&quot;)
+apply(features$indices, c(1,2), function(x) return(rownames(fit$theta)[x]))</code></pre>
+<pre><code>##      [,1]                          [,2]                     
+## [1,] &quot;Phylloscopus_chloronotus&quot;    &quot;Phylloscopus_reguloides&quot;
+## [2,] &quot;Phylloscopus_xanthoschistos&quot; &quot;Cyornis_rubeculoides&quot;   
+##      [,3]                  [,4]                      
+## [1,] &quot;Seicercus_whistleri&quot; &quot;Phylloscopus_occipitalis&quot;
+## [2,] &quot;Macronous_gularis&quot;   &quot;Orthotomus_sutorius&quot;     
+##      [,5]                   
+## [1,] &quot;Aethopyga_nipalensis&quot; 
+## [2,] &quot;Copsychus_malabaricus&quot;</code></pre>
+</div>
+<div id="comparing-observed-fit-to-null-expectation" class="section level3">
+<h3>Comparing observed fit to null expectation</h3>
+<p>One may also want to compare the clustering of the original data to that of randomly generated null matrices of species abundances. We provide a way to compare the observed model fit to null model fits of various types. Randomized matrices of are generated internally using the <code>randomizeMatrix</code> function in the package <a href="https://cran.r-project.org/web/packages/picante/picante.pdf">picante</a>.</p>
+<pre class="r"><code>out &lt;- ecos_nullmodel(species_counts, K=2, null.model = &quot;richness&quot;,
+                              iter_randomized= 10, option = &quot;BF&quot;)</code></pre>
+<pre><code>## 
+## Estimating on a 38 samples collection.
+## Fit and Bayes Factor Estimation for K = 2
+## log posterior increase: 20927.8, 10.5, 19.1, 4.6, 17.5, 5.2, 0.3, 0.9, 3.2, 0.5, 0.5, 0.2, done.
+## log BF( 2 ) = 1353.48
+## 
+## Estimating on a 38 samples collection.
+## Fit and Bayes Factor Estimation for K = 2
+## log posterior increase: 1845.7, 6.7, 3.1, 16.9, 7.2, 3.5, 3.4, 0.6, done.
+## log BF( 2 ) = 1440.07
+## 
+## Estimating on a 38 samples collection.
+## Fit and Bayes Factor Estimation for K = 2
+## log posterior increase: 18432.1, 11.1, 21.8, 1.1, 9.4, 0.4, 0.5, 2.1, 2, 0.2, 1, 0.2, done.
+## log BF( 2 ) = 1455.82
+## 
+## Estimating on a 38 samples collection.
+## Fit and Bayes Factor Estimation for K = 2
+## log posterior increase: 1707.1, 46.3, 8.3, 5.7, 0.4, 0.3, 1.5, 2.8, 1, 0.1, done.
+## log BF( 2 ) = 1324.43
+## 
+## Estimating on a 38 samples collection.
+## Fit and Bayes Factor Estimation for K = 2
+## log posterior increase: 1820, 14.1, 4.9, 3.6, 1.9, 3.3, 0.4, 1.4, 0.7, 0.9, 2.7, 0.4, done.
+## log BF( 2 ) = 1473.37
+## 
+## Estimating on a 38 samples collection.
+## Fit and Bayes Factor Estimation for K = 2
+## log posterior increase: 19254.9, 24.9, 9, 3.5, 0.8, 9.2, 2, 3.4, 0.4, 0.8, done.
+## log BF( 2 ) = 1270.9
+## 
+## Estimating on a 38 samples collection.
+## Fit and Bayes Factor Estimation for K = 2
+## log posterior increase: 1844.4, 28.1, 9.4, 6.8, 1.1, 1.6, done.
+## log BF( 2 ) = 1243.54
+## 
+## Estimating on a 38 samples collection.
+## Fit and Bayes Factor Estimation for K = 2
+## log posterior increase: 1842.1, 18, 6.3, 11.9, 7.4, 1.3, 1.4, 8.2, 1.3, 0.5, done.
+## log BF( 2 ) = 1360.54
+## 
+## Estimating on a 38 samples collection.
+## Fit and Bayes Factor Estimation for K = 2
+## log posterior increase: 20732.8, 41, 18.9, 5.5, 7.1, 0.5, 0.2, done.
+## log BF( 2 ) = 1386.47
+## 
+## Estimating on a 38 samples collection.
+## Fit and Bayes Factor Estimation for K = 2
+## log posterior increase: 19997.9, 14.6, 47.5, 4.4, 0.7, 0.6, 0.6, 16.3, 1.8, 1.1, 0, done.
+## log BF( 2 ) = 1279.4
+## 
+## Estimating on a 38 samples collection.
+## Fit and Bayes Factor Estimation for K = 2
+## log posterior increase: 14985.7, 110.4, 43.3, 2.5, 0.1, done.
+## log BF( 2 ) = 1761.84</code></pre>
+<p><img src="index_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+</div>
+</div>
+<div id="presence-absence-data" class="section level2">
+<h2>Presence-absence data</h2>
+<p>Here we describe how to cluster species using a presence-absence data matrix of species across the globe or sub-regions of the globe.</p>
+<p>The matrix may represent be local data or macroecological data (species in a 1<span class="math inline">\(^\circ\)</span> <span class="math inline">\(\times\)</span> 1<span class="math inline">\(^\circ\)</span> map cell) - for functions to generate these data using GIS data sources (shapfiles or geodatabase files) see other sections below.</p>
+<p>We again use <code>ecos_fit</code> to fit Grade of Membership models on<br />
+binary presence-absence data using a Binomial/Bernoulli model. We refer to the clusters/motifs obtained by this procedure as <em>species presence motifs</em>.</p>
+<pre class="r"><code>data(&quot;indian_birds_pa&quot;)
+pres_ab_fit &lt;- ecos_fit(indian_birds_pa, K = 2, tol = 0.1)</code></pre>
+<p>The above code takes around 4 minutes to run on a single machine.</p>
+<p>Again, the function outputs a lower (specified by K) rank representation of the data <code>indian_birds_pa</code>.</p>
+<p>Once again the output <code>pres_ab_fit</code> consists of the <code>omega</code> and <code>theta</code> components.</p>
+<p>In the presence-absence case, these matrices can be understood as:</p>
+<ul>
+<li><p><code>omega</code> : A site <span class="math inline">\(\times\)</span> K matrix, K representing the number of clusters or species motifs. The row sums equal 1 and the entries are positive. These represent the contribution of the different motifs to the species composition of each location.</p></li>
+<li><p><code>theta</code> : A species <span class="math inline">\(\times\)</span> K matrix, where each species has a probability of being found in the kth motif. These probabilities are <em>not</em> constrained to sum to 1 as in the multinomial case we illustrated earlier.</p></li>
+</ul>
+<p>We have an example model fit of the above function run as part of the <strong>ecostructure</strong> package</p>
+<pre class="r"><code>data(&quot;pres_ab_fit&quot;)</code></pre>
+<div id="vizualing-species-motif-contributions" class="section level3">
+<h3>Vizualing species motif contributions</h3>
+<p>We can take the output from the model fit and again visualize the membership proportions <code>omega</code>. However, as the data may consist of thousands of spatially explicit locations, we do not use <code>ecos_blocks</code> as in the previous example, but instead use the function <code>ecos_plot_pie</code>, which incorporates latitudinal and longitudinal coordinates of the original sites. We plot the <code>omega</code> matrix in a spatial context as follows.</p>
+<pre class="r"><code>ecos_plot_pie(omega = pres_ab_fit$omega,
+                      lat_lim = c(5,50),
+                      long_lim = c(55,120),
+                      path = &quot;geostructure_plot.tiff&quot;,
+                      color= c(&quot;red&quot;,&quot;blue&quot;))</code></pre>
+<pre><code>## reading background map shapefile from inst/extdata/ne_110m_coastline 
+##             folder</code></pre>
+<p>This function will create a file <code>geostructure_plot.tiff</code> in the current folder (<code>getwd()</code> in R to figure out).</p>
+<div class="figure">
+<img src="geostructure_plot.tiff" alt="india" />
+<p class="caption">india</p>
+</div>
+<p>One can apply this to a broader region of presence-absence data. We provide an example of visualizing species presence-absence structure as generated by applying the binomial GoM model with <span class="math inline">\(K=6\)</span> on the bird species in Australia.</p>
+<pre class="r"><code>data(&quot;australia_model&quot;)
+ecos_plot_pie(omega = australia_model$omega,
+                      coords = australia_birds$latlong, 
+                      long_lim = c(110,160),
+                      lat_lim = c(-50,-10),
+                      path = &quot;geostructure_plot_aus.tiff&quot;,
+                      color= c(&quot;orange&quot;, &quot;red&quot;, &quot;yellow&quot;, &quot;deepskyblue&quot;, 
+                               &quot;chartreuse&quot;, &quot;blue&quot;))</code></pre>
+<pre><code>## reading background map shapefile from inst/extdata/ne_110m_coastline 
+##             folder</code></pre>
+<p>The plot should look as follows</p>
+<div class="figure">
+<img src="geostructure_plot_aus.tiff" alt="australia" />
+<p class="caption">australia</p>
+</div>
+<p>The different colors in this plot represent the different communities and we see these communities match very well with the different climatic regimes in Australia.</p>
+</div>
+<div id="identifying-species-contributions-to-motifs-1" class="section level3">
+<h3>Identifying species contributions to motifs</h3>
+<p>The bird species driving these species communities can be derived from the <code>theta</code> matrices. The top 5 species driving each cluster are</p>
+<pre class="r"><code>features &lt;- CountClust::ExtractTopFeatures(pres_ab_fit$theta, top_features = 5,
+                                           method = &quot;poisson&quot;, options = &quot;max&quot;)
+apply(features$indices, c(1,2), function(x) return(rownames(pres_ab_fit$theta)[x]))</code></pre>
+<pre><code>##      [,1]                   [,2]                    [,3]                 
+## [1,] &quot;Aythya nyroca&quot;        &quot;Caprimulgus europaeus&quot; &quot;Carpodacus synoicus&quot;
+## [2,] &quot;Aethopyga nipalensis&quot; &quot;Aethopyga siparaja&quot;    &quot;Alcippe rufogularis&quot;
+##      [,4]              [,5]                    
+## [1,] &quot;Circus cyaneus&quot;  &quot;Phylloscopus griseolus&quot;
+## [2,] &quot;Apus nipalensis&quot; &quot;Artamus fuscus&quot;</code></pre>
+</div>
+</div>
+<div id="geographic-contributions-to-local-communities" class="section level2">
+<h2>Geographic contributions to local communities</h2>
+<p><em>ecostructure</em> offers tools for users to examine how local patterns of community structure are related to potential geographic sources. One way to interpret the geographic inputs into a given site is to generate a site’s dispersion field by overlapping the geographic distributions of the species present at the site.</p>
+<div id="generating-dispersion-fields-for-local-sites" class="section level3">
+<h3>Generating dispersion fields for local sites</h3>
+<p>For a given dataset of local species presences (can be abundances but dispersion fields are generated based on presence), we can generate dispersion fields for each site and again fit a GoM model. These methods require some types of GIS data source, either shapefiles of species distributions, a geodatabase of species distributions (as in the .gdb of global bird species ditrbutions provided by BirdLife International), or even point occurences of species presences in a region.</p>
+<p>We generate dispersion fields for our 38 sites using the function <code>dsp_create_from_survey</code>.</p>
+<pre class="r"><code>local_him_disp &lt;- dsp_create_from_survey(local_data = species_counts,
+                              gis_data_type = &quot;shp&quot;,
+                              shp_dir = {PATH TO directory with species shapefiles})
+
+local_him_disp &lt;- dsp_create_from_survey(local_data = species_counts,
+                              gis_data_type = &quot;gdb&quot;,
+                              gdb_dir = {PATH To Directory with Species Geodatabase})</code></pre>
+<p><code>dsp_create_from_survey</code> takes a local data matrix and a specified GIS data type to produce dispersion fields in a specified regions. The function reads in shapefiles for each species (or a .gdb for all species) and rasterizes those distributions for a given resolution. There are many arguments to customize so be sure to examine the documentation for this function. The output ‘local_him_disp’ consists of 3 objects.</p>
+<ul>
+<li><p><code>raster</code> : A list of rasters representing the dispersion fields for each site (length is the number of rows (sites) in <code>local data</code>) at the specified resolution.</p></li>
+<li><p><code>precise</code> : A list of rasters representing the dispersion fields for each site (length is the number of rows (sites) in <code>local data</code>) at the resolution of the argument <code>precise</code>. These could be used for plotting high resolution dispersion fields.</p></li>
+<li><p><code>matrix</code> : A list of the same rasters is <code>raster</code> but in matrix form. These are used for easily processing the<br />
+dispersion fields into the structure required to fit a GoM model.</p></li>
+</ul>
+</div>
+<div id="visualizing-dispersion-fields" class="section level3">
+<h3>Visualizing dispersion fields</h3>
+<p>We can generate maps for all of the disperison fields using the function <code>dsp_plot_map</code>. We provide the dispersion fields for our 38 sites <code>dispersion_field_ex</code> as a list of matrices.</p>
+<pre class="r"><code>data(&quot;dispersion_field_ex&quot;)
+dsp_plots &lt;- dsp_plot_map(dispersion_field_ex, 
+                    raster_latlim = c(5, 50), raster_longlim = c(50, 120), 
+                    scale = &quot;percentage&quot;)
+dsp_plots[[1]]</code></pre>
+<p><img src="index_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<p><code>dsp_plots</code> is now a list of plots, each of which visualizes the dispersion fields from our local sites.</p>
+</div>
+<div id="processing-dispersion-fields-for-gom-model-fit" class="section level3">
+<h3>Processing dispersion fields for GoM model fit</h3>
+<p>We can easily process the dispersion fields into one data matrix by using <code>dsp_to_matrix</code></p>
+<pre class="r"><code>dsp_fields_matrix &lt;- dsp_to_matrix(dispersion_field_ex)</code></pre>
+<p>The output from <code>dsp_to_matrix</code> is a data matrix with rows equivalent to each sites dispersion fields as a vector.</p>
+<pre class="r"><code>dim(dsp_fields_matrix)</code></pre>
+<pre><code>## [1]     38 201600</code></pre>
+<p>Each column is a map cell in the region of interest, with the value being a count from each site of how many species from that site overlap the cell.</p>
+</div>
+<div id="gom-model-and-viz.-of-dispersion-fields" class="section level3">
+<h3>GoM model and viz. of dispersion fields</h3>
+<p>As these data are counts, we can now fit a multinomial GoM (using to examine <em>geographic motifs</em>. In this case, omega is a matrix of motif contributions to dispersion fields, and the theta matrix represents each map cells contrbution to each of the motifs. We can plot the thetas on a map, showing the contribution of each map cell to the motif. Some biologists may think of these motifs as analagous to the regional inputs into local communities.</p>
+<p>The model fit is done using <code>ecos_fit</code> as above. Because this geographic data matrix may be particularly large, depending on the resolution chosen to produce the dispersion fields, the fit may take longer than the fit on the original data matrix.</p>
+<pre class="r"><code>fit &lt;- ecos_fit(dsp_fields_matrix, K = 2, tol = 0.1, num_trials = 10)</code></pre>
+<p>We can plot the theta distributions of each geographical motif using the function <code>dsp_motif</code>. We provide an example theta matrix with the package called <code>example_theta</code>.</p>
+<pre class="r"><code>data(&quot;example_theta&quot;)
+himalayan_geo_motifs &lt;- dsp_motif(example_theta, 
+                                  color_ramp = c(&quot;black&quot;, &quot;darkseagreen3&quot;,
+                                                 &quot;orange&quot;,&quot;red&quot;),
+                                  dsp_fld_res = 8)
+himalayan_geo_motifs$motif_maps[[1]]</code></pre>
+<p><img src="index_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+<p>We call this the Ghostbusters theme !! :)</p>
+</div>
+</div>
+<div id="incorporating-phylogenic-and-trait-information" class="section level2">
+<h2>Incorporating phylogenic and trait information</h2>
+<p>The relationships between species, either phylogenetically or functionally, are of paramount importance when evaluating ecological structure. We provide two functions, one for phylogenies and one for trait data, that collapse species into either clades or functional groups based on a desired cut off.</p>
+<div id="phylogeny" class="section level3">
+<h3>Phylogeny</h3>
+<p>We load the time-calibrated phylogenetic tree <code>phylo_tree</code> of the 304 Himalayan birds in <code>species_counts</code>. We then collapse the species into clades to based on certain time point cut off on the tree <code>collapse_at</code>. Below we cut the tree off at 10 million years ago.</p>
+<pre class="r"><code>data(&quot;phylo_tree&quot;)
+phylo_counts &lt;- ecos_prepare_by_phylo(species_counts, phylo_tree, collapse_at = 10)
+dim(phylo_counts$outdat)</code></pre>
+<pre><code>## [1] 38 63</code></pre>
+</div>
+<div id="trait" class="section level3">
+<h3>Trait</h3>
+<p>We use morphological trait metadata from <code>himalayan_birds</code> data and then use the distance metric based on these traits to collapse the bird species as above. As in the case of the time component above, one can set <code>prop_div</code> to a collapse the tips of trait dendrogram to produce a specific number of functional groups (the proportion of the original diversity). Below we create <span class="math inline">\(91\)</span> functional groups out of the original 304 species.</p>
+<pre class="r"><code>bill_traits &lt;- as.matrix(dist(scale(species_metadata[,c(1:3)])))
+counts_bill_traits &lt;- ecos_prepare_by_trait(counts = species_counts, 
+                                                    traits = bill_traits, 
+                                                    prop_div=0.3)
+dim(counts_bill_traits)</code></pre>
+<pre><code>## [1] 38 91</code></pre>
+<p>Both <code>phylo_counts</code> and <code>counts_bill_traits</code> can now be passed to <code>ecos_fit</code> to generate either <em>phylogenetic motifs</em> or <em>trait motifs</em>.</p>
+</div>
+<div id="appendix-generating-a-presence-absence-matrix" class="section level3">
+<h3>Appendix: generating a presence absence matrix</h3>
+<p>There are a number of ways to generate species presence absence data to evaluate <em>species motifs</em>. Conservation organizations (<a href="http://www.iucnredlist.org/technical-documents/spatial-data">IUCN</a>, <a href="http://datazone.birdlife.org/species/requestdis">BirdLife International</a>, etc.) often distribute shapefiles and geodatabse files that contain geographic distributions in the form of polygons. Point occurances can also be overlaid on a raster to produce a rough geographic distribution (this may be suitable for fitting GoMs at a large scale).</p>
+<p>We provide a function <code>dsp_create_from_gdb</code> that creates a presence absence matrix using these GIS data types. This function is still under development and is slow on large datasets - we illustrate how it might be used below on the geodatabase of global bird distrbutions provided by BirdLife International.</p>
+<pre class="r"><code>## Request and fetch geodatabase (gdb) from BirdLife International : http://datazone.birdlife.org/species/requestdis or 
+
+## say we call one such gdb - example_birdlife.gdb
+
+gdb_global_birds &lt;- st_read(&quot;example_birdlife.gdb&quot;)
+
+## Then run the following commands to generate the presence absence matrix
+
+disp_from_scratch &lt;- dsp_create_from_gdb(gdb_object = gdb_global_birds,
+                      raster_resolution = 1,thresh = 3,
+                      raster_latlim = c(-90,90),
+                      raster_longlim = c(-180,180),
+                      species_feature = &quot;SCINAME&quot;)</code></pre>
+<p>The presence absence data is output as <code>disp_from_scratch$pres_ab</code> on which <code>ecos_fit</code> can be run.</p>
+<pre class="r"><code>fit &lt;- ecos_fit(disp_from_scratch$pres_ab, K = 5, 
+                        tol = 0.1, num_trials = 10)</code></pre>
+<p><code>dsp_create_from_gdb</code> also returns the dispersion fields similar to dispersion fields create.</p>
+<p>One may request the BirdLife dataset from <a href="http://datazone.birdlife.org/species/requestdis">here</a>. Presence/absence data illustrated above was generated using this data source.</p>
+<p>Users may also look to other packages that specifically focus on generating presence absence data from GIS data types. <a href="https://cran.r-project.org/web/packages/letsR/letsR.pdf">letsR</a> is an incredibly useful package to this end. Presence-absence matrices from <strong>letsR</strong> can certainly be used in tandem with the <strong>ecostructure</strong> functions. Our goal is to contribute to that body of work by creating a tool that employs the speed and utility of the packages <a href="https://cran.r-project.org/web/packages/sf/index.html">sf</a> and <a href="https://cran.r-project.org/web/packages/fasterize/index.html">fasterize</a> (see <a href="https://cran.r-project.org/web/packages/velox/velox.pdf">velox</a> as well).</p>
+</div>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
