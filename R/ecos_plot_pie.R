@@ -51,7 +51,7 @@
 #' @examples 
 #'  data("australia_birds")
 #'  data("australia_model")
-#'  ecostructure_plot_pie(omega = australia_model$omega,
+#'  ecos_plot_pie(omega = australia_model$omega,
 #'                      coords = australia_birds$latlong, 
 #'                      long_lim = c(110,160),
 #'                      lat_lim = c(-50,-10),
@@ -63,25 +63,42 @@
 #' @export
 
 
-ecostructure_plot_pie = function(omega = NULL,
-                                 coords = NULL,
-                                 bgmap_path = NULL,
-                                 adjust = FALSE,
-                                 thresh = 0.7,
-                                 long_lim = c(-180,180),
-                                 lat_lim = c(-60,90),
-                                 coastline_lwd = 10,
-                                 intensity = 1,
-                                 radius = 0.5,
-                                 color = c("dodgerblue2","#E31A1C", "green4", "#6A3D9A","#FF7F00", "black","gold1","skyblue2","#FB9A99",
-                                           "palegreen2", "#CAB2D6", "#FDBF6F",  "gray70", "khaki2", "maroon","orchid1","deeppink1",
-                                           "blue1","steelblue4", "darkturquoise","green1","yellow4","yellow3", "darkorange4","brown",
-                                           "red", "cornflowerblue", "cyan", "brown4", "burlywood", "darkgoldenrod1",
-                                           "azure4", "green","deepskyblue","yellow", "azure1"),
-                                 pie_control = list(),
-                                 image_width = 1000,
-                                 image_height = 800,
-                                 path = "geostructure_plot.tiff"){
+ecos_plot_pie = function(omega = NULL,
+                         coords = NULL,
+                         bgmap_path = NULL,
+                         adjust = FALSE,
+                         thresh = 0.7,
+                         long_lim = c(-180,180),
+                         lat_lim = c(-60,90),
+                         coastline_lwd = 10,
+                         intensity = 1,
+                         radius = 0.5,
+                         color = c("dodgerblue2","#E31A1C", "green4", "#6A3D9A","#FF7F00", "black","gold1","skyblue2","#FB9A99",
+                                   "palegreen2", "#CAB2D6", "#FDBF6F",  "gray70", "khaki2", "maroon","orchid1","deeppink1",
+                                   "blue1","steelblue4", "darkturquoise","green1","yellow4","yellow3", "darkorange4","brown",
+                                   "red", "cornflowerblue", "cyan", "brown4", "burlywood", "darkgoldenrod1",
+                                   "azure4", "green","deepskyblue","yellow", "azure1"),
+                         pie_control = list(),
+                         image_width = 1000,
+                         image_height = 800,
+                         path = "geostructure_plot.tiff"){
+  
+  if(is.null(coords)){
+    if(is.null(rownames(omega))){
+      stop("coords not provided, omega rownames do not have latitude longitude
+           information either")
+    }
+    latlong_chars <- rownames(omega)
+    coords <- cbind.data.frame(
+      as.numeric(sapply(latlong_chars, function(x) strsplit(x, "_")[[1]][1])),
+      as.numeric(sapply(latlong_chars, function(x) strsplit(x, "_")[[1]][2])))
+    colnames(coords) <- c("lat", "long")
+  }else{
+    if(dim(coords)[1] != dim(omega)[1]){
+      stop("coords provided, but the number of rows in coords data does not
+           match the number of rows in omega matrix")
+    }
+  }
                                      
   pie_control_default <- list(edges = 200, clockwise = TRUE, 
                       init.angle = 90, density = NULL, 

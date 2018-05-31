@@ -11,6 +11,11 @@ model.
 - [Kushal K Dey](https://kkdey.github.io) 
 - [Alexander E White](http://www.alexwhitebiology.com/)
 
+Mentored by 
+
+- [Matthew Stephens](http://stephenslab.uchicago.edu/)
+- [Trevor Price](https://pondside.uchicago.edu/ecol-evol/people/price.html)
+
 ### Installation
 
 Install **ecostructure** following the instructions below.

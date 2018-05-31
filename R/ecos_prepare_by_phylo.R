@@ -19,7 +19,7 @@
 #' @importFrom phytools treeSlice
 #' @export
 
-ecostructure_prepare_by_phylo <- function(dat, tree, collapse_at){
+ecos_prepare_by_phylo <- function(dat, tree, collapse_at){
   root_node <- length(tree$tip.label) + 1
   root_age <- ape::branching.times(tree)[names(ape::branching.times(tree)) == root_node]
   trees_at_slice <- phytools::treeSlice(tree, root_age - collapse_at)

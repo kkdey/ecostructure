@@ -26,18 +26,18 @@
 #' fit <- ecostructure_fit(species_abundance_counts, K = 2, tol = 0.1)
 #' species_pa_counts <- species_abundance_counts
 #' species_pa_counts[species_pa_counts >=1] = 1
-#' fi2 <- ecostructure_fit(species_pa_counts, K = 2, tol = 0.1)
+#' fi2 <- ecos_fit(species_pa_counts, K = 2, tol = 0.1)
 #' 
 #' @export
 
 
 
-ecostructure_fit <- function(dat,
-                             max_dat = NULL,
-                             K,
-                             tol = 0.1,
-                             num_trials = 1,
-                             fit_control = list()){
+ecos_fit <- function(dat,
+                     max_dat = NULL,
+                     K,
+                     tol = 0.1,
+                     num_trials = 1,
+                     fit_control = list()){
   if(all(dat - floor(dat) != 0)){
     stop("The matrix dat must be a matrix of integers - a binary or a counts matrix")
   }
@@ -73,7 +73,7 @@ ecostructure_fit <- function(dat,
                                  ord=TRUE,
                                  verb=1,
                                  sample_init = TRUE,
-                                 NUM_INDICES_START = floor(dim(dat)[1]/2),
+                                 NUM_INDICES_START = floor(dim(dat)[1]*0.75),
                                  use_squarem=FALSE)
     
     fit_control <- modifyList(fit_control_default, fit_control)

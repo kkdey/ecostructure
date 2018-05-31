@@ -23,14 +23,14 @@
 #'species_metadata <- pData(featureData(himalayan_birds))
 #'taxonomic_counts <- t(exprs(himalayan_birds))
 #'bill_traits <- as.matrix(dist(scale(species_metadata[,c(1:3)])))
-#'counts_bill_traits <- ecostructure_prepare_by_trait(counts = taxonomic_counts, 
-#'                                                    traits = bill_traits, 
-#'                                                    prop_div=0.3)
+#'counts_bill_traits <- ecos_prepare_by_trait(counts = taxonomic_counts, 
+#'                                             traits = bill_traits, 
+#'                                             prop_div=0.3)
 #'                                                    
 #' @export
 
 
-ecostructure_prepare_by_trait <- function(counts, traits, prop_div = 0.3){
+ecos_prepare_by_trait <- function(counts, traits, prop_div = 0.3){
   
   if(any(traits - t(traits) != 0)){
     stop("traits matrix must be symmetric")

@@ -14,12 +14,12 @@
 #' @examples
 #'
 #' data("dispersion_field_ex")
-#' mat <- dispersion_fields_to_matrix(dispersion_field_ex)
+#' mat <- dsp_to_matrix(dispersion_field_ex)
 #'
 #'
 #' @export
 
-dispersion_fields_to_matrix  = function(dispersion.field)
+dsp_to_matrix  = function(dispersion.field)
 {
   map_data <- vector()
   for(l in 1:length(dispersion.field)){

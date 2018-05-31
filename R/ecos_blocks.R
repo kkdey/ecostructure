@@ -34,10 +34,10 @@
 #' site_metadata <- pData(himalayan_birds);
 #' elevation_metadata=site_metadata$Elevation;
 #' east_west_dir = site_metadata$WorE;
-#' topic_clus <- ecostructure_fit(species_abundance_counts, K = 2, tol = 0.1)
-#' ecostructure_blocks(topic_clus$omega,
-#'                    blocker_metadata = east_west_dir,
-#'                    order_metadata = elevation_metadata)
+#' topic_clus <- ecos_fit(species_abundance_counts, K = 2, tol = 0.1)
+#' ecos_blocks(topic_clus$omega,
+#'             blocker_metadata = east_west_dir,
+#'             order_metadata = elevation_metadata)
 #'
 #' @importFrom CountClust StructureGGplot
 #' @import grid
@@ -47,13 +47,13 @@
 
 
 
-ecostructure_blocks = function(omega,
-                           blocker_metadata,
-                           order_metadata,
-                           palette = c("#E69F00", "#56B4E9", "#009E73", "#F0E442", 
+ecos_blocks = function(omega,
+                       blocker_metadata,
+                       order_metadata,
+                       palette = c("#E69F00", "#56B4E9", "#009E73", "#F0E442", 
                                        "#0072B2", "#D55E00", "#CC79A7"),
-                           structure_control = list(),
-                           layout){
+                       structure_control = list(),
+                       layout){
   
   if(!is.factor(blocker_metadata)){
     stop("the blocker_metadata must be a factor variable")

@@ -34,22 +34,22 @@
 #'
 #' data("himalayan_birds")
 #' species_abundance_counts <- t(exprs(himalayan_birds));
-#' out <- ecostructure_nullmodel(species_abundance_counts, K=2, 
+#' out <- ecos_nullmodel(species_abundance_counts, K=2, 
 #'                 iter_randomized=5, option = "BF")
-#' out2 <- ecostructure_nullmodel(species_abundance_counts, K=2, 
+#' out2 <- ecos_nullmodel(species_abundance_counts, K=2, 
 #'                 iter_randomized=5, ption = "BIC")              
 #'   
 #' @export
               
-ecostructure_nullmodel <- function(counts,
-                                   K,
-                                   tol=0.1,
-                                   null.model=c("frequency", "richness",
-                                                "independentswap", "trialswap"),
-                                   iter_fill=100,
-                                   iter_randomized=30,
-                                   option,
-                                   plot=TRUE)
+ecos_nullmodel <- function(counts,
+                           K,
+                           tol=0.1,
+                           null.model=c("frequency", "richness",
+                                        "independentswap", "trialswap"),
+                           iter_fill=100,
+                           iter_randomized=30,
+                           option,
+                           plot=TRUE)
 {
     if(missing(option)){
       option = "BIC"
