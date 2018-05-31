@@ -307,21 +307,19 @@ div.tocify {
 <p><strong>ecostructure</strong> is an R package for clustering and visualizing structure in ecological assemblages using Mixed Membership or Grade of Membership (GoM) models (see <a href="https://www.stat.washington.edu/sites/default/files/files/reports/2006/tr492.pdf">reference</a>). The package can incorporate data on different spatial scales - assemblages can reflect species abundances in local communities (e.g., data in community ecology and microbiomics) or presence and absence of species across continent(s) (e.g., macroecology and biogeography). <strong>ecostructure</strong> also allows phylogenetic, geographic, and trait data to be incorporated in the clustering framework, producing clusters along different axes of bio-diversity, which we call <em>motifs</em>.</p>
 <p>This tutorial focuses on the analysis of bird assemblages at global and local scales, showcasing the use of these tools and methods to assess the turnover of species across samples and illustrate that turnover with visualizations.</p>
 <p>The main contributions of the <strong>ecostructure</strong> package are as follows</p>
-<p>The main contributions of the <strong>ecostructure</strong> package are:</p>
 <ul>
 <li><p>Functions to cluster species abundance and species presence/absence data by fitting GoM models.</p></li>
 <li><p>New methods for visualizing the structure of species assemblages (e.g., communities or biotas), leveraging the output from the appropriate GoM model.</p></li>
 <li><p>Tools to process species level data using a phylogeny, a trait dataset, or a GIS dataset in order to examine the contribution of history, function, and geography to species level structure.</p></li>
 </ul>
-<p>The analytical framework provided by <strong>ecostrucutre</strong> is employed in our accompanying <a href="White%20et%20al.%202018">paper</a>. The paper focuses on a survey of bird species abundances, conducted by Trevor Price and Dhananjai Mohan, at 38 local sites across the all elevations in the eastern and western Himalaya. This data is also provided as part of the <strong>ecostructure</strong> package.</p>
-<p>Next, we present an elaborate guided tutorial on how to use the <strong>ecostructure</strong> package.</p>
+<p>The analytical framework provided by <strong>ecostructure</strong> is employed in our accompanying <a href="White%20et%20al.%202018">paper</a>. The paper focuses on a survey of bird species abundances at 38 local sites across the all elevations in the eastern and western Himalaya, the data from which is provided as part of this package.</p>
 </div>
 <div id="installation" class="section level1">
 <h1>Installation</h1>
 <div id="system-requirements" class="section level2">
 <h2>System requirements</h2>
 <p><strong>ecostructure</strong> requires core geospatial libraries supporting the use of GIS data in R - GDAL (<span class="math inline">\(&gt;= 2.0.1\)</span>), GEOS (<span class="math inline">\(&gt;= 3.4.0\)</span>), and PROJ.4 (<span class="math inline">\(&gt;= 4.8.0\)</span>). Typically these libraries get automatically installed as part of the dependency packages to <strong>ecostructure</strong>.</p>
-<p><strong>ecostructure</strong> requires access to the “gfortran” library. Mac OS X users may encounter the error “library not found for -lgfortran” when installing. To fix this error, please follow the instructions at this <a href="https://thecoatlessprofessor.com/programming/rcpp-rcpparmadillo-and-os-x-mavericks--lgfortran-and--lquadmath-error/">link</a> to</p>
+<p><strong>ecostructure</strong> requires access to the “gfortran” library. Mac OS X users may encounter the error “library not found for -lgfortran” when installing. To fix this error, please follow the instructions at this <a href="https://thecoatlessprofessor.com/programming/rcpp-rcpparmadillo-and-os-x-mavericks--lgfortran-and--lquadmath-error/">link</a>.</p>
 </div>
 <div id="r-requirements" class="section level2">
 <h2>R requirements</h2>
@@ -335,11 +333,13 @@ devtools::install_github(&quot;kkdey/ecostructure&quot;)</code></pre>
 <p>Next, load the package into R.</p>
 <pre class="r"><code>library(Biobase)
 library(ecostructure)</code></pre>
+<p>A comprehensive list of all the functions in the <strong>ecostructure</strong> package can be found by running the following command.</p>
+<pre class="r"><code>help(package = &quot;ecostructure&quot;)</code></pre>
 </div>
 </div>
 <div id="himalayan-bird-surveys" class="section level1">
 <h1>Himalayan Bird Surveys</h1>
-<p>We present the abundances of birds in 38 five ha forest patches across elevations in both the eastern and western Himalayas, together with the site metadata. There are 304 species in the dataset, and species morphological trait data are also presented along with a time-calibrated phylogeny of those species (see <a href="https://www.nature.com/articles/nature13272">paper</a> for details).</p>
+<p>We present the abundances of birds in 38 five ha forest patches across elevations in both the eastern and western Himalayas, together with the site metadata. There are 304 species in the dataset, and species morphological trait data (species means) are also presented along with a time-calibrated phylogeny of those species. For methods related to measuring traits and building the phylogeny, see this <a href="https://www.nature.com/articles/nature13272">paper</a> for details).</p>
 <p>The data is saved as an ExpressionSet object and can be read as follows</p>
 <pre class="r"><code>data(&quot;himalayan_birds&quot;)</code></pre>
 <p>One can extract the <em>species abundance matrix</em> as follows</p>
@@ -366,7 +366,7 @@ head(site_metadata)</code></pre>
 ## A6   2629.00 27.14773 92.45938    E
 ## A7   2340.25 27.09198 92.40857    E
 ## A8    300.00 26.96138 93.01216    E</code></pre>
-<p>Finally, the <em>species metadata</em>, comprising of the bill traits, wing size, tarsus and mass of the birds, can be read as follows</p>
+<p>Finally, the <em>species metadata</em>, comprising the means of the bill traits, wing size, tarsus and mass of each species, can be read as follows</p>
 <pre class="r"><code>species_metadata &lt;- pData(featureData(himalayan_birds))
 head(species_metadata, 4)</code></pre>
 <pre><code>##                           bill_length bill_width bill_depth    wing tarsus
@@ -379,7 +379,7 @@ head(species_metadata, 4)</code></pre>
 ## Streptopelia_chinensis    159.0
 ## Streptopelia_senegalensis  83.9
 ## Columba_pulchricollis     330.0</code></pre>
-<p>Besides the survey data, <strong>ecostructure</strong> also provides birds presence absence data in South-Eastern Asia, encompassing the region of the survey sites in the above data. This data has been prepared from publicly available shapefiles (.shp) from the <a href="http://www.birdlife.org/">BirdLife International</a>.</p>
+<p>Besides the survey data, <strong>ecostructure</strong> also provides the presence absence matrix for all breeding birds in southeast Asia, encompassing the region of the survey sites in the above data. This data has been prepared from publicly available shapefiles (.shp) from <a href="http://www.birdlife.org/">BirdLife International</a>.</p>
 <pre class="r"><code>data(&quot;indian_birds_pa&quot;)</code></pre>
 </div>
 <div id="model-fitting-and-visualizations" class="section level1">
@@ -454,7 +454,7 @@ elevation_metadata &lt;- site_metadata$Elevation
 ecos_blocks(fit$omega,
                     blocker_metadata = east_west_dir,
                     order_metadata = elevation_metadata)</code></pre>
-<p><img src="index_files/figure-html/unnamed-chunk-9-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p><img src="index_files/figure-html/unnamed-chunk-10-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>Because we are interested in species turnover across elevational and geographic locations, we block the two elevational gradients (western or eastern) and plot them side by side.</p>
 <p>This blocking structure (<code>blocker_metadata</code>) can be used for any environmental gradient of interest, allowing replicates or experimental treatments (in our case, geographic location) to be easily visualized together. <code>order_metadata</code> determines the order of the stacked bars in each block. Other parameters can be customized to modify the axes, titles, etc.</p>
 <p>See <code>ecos_plot_pie</code> below to plot the data in a spatially explicit context (i.e., on a map).</p>
@@ -465,16 +465,13 @@ ecos_blocks(fit$omega,
 <p>We use the function <code>ExtractTopFeatures</code> from the R package <a href="http://bioconductor.org/packages/release/bioc/html/CountClust.html">CountClust</a> to compute and record the top contributing species to each species abundance motif.</p>
 <pre class="r"><code>features &lt;- CountClust::ExtractTopFeatures(fit$theta, top_features = 5,
                                            method = &quot;poisson&quot;, options = &quot;max&quot;)
-apply(features$indices, c(1,2), function(x) return(rownames(fit$theta)[x]))</code></pre>
-<pre><code>##      [,1]                          [,2]                     
-## [1,] &quot;Phylloscopus_chloronotus&quot;    &quot;Phylloscopus_reguloides&quot;
-## [2,] &quot;Phylloscopus_xanthoschistos&quot; &quot;Cyornis_rubeculoides&quot;   
-##      [,3]                  [,4]                      
-## [1,] &quot;Seicercus_whistleri&quot; &quot;Phylloscopus_occipitalis&quot;
-## [2,] &quot;Macronous_gularis&quot;   &quot;Orthotomus_sutorius&quot;     
-##      [,5]                   
-## [1,] &quot;Aethopyga_nipalensis&quot; 
-## [2,] &quot;Copsychus_malabaricus&quot;</code></pre>
+t(apply(features$indices, c(1,2), function(x) return(rownames(fit$theta)[x])))</code></pre>
+<pre><code>##      [,1]                       [,2]                         
+## [1,] &quot;Phylloscopus_chloronotus&quot; &quot;Phylloscopus_xanthoschistos&quot;
+## [2,] &quot;Phylloscopus_reguloides&quot;  &quot;Cyornis_rubeculoides&quot;       
+## [3,] &quot;Seicercus_whistleri&quot;      &quot;Macronous_gularis&quot;          
+## [4,] &quot;Phylloscopus_occipitalis&quot; &quot;Orthotomus_sutorius&quot;        
+## [5,] &quot;Aethopyga_nipalensis&quot;     &quot;Copsychus_malabaricus&quot;</code></pre>
 </div>
 <div id="comparing-observed-fit-to-null-expectation" class="section level3">
 <h3>Comparing observed fit to null expectation</h3>
@@ -536,26 +533,23 @@ apply(features$indices, c(1,2), function(x) return(rownames(fit$theta)[x]))</cod
 ## Fit and Bayes Factor Estimation for K = 2
 ## log posterior increase: 14985.7, 110.4, 43.3, 2.5, 0.1, done.
 ## log BF( 2 ) = 1761.84</code></pre>
-<p><img src="index_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p><img src="index_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
 </div>
 </div>
 <div id="presence-absence-data" class="section level2">
 <h2>Presence-absence data</h2>
 <p>Here we describe how to cluster species using a presence-absence data matrix of species across the globe or sub-regions of the globe.</p>
 <p>The matrix may represent be local data or macroecological data (species in a 1<span class="math inline">\(^\circ\)</span> <span class="math inline">\(\times\)</span> 1<span class="math inline">\(^\circ\)</span> map cell) - for functions to generate these data using GIS data sources (shapfiles or geodatabase files) see other sections below.</p>
-<p>We again use <code>ecos_fit</code> to fit Grade of Membership models on<br />
-binary presence-absence data using a Binomial/Bernoulli model. We refer to the clusters/motifs obtained by this procedure as <em>species presence motifs</em>.</p>
+<p>We again use <code>ecos_fit</code> to fit Grade of Membership models on binary presence-absence data using a Binomial/Bernoulli model. We refer to the clusters/motifs obtained by this procedure as <em>species motifs</em>.</p>
 <pre class="r"><code>data(&quot;indian_birds_pa&quot;)
 pres_ab_fit &lt;- ecos_fit(indian_birds_pa, K = 2, tol = 0.1)</code></pre>
 <p>The above code takes around 4 minutes to run on a single machine.</p>
-<p>Again, the function outputs a lower (specified by K) rank representation of the data <code>indian_birds_pa</code>.</p>
-<p>Once again the output <code>pres_ab_fit</code> consists of the <code>omega</code> and <code>theta</code> components.</p>
-<p>In the presence-absence case, these matrices can be understood as:</p>
+<p>Again, the function outputs a lower (specified by K) rank representation of the data <code>indian_birds_pa</code>. The output <code>pres_ab_fit</code> consists of <code>omega</code> and <code>theta</code> components and these matrices can be understood as:</p>
 <ul>
 <li><p><code>omega</code> : A site <span class="math inline">\(\times\)</span> K matrix, K representing the number of clusters or species motifs. The row sums equal 1 and the entries are positive. These represent the contribution of the different motifs to the species composition of each location.</p></li>
 <li><p><code>theta</code> : A species <span class="math inline">\(\times\)</span> K matrix, where each species has a probability of being found in the kth motif. These probabilities are <em>not</em> constrained to sum to 1 as in the multinomial case we illustrated earlier.</p></li>
 </ul>
-<p>We have an example model fit of the above function run as part of the <strong>ecostructure</strong> package</p>
+<p>We have an example model fit of the above function run as part of the <strong>ecostructure</strong> package.</p>
 <pre class="r"><code>data(&quot;pres_ab_fit&quot;)</code></pre>
 <div id="vizualing-species-motif-contributions" class="section level3">
 <h3>Vizualing species motif contributions</h3>
@@ -572,7 +566,7 @@ pres_ab_fit &lt;- ecos_fit(indian_birds_pa, K = 2, tol = 0.1)</code></pre>
 <img src="geostructure_plot.png" />
 
 </div>
-<p>One can apply this to a broader region of presence-absence data. We provide an example of visualizing species presence-absence structure as generated by applying the binomial GoM model with <span class="math inline">\(K=6\)</span> on the bird species in Australia.</p>
+<p>One can easily apply this to any region of interest. We provide an example of visualizing species presence-absence structure as generated by applying the binomial GoM model with <span class="math inline">\(K=6\)</span> on the bird species presence absence matrix from Australia. Again these data have been processed from <a href="http://datazone.birdlife.org/species/requestdis">BirdLife International</a></p>
 <pre class="r"><code>data(&quot;australia_model&quot;)
 ecos_plot_pie(omega = australia_model$omega,
                       coords = australia_birds$latlong, 
@@ -581,39 +575,27 @@ ecos_plot_pie(omega = australia_model$omega,
                       path = &quot;geostructure_plot_aus.png&quot;,
                       color= c(&quot;orange&quot;, &quot;red&quot;, &quot;yellow&quot;, &quot;deepskyblue&quot;, 
                                &quot;chartreuse&quot;, &quot;blue&quot;))</code></pre>
-<pre><code>## reading background map shapefile from inst/extdata/ne_110m_coastline 
-##             folder</code></pre>
 <p>The plot should look as follows</p>
 <div class="figure">
 <img src="geostructure_plot_aus.png" />
 
 </div>
-<p>The different colors in this plot represent the different communities and we see these communities match very well with the different climatic regimes in Australia.</p>
-</div>
-<div id="identifying-species-contributions-to-motifs-1" class="section level3">
-<h3>Identifying species contributions to motifs</h3>
-<p>The bird species driving these species communities can be derived from the <code>theta</code> matrices. The top 5 species driving each cluster are</p>
-<pre class="r"><code>features &lt;- CountClust::ExtractTopFeatures(pres_ab_fit$theta, top_features = 5,
-                                           method = &quot;poisson&quot;, options = &quot;max&quot;)
-apply(features$indices, c(1,2), function(x) return(rownames(pres_ab_fit$theta)[x]))</code></pre>
-<pre><code>##      [,1]                   [,2]                    [,3]                 
-## [1,] &quot;Aythya nyroca&quot;        &quot;Caprimulgus europaeus&quot; &quot;Carpodacus synoicus&quot;
-## [2,] &quot;Aethopyga nipalensis&quot; &quot;Aethopyga siparaja&quot;    &quot;Alcippe rufogularis&quot;
-##      [,4]              [,5]                    
-## [1,] &quot;Circus cyaneus&quot;  &quot;Phylloscopus griseolus&quot;
-## [2,] &quot;Apus nipalensis&quot; &quot;Artamus fuscus&quot;</code></pre>
 </div>
 </div>
 <div id="geographic-contributions-to-local-communities" class="section level2">
 <h2>Geographic contributions to local communities</h2>
-<p><em>ecostructure</em> offers tools for users to examine how local patterns of community structure are related to potential geographic sources. One way to interpret the geographic inputs into a given site is to generate a site’s dispersion field by overlapping the geographic distributions of the species present at the site.</p>
+<p><strong>ecostructure</strong> offers tools for users to examine how local patterns of community structure are related to potential geographic sources. One way to interpret the geographic inputs into a given site is to generate a site’s dispersion field by overlapping the geographic distributions of the species present at the site.</p>
 <div id="generating-dispersion-fields-for-local-sites" class="section level3">
 <h3>Generating dispersion fields for local sites</h3>
 <p>For a given dataset of local species presences (can be abundances but dispersion fields are generated based on presence), we can generate dispersion fields for each site and again fit a GoM model. These methods require some types of GIS data source, either shapefiles of species distributions, a geodatabase of species distributions (as in the .gdb of global bird species ditrbutions provided by BirdLife International), or even point occurences of species presences in a region.</p>
 <p>We generate dispersion fields for our 38 sites using the function <code>dsp_create_from_survey</code>.</p>
-<pre class="r"><code>local_him_disp &lt;- dsp_create_from_survey(local_data = species_counts,
+<pre class="r"><code>## If GIS data are in the form of separate shapefiles (.shp)
+
+local_him_disp &lt;- dsp_create_from_survey(local_data = species_counts,
                               gis_data_type = &quot;shp&quot;,
                               shp_dir = {PATH TO directory with species shapefiles})
+
+## If GIS data are in the form of a geodatabase (.gdb)
 
 local_him_disp &lt;- dsp_create_from_survey(local_data = species_counts,
                               gis_data_type = &quot;gdb&quot;,
@@ -622,13 +604,12 @@ local_him_disp &lt;- dsp_create_from_survey(local_data = species_counts,
 <ul>
 <li><p><code>raster</code> : A list of rasters representing the dispersion fields for each site (length is the number of rows (sites) in <code>local data</code>) at the specified resolution.</p></li>
 <li><p><code>precise</code> : A list of rasters representing the dispersion fields for each site (length is the number of rows (sites) in <code>local data</code>) at the resolution of the argument <code>precise</code>. These could be used for plotting high resolution dispersion fields.</p></li>
-<li><p><code>matrix</code> : A list of the same rasters is <code>raster</code> but in matrix form. These are used for easily processing the<br />
-dispersion fields into the structure required to fit a GoM model.</p></li>
+<li><p><code>matrix</code> : A list of the same rasters is <code>raster</code> but in matrix form. These are used for easily processing the dispersion fields into the structure required to fit a GoM model.</p></li>
 </ul>
 </div>
 <div id="visualizing-dispersion-fields" class="section level3">
 <h3>Visualizing dispersion fields</h3>
-<p>We can generate maps for all of the disperison fields using the function <code>dsp_plot_map</code>. We provide the dispersion fields for our 38 sites <code>dispersion_field_ex</code> as a list of matrices.</p>
+<p>We can generate maps for all of the disperison fields using the function <code>dsp_plot_map</code>. We provide the dispersion fields for our 38 Himalyan community surveys, <code>dispersion_field_ex</code>, as a list of matrices.</p>
 <pre class="r"><code>data(&quot;dispersion_field_ex&quot;)
 dsp_plots &lt;- dsp_plot_map(dispersion_field_ex, 
                     raster_latlim = c(5, 50), raster_longlim = c(50, 120), 
@@ -641,14 +622,14 @@ dsp_plots[[1]]</code></pre>
 <h3>Processing dispersion fields for GoM model fit</h3>
 <p>We can easily process the dispersion fields into one data matrix by using <code>dsp_to_matrix</code></p>
 <pre class="r"><code>dsp_fields_matrix &lt;- dsp_to_matrix(dispersion_field_ex)</code></pre>
-<p>The output from <code>dsp_to_matrix</code> is a data matrix with rows equivalent to each sites dispersion fields as a vector.</p>
+<p>The output from <code>dsp_to_matrix</code> is a data matrix with rows equivalent to each site’s dispersion field as a vector.</p>
 <pre class="r"><code>dim(dsp_fields_matrix)</code></pre>
 <pre><code>## [1]     38 201600</code></pre>
 <p>Each column is a map cell in the region of interest, with the value being a count from each site of how many species from that site overlap the cell.</p>
 </div>
-<div id="gom-model-and-viz.-of-dispersion-fields" class="section level3">
-<h3>GoM model and viz. of dispersion fields</h3>
-<p>As these data are counts, we can now fit a multinomial GoM (using to examine <em>geographic motifs</em>. In this case, omega is a matrix of motif contributions to dispersion fields, and the theta matrix represents each map cells contrbution to each of the motifs. We can plot the thetas on a map, showing the contribution of each map cell to the motif. Some biologists may think of these motifs as analagous to the regional inputs into local communities.</p>
+<div id="gom-model-and-visualization-of-dispersion-fields" class="section level3">
+<h3>GoM model and visualization of dispersion fields</h3>
+<p>As these data are counts, we can now fit a multinomial GoM (using to examine <em>geographic motifs</em>. In this case, <code>omega</code> is a matrix of motif contributions to dispersion fields, and the <code>theta</code> matrix represents each map cells contrbution to each of the motifs. We can plot the <code>theta</code>s on a map, showing the contribution of each map cell to the motif. Some biologists may think of these motifs as analagous to the regional inputs into local communities.</p>
 <p>The model fit is done using <code>ecos_fit</code> as above. Because this geographic data matrix may be particularly large, depending on the resolution chosen to produce the dispersion fields, the fit may take longer than the fit on the original data matrix.</p>
 <pre class="r"><code>fit &lt;- ecos_fit(dsp_fields_matrix, K = 2, tol = 0.1, num_trials = 10)</code></pre>
 <p>We can plot the theta distributions of each geographical motif using the function <code>dsp_motif</code>. We provide an example theta matrix with the package called <code>example_theta</code>.</p>
@@ -659,12 +640,12 @@ himalayan_geo_motifs &lt;- dsp_motif(example_theta,
                                   dsp_fld_res = 8)
 himalayan_geo_motifs$motif_maps[[1]]</code></pre>
 <p><img src="index_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
-<p>We call this the Ghostbusters theme !! :)</p>
+<p>We call this color palette the <em>Ghostbusters theme</em> !! :)</p>
 </div>
 </div>
 <div id="incorporating-phylogenic-and-trait-information" class="section level2">
 <h2>Incorporating phylogenic and trait information</h2>
-<p>The relationships between species, either phylogenetically or functionally, are of paramount importance when evaluating ecological structure. We provide two functions, one for phylogenies and one for trait data, that collapse species into either clades or functional groups based on a desired cut off.</p>
+<p>The relationships between species, either phylogenetically or functionally, are an important component in evaluating ecological structure. We provide two functions, one for phylogenies and one for trait data, that collapse species into either clades or functional groups based on a desired cut off.</p>
 <div id="phylogeny" class="section level3">
 <h3>Phylogeny</h3>
 <p>We load the time-calibrated phylogenetic tree <code>phylo_tree</code> of the 304 Himalayan birds in <code>species_counts</code>. We then collapse the species into clades to based on certain time point cut off on the tree <code>collapse_at</code>. Below we cut the tree off at 10 million years ago.</p>
@@ -673,8 +654,8 @@ phylo_counts &lt;- ecos_prepare_by_phylo(species_counts, phylo_tree, collapse_at
 dim(phylo_counts$outdat)</code></pre>
 <pre><code>## [1] 38 63</code></pre>
 </div>
-<div id="trait" class="section level3">
-<h3>Trait</h3>
+<div id="traits" class="section level3">
+<h3>Traits</h3>
 <p>We use morphological trait metadata from <code>himalayan_birds</code> data and then use the distance metric based on these traits to collapse the bird species as above. As in the case of the time component above, one can set <code>prop_div</code> to a collapse the tips of trait dendrogram to produce a specific number of functional groups (the proportion of the original diversity). Below we create <span class="math inline">\(91\)</span> functional groups out of the original 304 species.</p>
 <pre class="r"><code>bill_traits &lt;- as.matrix(dist(scale(species_metadata[,c(1:3)])))
 counts_bill_traits &lt;- ecos_prepare_by_trait(counts = species_counts, 
@@ -684,10 +665,11 @@ dim(counts_bill_traits)</code></pre>
 <pre><code>## [1] 38 91</code></pre>
 <p>Both <code>phylo_counts</code> and <code>counts_bill_traits</code> can now be passed to <code>ecos_fit</code> to generate either <em>phylogenetic motifs</em> or <em>trait motifs</em>.</p>
 </div>
-<div id="appendix-generating-a-presence-absence-matrix" class="section level3">
-<h3>Appendix: generating a presence absence matrix</h3>
-<p>There are a number of ways to generate species presence absence data to evaluate <em>species motifs</em>. Conservation organizations (<a href="http://www.iucnredlist.org/technical-documents/spatial-data">IUCN</a>, <a href="http://datazone.birdlife.org/species/requestdis">BirdLife International</a>, etc.) often distribute shapefiles and geodatabse files that contain geographic distributions in the form of polygons. Point occurances can also be overlaid on a raster to produce a rough geographic distribution (this may be suitable for fitting GoMs at a large scale).</p>
-<p>We provide a function <code>dsp_create_from_gdb</code> that creates a presence absence matrix using these GIS data types. This function is still under development and is slow on large datasets - we illustrate how it might be used below on the geodatabase of global bird distrbutions provided by BirdLife International.</p>
+</div>
+<div id="generating-a-presence-absence-matrix" class="section level2">
+<h2>Generating a presence absence matrix</h2>
+<p>There are a number of ways to generate species presence absence data to evaluate <em>species motifs</em>. Conservation organizations (<a href="http://www.iucnredlist.org/technical-documents/spatial-data">IUCN</a>, <a href="http://datazone.birdlife.org/species/requestdis">BirdLife International</a>, etc.) often distribute shapefiles and geodatabase that contain geographic distributions in the form of polygons. Point occurances can also be overlaid on a raster to produce a rough geographic distribution (this may be suitable for fitting GoMs at a large scale).</p>
+<p>We provide a function <code>dsp_create_from_gdb</code> that creates a presence absence matrix using these GIS data types. This function is slow on large datasets. We illustrate how it might be used below on the geodatabase of global bird distrbutions provided by BirdLife International.</p>
 <pre class="r"><code>## Request and fetch geodatabase (gdb) from BirdLife International : http://datazone.birdlife.org/species/requestdis or 
 
 ## say we call one such gdb - example_birdlife.gdb
@@ -709,15 +691,14 @@ disp_from_scratch &lt;- dsp_create_from_gdb(gdb_object = gdb_global_birds,
 <p>Users may also look to other packages that specifically focus on generating presence absence data from GIS data types. <a href="https://cran.r-project.org/web/packages/letsR/letsR.pdf">letsR</a> is an incredibly useful package to this end. Presence-absence matrices from <strong>letsR</strong> can certainly be used in tandem with the <strong>ecostructure</strong> functions. Our goal is to contribute to that body of work by creating a tool that employs the speed and utility of the packages <a href="https://cran.r-project.org/web/packages/sf/index.html">sf</a> and <a href="https://cran.r-project.org/web/packages/fasterize/index.html">fasterize</a> (see <a href="https://cran.r-project.org/web/packages/velox/velox.pdf">velox</a> as well).</p>
 </div>
 </div>
-</div>
 <div id="citation" class="section level1">
 <h1>Citation</h1>
 <p>If you find <strong>ecostructure</strong> useful, please cite our accompanying paper.</p>
 </div>
 <div id="developers" class="section level1">
 <h1>Developers</h1>
-<p><strong>ecostructure</strong> has been developed by <a href="https://kkdey.github.io">Kushal K Dey</a> and <a href="http://www.alexwhitebiology.com/">Alexander E White</a> under the mentorship of <a href="http://stephenslab.uchicago.edu/">Matthew Stephens</a> and <a href="https://pondside.uchicago.edu/ecol-evol/people/price.html">Trevor Price</a> at the University of Chicago.</p>
-<p>The Himalayn birds abundance data has been collected by Trevor Price and Dhananjai Mohan.</p>
+<p><strong>ecostructure</strong> has been developed by <a href="https://kkdey.github.io">Kushal K Dey</a> and <a href="http://www.alexwhitebiology.com/">Alexander E White</a>, in the labs of <a href="http://stephenslab.uchicago.edu/">Matthew Stephens</a> and <a href="https://pondside.uchicago.edu/ecol-evol/people/price.html">Trevor Price</a> labs at the University of Chicago.</p>
+<p>The local Himalayan bird surveys were conducted by Trevor Price and Dhananjai Mohan.</p>
 <p>For any queries or concerns related to the software, you can open an issue <a href="https://github.com/kkdey/ecostructure/issues">here</a>.</p>
 <p>Or you can contact us directly: Kushal K Dey - <em><a href="mailto:kshldey@gmail.com">kshldey@gmail.com</a></em> or Alex White - <em><a href="mailto:aewhite100@gmail.com">aewhite100@gmail.com</a></em>.</p>
 </div>

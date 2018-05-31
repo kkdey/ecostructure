@@ -1,5 +1,5 @@
 ---
-title: "Guided ecostructure Tutorial"
+title: "Guided ecostructure Tutorial : an R package for clustering and visualization of ecological data"
 shorttitle: "ecostructure"
 author:
   - name: Kushal K Dey

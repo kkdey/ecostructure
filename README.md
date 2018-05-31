@@ -1,5 +1,5 @@
 # ecostructure
-R package for Clustering and Visualization of structure in ecological site-species abundance data
+R package for Clustering and Visualization of structure in ecological data
 
 This package is targeted at fitting [STRUCTURE](http://www.genetics.org/content/155/2/945)
 type model on ecological species abundance and presence-absence data both at local
@@ -11,7 +11,7 @@ models.
 - [Kushal K Dey](https://kkdey.github.io) 
 - [Alexander E White](http://www.alexwhitebiology.com/)
 
-Mentored by 
+Advised by 
 
 - [Matthew Stephens](http://stephenslab.uchicago.edu/)
 - [Trevor Price](https://pondside.uchicago.edu/ecol-evol/people/price.html)
@@ -36,8 +36,7 @@ Some examples of produced using our **ecostructure** package
 
 <img src="bin/ecostructure.2.001.jpeg" alt="misc" height="600" width="1000" align = "middle">
 
-If you want to try **ecostructure** and replicate figures like this, please check our tutorial [here](https://github.com/kkdey/ecostructure/blob/master/vignettes/ecostructure.Rmd).
-
+If you want to try **ecostructure** and replicate figures like this, please check our tutorial [here](https://kkdey.github.io/ecostructure/).
 
 ### Citation
 
