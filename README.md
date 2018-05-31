@@ -34,7 +34,7 @@ library(ecostructure)
 
 Some examples of produced using our **ecostructure** package
 
-<img src="bin/ecostructure.2.001.jpeg" alt="misc" height="600" width="800" align = "middle">
+<img src="bin/ecostructure.2.001.jpeg" alt="misc" height="600" width="1000" align = "middle">
 
 If you want to try **ecostructure** and replicate figures like this, please check our tutorial [here](https://github.com/kkdey/ecostructure/blob/master/vignettes/ecostructure.Rmd).
 
