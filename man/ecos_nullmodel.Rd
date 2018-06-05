@@ -14,10 +14,11 @@ G- number of features (bird species)}
 
 \item{K}{The number of clusters to fit}
 
-\item{tol}{The tolerance limit of the \code{ecostructure_fit}.}
+\item{tol}{The tolerance limit of the \code{ecos_fit}.}
 
 \item{null.model}{The type of nullmodel used (similar to the
-randomizeMatrix() function argument in picante package)}
+picante::randomizeMatrix() function argument in 
+picante package)}
 
 \item{iter_fill}{The number of swaps/fills in each randomized matrix build}
 
@@ -38,7 +39,7 @@ Returns a list with
 \description{
 Generate randomized matrix of counts 
 given the observed data matrix for a particular null model, 
-run \code{ecostructure_fit} on these null matrices and compare the fit
+run \code{ecos_fit} on these null matrices and compare the fit
 on null model data with that on the observed data. Used for validating 
 the clustering.
 }

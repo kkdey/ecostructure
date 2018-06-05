@@ -2,84 +2,55 @@
 % Please edit documentation in R/dsp_create_from_gdb.R
 \name{dsp_create_from_gdb}
 \alias{dsp_create_from_gdb}
-\title{Create dispersion fields from local species abundance data 
-and associated GIS data source (shp files or geodatabase file).}
+\title{Create dispersion fields and a presence absence matrix from geodatabase 
+       file or a shape file containing all species.}
 \usage{
 dsp_create_from_gdb(gdb_object, raster_resolution = 5, thresh = 4,
   raster_latlim = c(-90, 90), raster_longlim = c(-180, 180),
-  species_feature = "SCINAME", species_names = NULL)
+  species_feature = "SCINAME", precision = 0.25, species_names = NULL,
+  drop = FALSE)
 }
 \arguments{
-\item{gdb_object}{The geodatabase can be read in ahead of time and provided as an sf object. 
-This will dramatically reduce run time, especially useful if the function 
-is to be run multiple times.}
+\item{gdb_object}{The geodatabase or a single shapefile containing all species to be read 
+in ahead of time and provided as an sf object.}
 
-\item{raster_resolution}{The scale resolution of the raster in degrees.}
+\item{raster_resolution}{The resolution of the raster in degrees.}
 
-\item{raster_latlim}{The latitudinal range of the desired dispersion field.}
+\item{thresh}{The number of co-occuring species required to generate a dispersion field for that map cell.}
 
-\item{raster_longlim}{The longitudinal range of the desired dispersion field.}
+\item{raster_latlim}{The latitudinal range of the desired dispersion fields and presence-absence matrix.}
 
-\item{local_data}{abundance site (row) x species (column) matrix/data frame.}
+\item{raster_longlim}{The longitudinal range.}
 
-\item{gis_data_type}{One of c("shp","gdb"). Are the GIS data in seperate shapefiles 
-or in a geodatabase file?}
+\item{species_feature}{The name of the feature (column) that contains the species names 
+in the GIS data source.}
 
-\item{shp_dir}{The directory that contains shapefiles for all the
-species in the local data matrix.}
-
-\item{gdb_dir}{The directory that contains the geodatabase.}
-
-\item{gdb_layer}{If layer name of the gdb file that contains the species distributions.}
-
-\item{gdb_species_feature}{The name of the feature that contains the species names 
-in the geodatabse.}
-
-\item{raster_resolution}{The precision of the initial estimation provided to fasterize. 
+\item{precision}{The precision of the initial estimation provided to fasterize. 
 fasterize tends to undercount small species ranges, so is required 
-to keep at a low value in order detect species presence in a square degree cell.
+to keep at a low value in order detect species presences.
 Most users will not need to change, but increaseing this value will 
 speed up the function but with potential for error.}
 
-\item{base_local}{If the count of a species in a local site is less than base_local,
-it is assumed to be absent from the site. The default is 0.
-Non zero values may result from obsrvational or data
-recording errors}
+\item{species_names}{If you would like to only include a subset of the species is the GIS data source
+a vector of species names can be provided to filter the GIS data before processing
+into a presence absence matrix and dispersion fields.}
 
-\item{optional_species_names}{If the column name corresponding to some species
-does not match with the GIS data, the user might need
-to replace it by another species name. In such a
-scenario, instead of using column names, the user can
-enter a new vector of names, which may be slight
-modification on the species from the column of the data,
-taking account of issues with non-matching species names
-between shape files and the local data frame.}
-
-\item{include_shp_attributes}{Each species range may be divided according to a number of 
-attributes, e.g. breeding and non breeding layers, and building dispersion fields
-may require only a subset of these attributes. The user can provide a 
-string of attributes in order to build the dispersion field
-based only on those species attributes. The vector must be in a format
-that is read in by sf and must include an "x" in place of where the 
-sf object will be manipulated in the function.  Default includes 
-breeding and resident ranges for global birds based on reading 
-GIS data from BirdLife International.}
+\item{drop}{Boolean. If T sites with 0 overlapping species will be dropped from the final presence-absence matrix.
+Defaults to false.}
 }
 \value{
-Returns 3 lists. In each list, each element is a
+Returns 2 lists and 1 matrix. In each list, each element is a
 dispersion field corresponding to the species present in the 
 specific site to which it corresponds. The first list "matrix" 
 contains each dispersion field as a matrix. The second list "raster" returns 
-each dispersion field as a raster.  The third list "precise" returns 
-each dispersion field at the high resolution of precision.  The names of the elements 
-of each list are assigned as the row names of the input data matrix (sites).
+each dispersion field as a raster. The matrix is a presence absence matrix with 
+species as columns and each individual map cell the rows. The names of the elements 
+of the lists, and the rownames for the presence-absence matrix, are assigned as 
+the lat_long combos for those locations.
 }
 \description{
-Reads a data frame or a matrix of local site-species abundances,
-with rows being sites and columns being species, along with GIS data files for
-each of the species (may be more too) ocurring in the local data matrix. The function
-produces a dispersion field of the regional presence pattern for each site in 
-a user-specified latitudinal and longitudinal range.
+Reads a single GIS data file and generates a presence-matrix
+and associated dispersion fields in a user-specified region.
 }
 \keyword{counts}
 \keyword{data,}

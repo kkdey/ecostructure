@@ -17,7 +17,7 @@ ecos_plot_pie(omega = NULL, coords = NULL, bgmap_path = NULL,
 }
 \arguments{
 \item{omega}{Matrix of Cluster membership probabilities of each sample
-obtained from \code{ecostructure_fit()}. The row sums 
+obtained from \code{ecos_fit()}. The row sums 
 sum to 1 for each sample.}
 
 \item{coords}{a matrix of latitude and longitude entries for each site (row)
@@ -69,12 +69,12 @@ chosen so that they are distinct from one another.}
 }
 \value{
 Returns a pie chart representation of the memberships obtained 
-        from \code{ecostructure_fit} on a global species 
+        from \code{ecos_fit} on a global species 
         presence-absence/counts data
 }
 \description{
 Make a pie chart representation of the membership probabilities
-\code{omega} output from the \code{ecostructure_fit} model.
+\code{omega} output from the \code{ecos_fit} model.
 }
 \examples{
  data("australia_birds")
