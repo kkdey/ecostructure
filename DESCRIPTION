@@ -22,6 +22,7 @@ Imports:
     sp,
     utils,
     grid,
+    dplyr,
     gridExtra,
     phytools,
     fasterize,
