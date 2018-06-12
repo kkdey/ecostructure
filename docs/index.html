@@ -324,15 +324,22 @@ div.tocify {
 <div id="r-requirements" class="section level2">
 <h2>R requirements</h2>
 <p><strong>ecostructure</strong> requires R version <span class="math inline">\(&gt;= 3.4.0\)</span></p>
-<p>To install <strong>ecostructure</strong>, follow the steps below</p>
+<p>To install <strong>ecostructure</strong>, first, install the dependencies.</p>
 <pre class="r"><code>source(&quot;https://bioconductor.org/biocLite.R&quot;)
 biocLite(&quot;Biobase&quot;)
 install.packages(&quot;devtools&quot;)
-devtools::install_github(&quot;kkdey/ecostructure&quot;)</code></pre>
-<p>This will install <strong>ecostructure</strong> along with all its dependencies.</p>
-<p>Next, load the package into R.</p>
+devtools::install_github(&quot;kkdey/methClust&quot;);  
+devtools::install_github(&quot;kkdey/CountClust&quot;)
+devtools::install_github(&quot;TaddyLab/maptpx&quot;)</code></pre>
+<p>Next, load the dependencies</p>
 <pre class="r"><code>library(Biobase)
-library(ecostructure)</code></pre>
+library(methClust)
+library(CountClust)
+library(maptpx)</code></pre>
+<p>Next, install <strong>ecostructure</strong>.</p>
+<pre class="r"><code>devtools::install_github(&quot;kkdey/ecostructure&quot;)</code></pre>
+<p>Finally, load the <strong>ecostructure</strong> package.</p>
+<pre class="r"><code>library(ecostructure)</code></pre>
 <p>A comprehensive list of all the functions in the <strong>ecostructure</strong> package can be found by running the following command.</p>
 <pre class="r"><code>help(package = &quot;ecostructure&quot;)</code></pre>
 </div>
@@ -454,7 +461,7 @@ elevation_metadata &lt;- site_metadata$Elevation
 ecos_blocks(fit$omega,
                     blocker_metadata = east_west_dir,
                     order_metadata = elevation_metadata)</code></pre>
-<p><img src="index_files/figure-html/unnamed-chunk-10-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p><img src="index_files/figure-html/unnamed-chunk-12-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>Because we are interested in species turnover across elevational and geographic locations, we block the two elevational gradients (western or eastern) and plot them side by side.</p>
 <p>This blocking structure (<code>blocker_metadata</code>) can be used for any environmental gradient of interest, allowing replicates or experimental treatments (in our case, geographic location) to be easily visualized together. <code>order_metadata</code> determines the order of the stacked bars in each block. Other parameters can be customized to modify the axes, titles, etc.</p>
 <p>See <code>ecos_plot_pie</code> below to plot the data in a spatially explicit context (i.e., on a map).</p>
@@ -533,7 +540,7 @@ t(apply(features$indices, c(1,2), function(x) return(rownames(fit$theta)[x])))</
 ## Fit and Bayes Factor Estimation for K = 2
 ## log posterior increase: 14985.7, 110.4, 43.3, 2.5, 0.1, done.
 ## log BF( 2 ) = 1761.84</code></pre>
-<p><img src="index_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p><img src="index_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
 </div>
 </div>
 <div id="presence-absence-data" class="section level2">
@@ -620,7 +627,7 @@ dsp_plots &lt;- dsp_plot_map(dispersion_field_ex,
                     raster_latlim = c(5, 50), raster_longlim = c(50, 120), 
                     scale = &quot;percentage&quot;)
 dsp_plots[[1]]</code></pre>
-<p><img src="index_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<p><img src="index_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
 <p><code>dsp_plots</code> is now a list of plots, each of which visualizes the dispersion fields from our local sites.</p>
 </div>
 <div id="processing-dispersion-fields-for-gom-model-fit" class="section level3">
@@ -644,7 +651,7 @@ himalayan_geo_motifs &lt;- dsp_motif(example_theta,
                                                  &quot;orange&quot;,&quot;red&quot;),
                                   dsp_fld_res = 8)
 himalayan_geo_motifs$motif_maps[[1]]</code></pre>
-<p><img src="index_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
+<p><img src="index_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
 <p>We call this color palette the <em>Ghostbusters theme</em> !! :)</p>
 </div>
 </div>

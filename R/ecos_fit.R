@@ -38,6 +38,12 @@ ecos_fit <- function(dat,
                      tol = 0.1,
                      num_trials = 1,
                      fit_control = list()){
+  
+  row_names <- rownames(dat)
+  if(length(row_names) != dim(dat)[1]){
+    warning("row names not provided, or not proper, using fake rownames")
+    rownames(dat) <- 1:dim(dat)[1]
+  }
   if(all(dat - floor(dat) != 0)){
     stop("The matrix dat must be a matrix of integers - a binary or a counts matrix")
   }

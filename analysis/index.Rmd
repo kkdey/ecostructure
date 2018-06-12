@@ -48,21 +48,35 @@ error, please follow the instructions at this [link](https://thecoatlessprofesso
 
 **ecostructure** requires R version $>= 3.4.0$
 
-To install **ecostructure**, follow the steps below
+To install **ecostructure**, first, install the dependencies.
 
 ```{r echo=TRUE, eval=FALSE}
 source("https://bioconductor.org/biocLite.R")
 biocLite("Biobase")
 install.packages("devtools")
-devtools::install_github("kkdey/ecostructure")
+devtools::install_github("kkdey/methClust");  
+devtools::install_github("kkdey/CountClust")
+devtools::install_github("TaddyLab/maptpx")
 ```
 
-This will install **ecostructure** along with all its dependencies. 
-
-Next, load the package into R.
+Next, load the dependencies
 
 ```{r warning=FALSE, message=FALSE}
 library(Biobase)
+library(methClust)
+library(CountClust)
+library(maptpx)
+```
+
+Next, install **ecostructure**.
+
+```{r echo=TRUE, eval=FALSE}
+devtools::install_github("kkdey/ecostructure")
+```
+
+Finally, load the **ecostructure** package.
+
+```{r warning=FALSE, message=FALSE}
 library(ecostructure)
 ```
 

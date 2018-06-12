@@ -39,5 +39,5 @@ Suggests:
     knitr, BiocStyle, Biobase, roxygen2, RColorBrewer, devtools, xtable, Rcpp
 VignetteBuilder: knitr
 biocViews: Software, Visualization, Ecology
-Remotes: kkdey/methClust, kkdey/maptpx, kkdey/CountClust
+Remotes: kkdey/methClust, kkdey/CountClust
 RoxygenNote: 6.0.1
