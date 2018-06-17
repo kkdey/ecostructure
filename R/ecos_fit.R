@@ -84,12 +84,31 @@ ecos_fit <- function(dat,
     
     fit_control <- modifyList(fit_control_default, fit_control)
     
-    topic_clus <- do.call(methClust::meth_topics,
-                          append(list(meth = meth, 
-                                      unmeth = unmeth, 
-                                      K = K, 
-                                      tol = tol), 
-                                      fit_control))
+    fits_list <- list()
+    L_array <- c()
+    
+    for(m in 1:num_trials){
+      counter = 0
+      while(counter != 1){
+        tmp <- try(do.call(methClust::meth_topics,
+                           append(list(meth = meth, 
+                                       unmeth = unmeth, 
+                                       K = K, 
+                                       tol = tol), 
+                                  fit_control)), TRUE)
+        if(!inherits(tmp, "try-error")){
+          counter = 1
+        }else{
+          counter = 0
+        }
+      }
+      fits_list[[m]] <- tmp
+      cat("We are at iteration", m, "\n")
+    }
+    
+    loglik <- unlist(lapply(fits_list, function(x) return(x$L)))
+    ids <- which.max(loglik)
+    topic_clus <- fits_list[[ids]]
     ll <- list("omega" = topic_clus$omega,
                "theta" = topic_clus$freq,
                "L" = topic_clus$L)
