@@ -16,6 +16,13 @@ Advised by
 - [Matthew Stephens](http://stephenslab.uchicago.edu/)
 - [Trevor Price](https://pondside.uchicago.edu/ecol-evol/people/price.html)
 
+
+### Citation
+
+If you find **ecostructure**, please cite our paper 
+
+White, Alexander E. and Dey, Kushal K. and Mohan, Dhananjai and Stephens, Matthew and Price, Trevor D. Regional influences on community structure across the tropical-temperate divide. Nature Communications. 2019. 10 (1). 2646. 10.1038/s41467-019-10253-6.
+
 ### Installation
 
 Install **ecostructure** following the instructions below.
@@ -38,9 +45,6 @@ Some examples of produced using our **ecostructure** package
 
 If you want to try **ecostructure** and replicate figures like this, please check our tutorial [here](https://kkdey.github.io/ecostructure/).
 
-### Citation
-
-If you find **ecostructure**, please cite us at
 
 ### Questions?
 
