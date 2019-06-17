@@ -52,7 +52,7 @@ The main contributions of the **ecostructure** package are:
   
 - Tools to process species level data using a phylogeny, a trait dataset, or a GIS dataset in order to examine the contribution of history, function, and geography to species level structure.
 
-The analytical framework provided by **ecostrucutre** is employed in our accompanying [paper](White et al. 2018). The paper focuses on a survey of bird species abundances, conducted by Trevor Price and Dhananjai Mohan, at 38 local sites across the all elevations in the eastern and western Himalaya. This data is also provided as part of the **ecostructure** package.  
+The analytical framework provided by **ecostrucutre** is employed in our accompanying [paper](https://www.nature.com/articles/s41467-019-10253-6). The paper focuses on a survey of bird species abundances, conducted by Trevor Price and Dhananjai Mohan, at 38 local sites across the all elevations in the eastern and western Himalaya. This data is also provided as part of the **ecostructure** package.  
 
 Next, we present an elaborate guided tutorial on how to use the **ecostructure**
 package.
