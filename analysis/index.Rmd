@@ -28,7 +28,14 @@ The main contributions of the **ecostructure** package are as follows
   
 - Tools to process species level data using a phylogeny, a trait dataset, or a GIS dataset in order to examine the contribution of history, function, and geography to species level structure.
 
-The analytical framework provided by **ecostructure** is employed in our accompanying [paper](White et al. 2018). The paper focuses on a survey of bird species abundances at 38 local sites across the all elevations in the eastern and western Himalaya, the data from which is provided as part of this package.  
+The analytical framework provided by **ecostructure** is employed in our accompanying paper (see citation below). The paper focuses on a survey of bird species abundances at 38 local sites across the all elevations in the eastern and western Himalaya, the data from which is provided as part of this package.  
+
+# Citation
+
+If you find our package useful or want to known more about the underlying methods, please check out our [paper](https://www.nature.com/articles/s41467-019-10253-6):
+
+White, Alexander E. and Dey, Kushal K. and Mohan, Dhananjai and Stephens, Matthew and Price, Trevor D. Regional influences on community structure across the tropical-temperate divide. Nature Communications. 2019. 10 (1). 2646. 10.1038/s41467-019-10253-6
+
 
 # Installation
 
@@ -455,9 +462,6 @@ illustrated above was generated using this data source.
 
 Users may also look to other packages that specifically focus on generating presence absence data from GIS data types. [letsR](https://cran.r-project.org/web/packages/letsR/letsR.pdf) is an incredibly useful package to this end. Presence-absence matrices from **letsR** can certainly be used in tandem with the **ecostructure** functions. Our goal is to contribute to that body of work by creating a tool that employs the speed and utility of the packages [sf](https://cran.r-project.org/web/packages/sf/index.html) and [fasterize](https://cran.r-project.org/web/packages/fasterize/index.html) (see [velox](https://cran.r-project.org/web/packages/velox/velox.pdf) as well).
 
-# Citation
-
-If you find **ecostructure** useful, please cite our accompanying paper.
 
 # Developers
 

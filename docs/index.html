@@ -25,7 +25,9 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.0.13/css/fa-svg-with-js.css" rel="stylesheet" />
+<script src="site_libs/font-awesome-5.0.13/js/fontawesome-all.min.js"></script>
+<script src="site_libs/font-awesome-5.0.13/js/fa-v4-shims.min.js"></script>
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -93,6 +95,9 @@ img {
 }
 .tabbed-pane {
   padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
 }
 button.code-folding-btn:focus {
   outline: none;
@@ -312,7 +317,12 @@ div.tocify {
 <li><p>New methods for visualizing the structure of species assemblages (e.g., communities or biotas), leveraging the output from the appropriate GoM model.</p></li>
 <li><p>Tools to process species level data using a phylogeny, a trait dataset, or a GIS dataset in order to examine the contribution of history, function, and geography to species level structure.</p></li>
 </ul>
-<p>The analytical framework provided by <strong>ecostructure</strong> is employed in our accompanying <a href="White%20et%20al.%202018">paper</a>. The paper focuses on a survey of bird species abundances at 38 local sites across the all elevations in the eastern and western Himalaya, the data from which is provided as part of this package.</p>
+<p>The analytical framework provided by <strong>ecostructure</strong> is employed in our accompanying paper (see citation below). The paper focuses on a survey of bird species abundances at 38 local sites across the all elevations in the eastern and western Himalaya, the data from which is provided as part of this package.</p>
+</div>
+<div id="citation" class="section level1">
+<h1>Citation</h1>
+<p>If you find our package useful or want to known more about the underlying methods, please check out our <a href="https://www.nature.com/articles/s41467-019-10253-6">paper</a>:</p>
+<p>White, Alexander E. and Dey, Kushal K. and Mohan, Dhananjai and Stephens, Matthew and Price, Trevor D. Regional influences on community structure across the tropical-temperate divide. Nature Communications. 2019. 10 (1). 2646. 10.1038/s41467-019-10253-6</p>
 </div>
 <div id="installation" class="section level1">
 <h1>Installation</h1>
@@ -702,10 +712,6 @@ disp_from_scratch &lt;- dsp_create_from_gdb(gdb_object = gdb_global_birds,
 <p>One may request the BirdLife dataset from <a href="http://datazone.birdlife.org/species/requestdis">here</a>. Presence/absence data illustrated above was generated using this data source.</p>
 <p>Users may also look to other packages that specifically focus on generating presence absence data from GIS data types. <a href="https://cran.r-project.org/web/packages/letsR/letsR.pdf">letsR</a> is an incredibly useful package to this end. Presence-absence matrices from <strong>letsR</strong> can certainly be used in tandem with the <strong>ecostructure</strong> functions. Our goal is to contribute to that body of work by creating a tool that employs the speed and utility of the packages <a href="https://cran.r-project.org/web/packages/sf/index.html">sf</a> and <a href="https://cran.r-project.org/web/packages/fasterize/index.html">fasterize</a> (see <a href="https://cran.r-project.org/web/packages/velox/velox.pdf">velox</a> as well).</p>
 </div>
-</div>
-<div id="citation" class="section level1">
-<h1>Citation</h1>
-<p>If you find <strong>ecostructure</strong> useful, please cite our accompanying paper.</p>
 </div>
 <div id="developers" class="section level1">
 <h1>Developers</h1>
