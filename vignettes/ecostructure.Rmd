@@ -57,6 +57,15 @@ The analytical framework provided by **ecostrucutre** is employed in our accompa
 Next, we present an elaborate guided tutorial on how to use the **ecostructure**
 package.
 
+# Citation
+
+If you find our package useful or want to known more about the underlying methods, please check out our [paper](https://www.nature.com/articles/s41467-019-10253-6):
+
+White, Alexander E. and Dey, Kushal K. and Mohan, Dhananjai and Stephens, Matthew and Price, Trevor D. Regional influences on community structure across the tropical-temperate divide. Nature Communications. 2019. 10 (1). 2646. 10.1038/s41467-019-10253-6
+
+
+
+
 # Installation
 
 ## System requirements
@@ -77,9 +86,9 @@ error, please follow the instructions at this [link](https://thecoatlessprofesso
 
 To install **ecostructure**, first, please load the Bioconductor dependencies.
 
-```{r echo=TRUE, eval=FALSE}
-source("https://bioconductor.org/biocLite.R")
-biocLite("Biobase")
+```{r echo=TRUE, eval=TRUE}
+#source("https://bioconductor.org/biocLite.R")
+#biocLite("Biobase")
 library(Biobase)
 ```
 
@@ -111,13 +120,6 @@ Next, load the package into R.
 ```{r warning=FALSE, message=FALSE}
 library(ecostructure)
 ```
-
-## Citation
-
-If you find our package useful, please cite our [paper](https://www.nature.com/articles/s41467-019-10253-6):
-
-White, Alexander E. and Dey, Kushal K. and Mohan, Dhananjai and Stephens, Matthew and Price, Trevor D. Regional influences on community structure across the tropical-temperate divide. Nature Communications. 2019. 10 (1). 2646. 10.1038/s41467-019-10253-6
-
 
 
 # Himalayan Bird Surveys 
