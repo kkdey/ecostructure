@@ -33,7 +33,10 @@ Imports:
     SpatialExtremes,
     ape,
     mapplots,
-    Biobase
+    Biobase,
+    SQUAREM,
+    boot,
+    slam
 Suggests:
     knitr, BiocStyle, Biobase, roxygen2, RColorBrewer, devtools, xtable, Rcpp
 VignetteBuilder: knitr
