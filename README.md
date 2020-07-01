@@ -29,6 +29,9 @@ Install **ecostructure** following the instructions below.
 
 ```R
 install.packages(devtools)
+install.packages("sf")
+devtools::install_github("kkdey/methClust")
+devtools::install_github("kkdey/CountClust")
 devtools::install_github("kkdey/ecostructure")
 ```
 Then load **ecostructure**
