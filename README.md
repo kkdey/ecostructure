@@ -19,9 +19,12 @@ Advised by
 
 ### Citation
 
-If you find **ecostructure**, please cite our paper 
+If you find **ecostructure**, please cite our papers
 
 White, Alexander E. and Dey, Kushal K. and Mohan, Dhananjai and Stephens, Matthew and Price, Trevor D. Regional influences on community structure across the tropical-temperate divide. Nature Communications. 2019. 10 (1). 2646. 10.1038/s41467-019-10253-6.
+
+White, Alexander E. and Dey, Kushal K. and and Stephens, Matthew and Price, Trevor D. Dispersal syndromes drive the formation of biogeographical regions, illustrated by the case of Wallace’s Line. Global Ecology and Biogeography. 2021.  https://doi.org/10.1111/geb.13250
+
 
 ### Installation
 
