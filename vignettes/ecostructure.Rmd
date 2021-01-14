@@ -87,8 +87,9 @@ error, please follow the instructions at this [link](https://thecoatlessprofesso
 To install **ecostructure**, first, please load the Bioconductor dependencies.
 
 ```{r echo=TRUE, eval=TRUE}
-#source("https://bioconductor.org/biocLite.R")
-#biocLite("Biobase")
+#if (!requireNamespace("BiocManager", quietly = TRUE))
+#    install.packages("BiocManager")
+#BiocManager::install("Biobase")
 library(Biobase)
 ```
 
@@ -97,14 +98,17 @@ install.packages("devtools")
 ```
 
 ```{r echo=TRUE, eval=FALSE}
+devtools::install_github("kkdey/maptpx") 
+## updated version of maptpx CRAN version by M. Taddy
+## do not use the CRAN version
+
+library(maptpx)
+
 devtools::install_github("kkdey/methClust");  
 library(methClust)
 
 devtools::install_github("kkdey/CountClust")
 library(CountClust)
-
-devtools::install_github("TaddyLab/maptpx")
-library(maptpx)
 ```
 
 Next, install **ecostructure**.
@@ -210,8 +214,8 @@ contributions matrix `omega` using a stacked bar chart.
 east_west_dir <- factor(site_metadata$WorE, levels = c("W", "E"))
 elevation_metadata <- site_metadata$Elevation
 ecos_blocks(fit$omega,
-                    blocker_metadata = east_west_dir,
-                    order_metadata = elevation_metadata)
+            blocker_metadata = east_west_dir,
+            order_metadata = elevation_metadata)
 ```
 
 Because we are interested in species turnover across elevational and geographic locations, we block the two elevational gradients (western or eastern) and plot 
