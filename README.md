@@ -31,6 +31,7 @@ Install **ecostructure** following the instructions below.
 install.packages(devtools)
 install.packages("sf")
 devtools::install_github("kkdey/methClust")
+devtools::install_github("kkdey/maptpx"). # this is an updated version of CRAN package maptpx
 devtools::install_github("kkdey/CountClust")
 devtools::install_github("kkdey/ecostructure")
 ```
