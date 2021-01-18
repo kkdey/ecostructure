@@ -4,8 +4,12 @@
 \alias{mask_climate_raster_by_geo_motif}
 \title{Mask a climate raster by the motif map raster}
 \usage{
-mask_climate_raster_by_geo_motif(motif_map_raster, climate_raster,
-  quant = 0.1, index = 10)
+mask_climate_raster_by_geo_motif(
+  motif_map_raster,
+  climate_raster,
+  quant = 0.1,
+  index = 10
+)
 }
 \arguments{
 \item{motif_map_raster}{The motif map raster obtained from fitting GoM model 

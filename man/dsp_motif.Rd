@@ -4,10 +4,15 @@
 \alias{dsp_motif}
 \title{Creates heatmap for a geographic motif}
 \usage{
-dsp_motif(theta_mat, dsp_fld_res = 8, color_ramp = c("black",
-  "darkseagreen3", "orange", "red"), raster_latlim = c(5, 50),
-  raster_longlim = c(50, 120), outline_col = "white",
-  proj = "+proj=longlat +ellps=WGS84")
+dsp_motif(
+  theta_mat,
+  dsp_fld_res = 8,
+  color_ramp = c("black", "darkseagreen3", "orange", "red"),
+  raster_latlim = c(5, 50),
+  raster_longlim = c(50, 120),
+  outline_col = "white",
+  proj = "+proj=longlat +ellps=WGS84"
+)
 }
 \arguments{
 \item{theta_mat}{The theta output from the model fit from 

@@ -4,9 +4,16 @@
 \alias{ecos_nullmodel}
 \title{Null models for ecostructure_fit clustering validation}
 \usage{
-ecos_nullmodel(counts, K, tol = 0.1, null.model = c("frequency", "richness",
-  "independentswap", "trialswap"), iter_fill = 100, iter_randomized = 30,
-  option, plot = TRUE)
+ecos_nullmodel(
+  counts,
+  K,
+  tol = 0.1,
+  null.model = c("frequency", "richness", "independentswap", "trialswap"),
+  iter_fill = 100,
+  iter_randomized = 30,
+  option,
+  plot = TRUE
+)
 }
 \arguments{
 \item{counts}{The counts matrix (N x G): N- the number of samples (sites), 

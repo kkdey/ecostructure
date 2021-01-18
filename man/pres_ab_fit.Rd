@@ -5,8 +5,10 @@
 \alias{pres_ab_fit}
 \title{The ecostructure_fit() model on presence absence data from India/ S. Asia
 A list of output from K=2 GoM model run on Indian bird presence absence.}
-\format{A list comprising of an omega and theta matrices obtained from
-\code{ecostructure_fit()} on \code{indian_birds_pa} data for K=2}
+\format{
+A list comprising of an omega and theta matrices obtained from
+\code{ecostructure_fit()} on \code{indian_birds_pa} data for K=2
+}
 \usage{
 pres_ab_fit
 }

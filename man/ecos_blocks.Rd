@@ -4,9 +4,15 @@
 \alias{ecos_blocks}
 \title{Ecological Block Struture plot with ggplot2 package}
 \usage{
-ecos_blocks(omega, blocker_metadata, order_metadata, palette = c("#E69F00",
-  "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7"),
-  structure_control = list(), layout)
+ecos_blocks(
+  omega,
+  blocker_metadata,
+  order_metadata,
+  palette = c("#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00",
+    "#CC79A7"),
+  structure_control = list(),
+  layout
+)
 }
 \arguments{
 \item{omega}{Matrix of Cluster membership probabilities of each sample

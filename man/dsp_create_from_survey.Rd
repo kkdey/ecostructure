@@ -5,12 +5,23 @@
 \title{Create dispersion fields from local species abundance data 
 and associated GIS data source (shp files or geodatabase file).}
 \usage{
-dsp_create_from_survey(local_data, gis_data_type = "shp", shp_dir = NULL,
-  gdb_dir = NULL, gdb_object = NULL, gdb_layer = "All_Species",
-  gdb_species_feature = "SCINAME", raster_latlim = c(5, 50),
-  raster_longlim = c(50, 120), raster_resolution = 1, precision = 0.05,
-  base_local = 0, quiet = T, optional_species_names = NULL,
-  include_shp_attributes = "x$SEASONAL==1 | x$SEASONAL==2")
+dsp_create_from_survey(
+  local_data,
+  gis_data_type = "shp",
+  shp_dir = NULL,
+  gdb_dir = NULL,
+  gdb_object = NULL,
+  gdb_layer = "All_Species",
+  gdb_species_feature = "SCINAME",
+  raster_latlim = c(5, 50),
+  raster_longlim = c(50, 120),
+  raster_resolution = 1,
+  precision = 0.05,
+  base_local = 0,
+  quiet = T,
+  optional_species_names = NULL,
+  include_shp_attributes = "x$SEASONAL==1 | x$SEASONAL==2"
+)
 }
 \arguments{
 \item{local_data}{abundance site (row) x species (column) matrix/data frame.}
@@ -36,7 +47,11 @@ in the geodatabse.}
 
 \item{raster_longlim}{The longitudinal range of the desired dispersion field.}
 
-\item{raster_resolution}{The scale resolution of the raster in degrees.}
+\item{raster_resolution}{The precision of the initial estimation provided to fasterize. 
+fasterize tends to undercount small species ranges, so is required 
+to keep at a low value in order detect species presence in a square degree cell.
+Most users will not need to change, but increaseing this value will 
+speed up the function but with potential for error.}
 
 \item{base_local}{If the count of a species in a local site is less than base_local,
 it is assumed to be absent from the site. The default is 0.
@@ -61,12 +76,6 @@ that is read in by sf and must include an "x" in place of where the
 sf object will be manipulated in the function.  Default includes 
 breeding and resident ranges for global birds based on reading 
 GIS data from BirdLife International.}
-
-\item{raster_resolution}{The precision of the initial estimation provided to fasterize. 
-fasterize tends to undercount small species ranges, so is required 
-to keep at a low value in order detect species presence in a square degree cell.
-Most users will not need to change, but increaseing this value will 
-speed up the function but with potential for error.}
 }
 \value{
 Returns 3 lists. In each list, each element is a

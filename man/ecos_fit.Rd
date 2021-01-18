@@ -4,8 +4,14 @@
 \alias{ecos_fit}
 \title{Fitting Grade of Membership model for clustering into communities}
 \usage{
-ecos_fit(dat, max_dat = NULL, K, tol = 0.1, num_trials = 1,
-  fit_control = list())
+ecos_fit(
+  dat,
+  max_dat = NULL,
+  K,
+  tol = 0.1,
+  num_trials = 1,
+  fit_control = list()
+)
 }
 \arguments{
 \item{dat}{input data matrix of samples along rows and features along sites,

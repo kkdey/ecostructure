@@ -5,10 +5,17 @@
 \title{Create dispersion fields and a presence absence matrix from geodatabase 
        file or a shape file containing all species.}
 \usage{
-dsp_create_from_gdb(gdb_object, raster_resolution = 5, thresh = 4,
-  raster_latlim = c(-90, 90), raster_longlim = c(-180, 180),
-  species_feature = "SCINAME", precision = 0.25, species_names = NULL,
-  drop = FALSE)
+dsp_create_from_gdb(
+  gdb_object,
+  raster_resolution = 5,
+  thresh = 4,
+  raster_latlim = c(-90, 90),
+  raster_longlim = c(-180, 180),
+  species_feature = "SCINAME",
+  precision = 0.25,
+  species_names = NULL,
+  drop = FALSE
+)
 }
 \arguments{
 \item{gdb_object}{The geodatabase or a single shapefile containing all species to be read 

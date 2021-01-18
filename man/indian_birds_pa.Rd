@@ -6,12 +6,14 @@
 \title{The presence-absence data of birds from India/ S. Asia
 A dataset of bird presence absence data from 
 India/S. Asia}
-\format{A list comprising of two elements. One is 0/1 absence/presence matrix
+\format{
+A list comprising of two elements. One is 0/1 absence/presence matrix
 of birds in the Australian continent - with sites along the rows and the 
 bird species along the columns, with each entry being 0/1 based on
 if the bird species is present in that site or not.  the other is a matrix
 with equal number of rows as the presence -absence matrix with 2 columns 
-representing the latitudes and longitudes.}
+representing the latitudes and longitudes.
+}
 \usage{
 indian_birds_pa
 }

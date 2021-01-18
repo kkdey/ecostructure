@@ -4,8 +4,10 @@
 \name{dispersion_field_ex}
 \alias{dispersion_field_ex}
 \title{A dispersion field matrix example - used for creating a map}
-\format{a dispersion field example created by \code{dispersion_fields_create}
-in matrix format.}
+\format{
+a dispersion field example created by \code{dispersion_fields_create}
+in matrix format.
+}
 \usage{
 dispersion_field_ex
 }

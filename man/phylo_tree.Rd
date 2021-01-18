@@ -4,7 +4,9 @@
 \name{phylo_tree}
 \alias{phylo_tree}
 \title{An object of type phylo - which is a phylogenetic tree}
-\format{An object of type phylo of the 304 bird species of the Himalayas}
+\format{
+An object of type phylo of the 304 bird species of the Himalayas
+}
 \usage{
 phylo_tree
 }

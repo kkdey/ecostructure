@@ -4,16 +4,28 @@
 \alias{ecos_plot_pie}
 \title{Produces ecological pie chart representations of ecostructure_fit model}
 \usage{
-ecos_plot_pie(omega = NULL, coords = NULL, bgmap_path = NULL,
-  adjust = FALSE, thresh = 0.7, long_lim = c(-180, 180),
-  lat_lim = c(-60, 90), coastline_lwd = 10, intensity = 1, radius = 0.5,
-  color = c("dodgerblue2", "#E31A1C", "green4", "#6A3D9A", "#FF7F00", "black",
-  "gold1", "skyblue2", "#FB9A99", "palegreen2", "#CAB2D6", "#FDBF6F", "gray70",
-  "khaki2", "maroon", "orchid1", "deeppink1", "blue1", "steelblue4",
-  "darkturquoise", "green1", "yellow4", "yellow3", "darkorange4", "brown",
-  "red", "cornflowerblue", "cyan", "brown4", "burlywood", "darkgoldenrod1",
-  "azure4", "green", "deepskyblue", "yellow", "azure1"), pie_control = list(),
-  image_width = 1000, image_height = 800, path = "geostructure_plot.tiff")
+ecos_plot_pie(
+  omega = NULL,
+  coords = NULL,
+  bgmap_path = NULL,
+  adjust = FALSE,
+  thresh = 0.7,
+  long_lim = c(-180, 180),
+  lat_lim = c(-60, 90),
+  coastline_lwd = 10,
+  intensity = 1,
+  radius = 0.5,
+  color = c("dodgerblue2", "#E31A1C", "green4", "#6A3D9A", "#FF7F00", "black", "gold1",
+    "skyblue2", "#FB9A99", "palegreen2", "#CAB2D6", "#FDBF6F", "gray70", "khaki2",
+    "maroon", "orchid1", "deeppink1", "blue1", "steelblue4", "darkturquoise", "green1",
+    "yellow4", "yellow3", "darkorange4", "brown", "red", "cornflowerblue", "cyan",
+    "brown4", "burlywood", "darkgoldenrod1", "azure4", "green", "deepskyblue", "yellow",
+    "azure1"),
+  pie_control = list(),
+  image_width = 1000,
+  image_height = 800,
+  path = "geostructure_plot.tiff"
+)
 }
 \arguments{
 \item{omega}{Matrix of Cluster membership probabilities of each sample

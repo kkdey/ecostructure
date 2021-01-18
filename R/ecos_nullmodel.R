@@ -52,6 +52,7 @@ ecos_nullmodel <- function(counts,
                            option,
                            plot=TRUE)
 {
+    counts = as.matrix(counts)
     if(missing(option)){
       option = "BIC"
     }

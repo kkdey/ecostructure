@@ -5,8 +5,10 @@
 \alias{australia_model}
 \title{The ecostructure_fit() model output on Australian birds
 A list of output from K=6 GoM model run on Australian bird presence absence.}
-\format{A list comprising of an omega and theta matrices obtained from
-\code{ecostructure_fit()} on \code{australian_birds} data for K=6}
+\format{
+A list comprising of an omega and theta matrices obtained from
+\code{ecostructure_fit()} on \code{australian_birds} data for K=6
+}
 \usage{
 australia_model
 }
